@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.TapSense" parent="android:Theme.Material.Light.NoActionBar" />
+
+    <!--
+      OS-level splash (Android 12+ requirement, via androidx.core:core-splashscreen so it also
+      works pre-12): brief icon flash on cold start. The full animated TapSense splash (pulse
+      ring, wordmark, tagline) is the app's own first Compose destination, shown immediately
+      after this system window hands off - see SplashRoute.
+    -->
+    <style name="Theme.TapSense.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/tapsense_splash_bg</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
+        <item name="postSplashScreenTheme">@style/Theme.TapSense</item>
+    </style>
+</resources>

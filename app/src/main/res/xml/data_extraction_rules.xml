@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data-extraction-rules>
+    <!--
+      Excludes the settings DataStore (files/datastore/) alongside the Room cache: both are
+      per-install state - most importantly isOnboardingCompleted, which must default to false on
+      every fresh install/new device rather than silently resuming as "already onboarded" via a
+      restored backup.
+    -->
+    <cloud-backup>
+        <exclude domain="database" path="." />
+        <exclude domain="file" path="datastore/" />
+    </cloud-backup>
+    <device-transfer>
+        <exclude domain="database" path="." />
+        <exclude domain="file" path="datastore/" />
+    </device-transfer>
+</data-extraction-rules>

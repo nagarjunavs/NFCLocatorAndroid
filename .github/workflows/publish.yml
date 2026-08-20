@@ -1,0 +1,48 @@
+name: Publish to Maven Central
+
+# Manual only - never runs on push/PR. Publishing a real, signed artifact to Central is
+# irreversible-ish (a published version can be dropped from a staging deployment but never
+# fully unpublished once released), so it must always be a deliberate, human-triggered action,
+# gated by the `maven-central` environment's required reviewers/secrets (configure this
+# environment under repo Settings -> Environments before the first real run).
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: 'Type "publish" to confirm you intend to stage a real release'
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    if: github.event.inputs.confirm == 'publish'
+    runs-on: ubuntu-latest
+    environment: maven-central
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Verify (build + test + lint) before publishing
+        run: ./gradlew :nfc-locator-core:build :nfc-locator-core:lintDebug
+
+      - name: Publish signed release to Central Portal staging
+        env:
+          MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
+          MAVEN_CENTRAL_PASSWORD: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
+          SIGNING_KEY_IN_MEMORY: ${{ secrets.SIGNING_KEY_IN_MEMORY }}
+          SIGNING_PASSWORD: ${{ secrets.SIGNING_PASSWORD }}
+        run: ./gradlew :nfc-locator-core:publishReleasePublicationToCentralPortalStagingRepository
+
+      - name: Next step
+        run: |
+          echo "Staged. Go to https://central.sonatype.com/publishing/deployments to review and publish the deployment."

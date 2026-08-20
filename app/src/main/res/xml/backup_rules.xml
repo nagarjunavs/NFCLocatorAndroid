@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<full-backup-content>
+    <!-- The bundled catalog cache is regenerated on demand; nothing here needs backing up. -->
+    <exclude domain="database" path="." />
+    <!--
+      isOnboardingCompleted and the manual phone-override live here - both must default to
+      false/unset on a fresh install rather than resuming from a legacy-transport (API < 12)
+      full backup, same reasoning as data_extraction_rules.xml's cloud-backup/device-transfer
+      exclusions above (this file governs the older full-backup path those don't cover).
+    -->
+    <exclude domain="file" path="datastore/" />
+</full-backup-content>

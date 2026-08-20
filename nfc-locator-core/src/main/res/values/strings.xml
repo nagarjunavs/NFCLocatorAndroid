@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Screen title -->
+    <string name="nfc_locator_screen_title">Find your NFC antenna</string>
+
+    <!-- Confidence badges -->
+    <string name="nfc_locator_confidence_exact">Exact location</string>
+    <string name="nfc_locator_confidence_approximate">Approximate location</string>
+    <string name="nfc_locator_confidence_generic">Estimated area</string>
+    <string name="nfc_locator_confidence_unknown">Unknown device</string>
+
+    <!-- Marker states -->
+    <string name="nfc_locator_marker_content_description">NFC antenna location marker</string>
+    <string name="nfc_locator_marker_exact_hint">Hold this spot against the reader.</string>
+    <string name="nfc_locator_marker_verified_hint">Verified tap zone for this exact model. Hold this spot against the reader.</string>
+    <string name="nfc_locator_marker_approximate_hint">Hold roughly this spot against the reader. Move slightly if it doesn\'t read.</string>
+    <string name="nfc_locator_marker_stale_hint">This location hasn\'t been verified recently. If it doesn\'t work, try the sweep below.</string>
+
+    <!-- Guided sweep -->
+    <string name="nfc_locator_sweep_content_description">Guided sweep animation showing where to move your phone</string>
+    <string name="nfc_locator_sweep_generic_tip">We don\'t have an exact match for your phone. Slowly move the marked area of your phone across the reader.</string>
+    <string name="nfc_locator_sweep_unknown_tip">Most Android phones have their NFC antenna near the upper back, close to the camera. Try that spot first, then slowly sweep the back of your phone across the reader.</string>
+    <string name="nfc_locator_sweep_bar_tip">Try the upper-back area of your phone, near the camera.</string>
+    <string name="nfc_locator_sweep_fold_book_tip">Try the back of your phone, roughly centered when folded, or on one inner half when unfolded.</string>
+    <string name="nfc_locator_sweep_fold_flip_tip">Try the center-back of your phone, near the hinge.</string>
+    <string name="nfc_locator_sweep_tablet_tip">Try the center-back of your tablet.</string>
+
+    <!-- Errors / retry -->
+    <string name="nfc_locator_error_title">Couldn\'t determine antenna location</string>
+    <string name="nfc_locator_error_body">Something went wrong while looking up your device. You can still try the general guidance below.</string>
+    <string name="nfc_locator_retry_button">Try again</string>
+    <string name="nfc_locator_retry_guidance_title">Reposition and try again</string>
+    <string name="nfc_locator_retry_guidance_body">The reader didn\'t detect your phone. Try moving it slightly, or follow the sweep guidance below.</string>
+
+    <!-- Loading -->
+    <string name="nfc_locator_loading_content_description">Looking up your device\'s NFC antenna location</string>
+</resources>

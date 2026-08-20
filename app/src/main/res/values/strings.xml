@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TapSense</string>
+    <string name="app_tagline">Know exactly where to tap</string>
+
+    <!-- Confidence chip labels (terse, TapSense style-guide badge copy) -->
+    <string name="confidence_chip_exact">EXACT</string>
+    <string name="confidence_chip_approximate">APPROXIMATE</string>
+    <string name="confidence_chip_estimated">ESTIMATED</string>
+    <string name="confidence_chip_unknown">UNKNOWN</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_skip">Skip</string>
+    <string name="onboarding_continue">Continue</string>
+    <string name="onboarding_get_started">Get started</string>
+    <string name="onboarding_page1_title">Find your phone\'s tap point</string>
+    <string name="onboarding_page1_body">See exactly where to place your phone for reliable NFC scanning — no guesswork.</string>
+    <string name="onboarding_page2_title">Tap with confidence</string>
+    <string name="onboarding_page2_body">Simple visual guidance for tags, smart locks, readers, and payment terminals.</string>
+    <string name="onboarding_page3_title">Get guidance built for your phone</string>
+    <string name="onboarding_page3_body">TapSense already recognized this device. Continue to see its tap zone, or choose a different phone to preview.</string>
+
+    <!-- Phone selection (optional override) -->
+    <string name="phone_selection_title">What phone do you want to preview?</string>
+    <string name="phone_selection_filter_android">Android</string>
+    <string name="phone_selection_filter_apple">Apple</string>
+    <string name="phone_selection_search_placeholder">Search brand or model</string>
+    <string name="phone_selection_section_header">Known phones</string>
+    <string name="phone_selection_empty">No phones match \"%1$s\".</string>
+    <string name="phone_selection_use_my_phone">Use my phone automatically</string>
+    <string name="phone_selection_loading">Loading catalog…</string>
+
+    <!-- Phone confirmed -->
+    <string name="phone_confirmed_title">You\'re set</string>
+    <string name="phone_confirmed_go_home">Go to Home</string>
+    <string name="phone_confirmed_choose_different">Choose a different phone</string>
+
+    <!-- Home -->
+    <string name="home_greeting_morning">Good morning</string>
+    <string name="home_greeting_afternoon">Good afternoon</string>
+    <string name="home_greeting_evening">Good evening</string>
+    <string name="home_previewing_label">Previewing tap zone for</string>
+    <string name="home_start_tap_guide">Start tap guide</string>
+    <string name="home_change_phone">Change</string>
+    <string name="home_tip_case">Hold the highlighted area against the reader for 1–2 seconds. Thick cases can weaken the signal.</string>
+    <string name="home_nfc_status_on">NFC is on</string>
+    <string name="home_nfc_status_off">NFC is off</string>
+    <string name="home_nfc_unsupported">This device has no NFC hardware</string>
+    <string name="home_nfc_unsupported_body">This device doesn\'t have NFC hardware, so there\'s no tap zone to show.</string>
+    <string name="home_tap_not_working">Tap not working?</string>
+    <string name="home_tap_area_recommended">Recommended tap area shown above</string>
+    <string name="home_tap_area_estimated">Estimated tap area shown above</string>
+
+    <!-- My Phone -->
+    <string name="my_phone_tab_back">Back</string>
+    <string name="my_phone_tab_front">Front</string>
+    <string name="my_phone_not_applicable">NOT APPLICABLE</string>
+    <string name="my_phone_front_body">The NFC antenna isn\'t on the front of this phone. Switch to Back to see the recommended tap zone.</string>
+    <string name="my_phone_front_banner">Most phones place their NFC antenna on the rear panel, near the top or camera area.</string>
+    <string name="my_phone_view_back_placement">View back placement</string>
+    <string name="my_phone_nfc_unsupported_body">This device doesn\'t have NFC hardware, so there\'s no tap zone to show.</string>
+    <string name="my_phone_zone_description">NFC antenna / recommended contact zone. Tap this area directly against the reader or tag.</string>
+    <string name="my_phone_case_warning">Thick cases, magnetic wallets, and metal plates may reduce NFC performance.</string>
+    <string name="my_phone_orientation_header">Orientation</string>
+    <string name="my_phone_orientation_back_contact">Back-to-reader contact</string>
+    <string name="my_phone_test_location">Test this location</string>
+
+    <!-- Tap Guide -->
+    <string name="tap_guide_step_of">Step %1$d of %2$d</string>
+    <string name="tap_guide_next">Next</string>
+    <string name="tap_guide_close_content_description">Close tap guide</string>
+    <string name="tap_guide_step1_title">Locate your tap zone</string>
+    <string name="tap_guide_step1_body">This is the area highlighted on your Home and My Phone screens.</string>
+    <string name="tap_guide_step2_title">Wake the reader</string>
+    <string name="tap_guide_step2_body">Bring your phone within a few centimeters — most readers wake automatically.</string>
+    <string name="tap_guide_step3_title">Hold the highlighted area against the reader</string>
+    <string name="tap_guide_step3_body">Keep contact steady for 1–2 seconds. Wait for a vibration or sound to confirm the tap.</string>
+    <string name="tap_guide_step4_title">Wait for confirmation</string>
+    <string name="tap_guide_step4_body">Most readers beep, flash, or vibrate your phone when the tap succeeds.</string>
+    <string name="tap_guide_step5_title">Try it for real</string>
+    <string name="tap_guide_step5_body">Run a tap test now to confirm your tap zone works with a real NFC tag or reader.</string>
+    <string name="tap_guide_step5_action">Run a tap test</string>
+
+    <!-- Tap Test -->
+    <string name="tap_test_title">Tap test</string>
+    <string name="tap_test_state_detecting">Detecting…</string>
+    <string name="tap_test_state_detected">NFC detected successfully</string>
+    <string name="tap_test_state_timed_out">No NFC signal detected yet</string>
+    <string name="tap_test_state_nfc_off">NFC is off</string>
+    <string name="tap_test_state_nfc_unsupported">This device has no NFC hardware</string>
+    <string name="tap_test_hint_detecting">Hold the highlighted area against an NFC tag or reader</string>
+    <string name="tap_test_hint_detected">Your recommended tap area is working.</string>
+    <string name="tap_test_hint_timed_out">• Move slowly across the reader\n• Try the top or rear of the phone\n• Remove thick cases or magnets\n• Confirm NFC is turned on</string>
+    <string name="tap_test_hint_nfc_off">Turn on NFC in system settings, then try again.</string>
+    <string name="tap_test_hint_nfc_unsupported">This device doesn\'t have NFC hardware, so a live tap test isn\'t possible here.</string>
+    <string name="tap_test_cancel">Cancel</string>
+    <string name="tap_test_tap_again">Tap again</string>
+    <string name="tap_test_try_again">Try again</string>
+    <string name="tap_test_open_settings">Open NFC settings</string>
+
+    <!-- Troubleshoot -->
+    <string name="troubleshoot_title">Tap not working?</string>
+    <string name="troubleshoot_subtitle">What\'s happening?</string>
+    <string name="troubleshoot_issue_no_reaction">My phone does not react</string>
+    <string name="troubleshoot_issue_reader_silent">The reader does not respond</string>
+    <string name="troubleshoot_issue_pay_failing">Tap-to-pay is not working</string>
+    <string name="troubleshoot_issue_cannot_scan">I can\'t scan a tag</string>
+    <string name="troubleshoot_issue_dont_know_where">I don\'t know where to tap</string>
+    <string name="troubleshoot_issue_model_missing">My phone model isn\'t listed</string>
+    <string name="troubleshoot_action_open_nfc_settings">Open NFC settings</string>
+    <string name="troubleshoot_action_run_tap_test">Run a tap test</string>
+    <string name="troubleshoot_action_view_tap_zone">View my tap zone</string>
+    <string name="troubleshoot_action_choose_phone">Choose my phone</string>
+    <string name="troubleshoot_action_learn_more">Learn NFC basics</string>
+    <string name="troubleshoot_selected_prefix">Selected:</string>
+
+    <!-- Education -->
+    <string name="education_title">NFC basics</string>
+    <string name="education_what_is_nfc_title">What is NFC?</string>
+    <string name="education_what_is_nfc_body">NFC works only at very close range — a few centimeters. Placing your phone\'s tap area directly against the device and holding it still gives the most reliable read.</string>
+    <string name="education_faq_antenna_location">Where is the antenna on my phone?</string>
+    <string name="education_faq_antenna_location_answer">Usually near the upper back, close to the main camera — TapSense shows the exact spot for your model on the My Phone screen.</string>
+    <string name="education_faq_tap_tag">How do I tap an NFC tag?</string>
+    <string name="education_faq_tap_tag_answer">Hold your phone\'s tap zone directly against the tag and keep it steady for a second or two.</string>
+    <string name="education_faq_pay_vs_scan">Tap-to-pay vs. tag scanning</string>
+    <string name="education_faq_pay_vs_scan_answer">Tap-to-pay talks to a secure payment terminal; tag scanning reads a small passive chip. Both use the same antenna and tap zone.</string>
+    <string name="education_faq_why_fail">Why a tap can fail</string>
+    <string name="education_faq_why_fail_answer">Thick cases, magnetic accessories, low battery, or simply missing the tap zone are the most common causes.</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_phone_model">Phone model</string>
+    <string name="settings_phone_auto">Auto-detected</string>
+    <string name="settings_nfc_status">NFC status</string>
+    <string name="settings_nfc_on">On</string>
+    <string name="settings_nfc_off">Off</string>
+    <string name="settings_nfc_not_supported">Not supported</string>
+    <string name="settings_haptics">Haptic feedback</string>
+    <string name="settings_reduce_motion">Reduce motion</string>
+    <string name="settings_appearance">Appearance</string>
+    <string name="settings_appearance_system">System</string>
+    <string name="settings_appearance_light">Light</string>
+    <string name="settings_appearance_dark">Dark</string>
+    <string name="settings_help_center">Help center</string>
+    <string name="settings_privacy">Privacy &amp; data</string>
+    <string name="settings_version">Version %1$s</string>
+
+    <!-- Privacy & data -->
+    <string name="privacy_title">Privacy &amp; data</string>
+    <string name="privacy_disclaimer">This page explains what data TapSense collects, why, and how it\'s handled.</string>
+    <string name="privacy_on_device_title">On-device NFC detection</string>
+    <string name="privacy_on_device_body">Finding your phone\'s antenna location happens entirely on-device, using Android\'s own NFC APIs. Nothing about when or where you tap is recorded or sent anywhere.</string>
+    <string name="privacy_catalog_title">Phone catalog lookups</string>
+    <string name="privacy_catalog_body">If your exact phone model isn\'t already bundled with the app, it may look it up against a remote catalog of known antenna locations. That request includes only your device\'s manufacturer and model name - nothing else identifying you or your device.</string>
+    <string name="privacy_analytics_title">Analytics</string>
+    <string name="privacy_analytics_body">TapSense logs a small number of app-usage events locally, to this device\'s own log output only. Nothing is transmitted off-device.</string>
+    <string name="privacy_permissions_title">Permissions</string>
+    <string name="privacy_permissions_body">TapSense requests the NFC permission only to detect your device\'s antenna and read tags during a tap test. It does not request location, contacts, camera, microphone, or storage access.</string>
+    <string name="privacy_third_party_title">Third-party services</string>
+    <string name="privacy_third_party_body">TapSense does not include any third-party analytics, advertising, or tracking SDKs.</string>
+    <string name="privacy_retention_title">Data retention</string>
+    <string name="privacy_retention_body">TapSense doesn\'t create an account or store personal data on any server. Your selected phone model and app preferences are saved only on your device and are removed automatically when you uninstall the app.</string>
+
+    <!-- Bottom navigation -->
+    <string name="nav_home">Home</string>
+    <string name="nav_my_phone">My Phone</string>
+    <string name="nav_tap_guide">Tap Guide</string>
+    <string name="nav_settings">Settings</string>
+</resources>

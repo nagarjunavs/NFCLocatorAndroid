@@ -1,0 +1,35 @@
+*.iml
+.gradle/
+local.properties
+.idea/
+.DS_Store
+build/
+captures/
+.externalNativeBuild/
+.cxx/
+*.apk
+*.aab
+*.ap_
+*.dex
+*.hprof
+.cxx/
+.kotlin/
+.navigation/
+/*/release/
+
+# Signing / publishing secrets - never commit these.
+*.jks
+*.keystore
+key.properties
+keystore.properties
+signing.properties
+secrets.properties
+gradle.properties.local
+*.asc
+*.gpg
+*.pem
+*.p12
+
+# Local Gradle build tuning some IDEs write per-machine.
+.gradle/config.properties
+

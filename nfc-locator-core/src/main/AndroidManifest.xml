@@ -1,0 +1,22 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+      Required for every NfcAdapter call this library makes (getNfcAntennaInfo(),
+      enableReaderMode()/disableReaderMode()). Without it those calls throw SecurityException
+      at the Binder boundary - NfcAdapter#isEnabled() alone doesn't need it, which is why a
+      missing declaration here doesn't crash, it just makes every real NFC operation silently
+      fail and get misreported as "NFC is off" by callers that catch-and-treat-as-unavailable
+      (see SystemNfcAntennaInfoProvider, TapReaderModeController). Declared in the library
+      manifest, not left to the host app, since the library is what makes these calls.
+    -->
+    <uses-permission android:name="android.permission.NFC" />
+
+    <!--
+      Declared but not required: hosts without NFC hardware still get GENERIC/UNKNOWN
+      guidance from the fallback chain rather than being unable to install the app.
+    -->
+    <uses-feature
+        android:name="android.hardware.nfc"
+        android:required="false" />
+
+</manifest>
