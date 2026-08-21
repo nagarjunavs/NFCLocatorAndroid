@@ -33,3 +33,4 @@ gradle.properties.local
 # Local Gradle build tuning some IDEs write per-machine.
 .gradle/config.properties
 
+.github/
