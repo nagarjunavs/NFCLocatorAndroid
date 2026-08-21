@@ -17,7 +17,7 @@ claim; anything not yet decided is marked **TODO (owner)**.
       `RELEASE_KEYSTORE_PASSWORD`, `RELEASE_KEY_ALIAS`, `RELEASE_KEY_PASSWORD`) — no keystore is
       committed to this repo. **TODO (owner)**: generate an upload keystore
       (`keytool -genkeypair -v -keystore upload-keystore.jks -alias upload -keyalg RSA
-      -keysize 2048 -validity 10000`), store it somewhere safe (password manager / secrets
+    -keysize 2048 -validity 10000`), store it somewhere safe (password manager / secrets
       vault), and enroll in
       [Play App Signing](https://support.google.com/googleplay/android-developer/answer/9842756)
       so Google holds the real app signing key and this becomes just the upload key.
@@ -46,14 +46,14 @@ claim; anything not yet decided is marked **TODO (owner)**.
 - [x] No account creation, no login, no PII collected — confirmed by reading every data-handling
       path: `TapSenseSettingsRepository` (DataStore: appearance/haptics/reduce-motion/manual
       phone override only), the Room cache (device-model → antenna-position mappings only),
-      `LogcatNfcLocatorAnalytics` (logs locally to Logcat only, never transmitted — see
-      `PrivacyScreen.kt`'s copy, which matches this exactly), `FakeCatalogRemoteApi` (in-memory
-      demo data, makes no real network call).
-- [x] In-app Privacy screen (`PrivacyScreen.kt`) states real, code-verifiable data practices —
-      not placeholder legal text.
-- [ ] **TODO (owner)**: host `app/store-listing/PRIVACY_POLICY.md`'s content (or a revised
-      version) at a real, stable URL — Play Console requires a live privacy policy URL even for
-      an app that collects nothing.
+      `LogcatNfcLocatorAnalytics` (logs locally to Logcat only, never transmitted),
+      `FakeCatalogRemoteApi` (in-memory demo data, makes no real network call).
+- [x] Settings → Privacy & data opens the hosted privacy policy
+      (`https://nagarjunavs.github.io/tapsense/android/privacy/`) in the browser via
+      `openUrlSafely` (`UrlLauncher.kt`) — no in-app privacy screen or `WebView`.
+- [x] `app/store-listing/PRIVACY_POLICY.md`'s content is hosted at a real, stable URL
+      (`https://nagarjunavs.github.io/tapsense/android/privacy/`) — Play Console requires a live
+      privacy policy URL even for an app that collects nothing.
 - [ ] **TODO (owner)**: complete the Play Console **Data Safety** form. Based on the above, the
       honest answers are: no data collected or shared off-device; if you later wire a real
       `CatalogRemoteApi` implementation, disclose "App info and performance → Device or other
@@ -104,8 +104,7 @@ Still needed, **all TODO (owner)** — none of these are fabricated here:
 
 ## Testing track & rollout
 
-- [ ] **TODO (owner)**: upload the first build to an **Internal testing** track, verify install
-      + core flows (onboarding → auto-detect → Home marker → My Phone Back/Front → Tap Guide →
+- [ ] **TODO (owner)**: upload the first build to an **Internal testing** track, verify install + core flows (onboarding → auto-detect → Home marker → My Phone Back/Front → Tap Guide →
       Tap Test) on at least one physical device.
 - [ ] **TODO (owner)**: promote to **Closed** or **Open testing** for a wider pre-release check
       before **Production**.

@@ -145,22 +145,6 @@
     <string name="settings_privacy">Privacy &amp; data</string>
     <string name="settings_version">Version %1$s</string>
 
-    <!-- Privacy & data -->
-    <string name="privacy_title">Privacy &amp; data</string>
-    <string name="privacy_disclaimer">This page explains what data TapSense collects, why, and how it\'s handled.</string>
-    <string name="privacy_on_device_title">On-device NFC detection</string>
-    <string name="privacy_on_device_body">Finding your phone\'s antenna location happens entirely on-device, using Android\'s own NFC APIs. Nothing about when or where you tap is recorded or sent anywhere.</string>
-    <string name="privacy_catalog_title">Phone catalog lookups</string>
-    <string name="privacy_catalog_body">If your exact phone model isn\'t already bundled with the app, it may look it up against a remote catalog of known antenna locations. That request includes only your device\'s manufacturer and model name - nothing else identifying you or your device.</string>
-    <string name="privacy_analytics_title">Analytics</string>
-    <string name="privacy_analytics_body">TapSense logs a small number of app-usage events locally, to this device\'s own log output only. Nothing is transmitted off-device.</string>
-    <string name="privacy_permissions_title">Permissions</string>
-    <string name="privacy_permissions_body">TapSense requests the NFC permission only to detect your device\'s antenna and read tags during a tap test. It does not request location, contacts, camera, microphone, or storage access.</string>
-    <string name="privacy_third_party_title">Third-party services</string>
-    <string name="privacy_third_party_body">TapSense does not include any third-party analytics, advertising, or tracking SDKs.</string>
-    <string name="privacy_retention_title">Data retention</string>
-    <string name="privacy_retention_body">TapSense doesn\'t create an account or store personal data on any server. Your selected phone model and app preferences are saved only on your device and are removed automatically when you uninstall the app.</string>
-
     <!-- Bottom navigation -->
     <string name="nav_home">Home</string>
     <string name="nav_my_phone">My Phone</string>

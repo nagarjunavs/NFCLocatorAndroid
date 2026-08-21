@@ -1,6 +1,9 @@
 package com.tapsense.app.ui.navigation
 
-/** Flat route table - a bottom bar is shown/hidden per-route rather than via a nested graph, see [TapSenseNavHost]. */
+/**
+ * Flat route table - a bottom bar is shown/hidden per-route rather than via a nested graph, see
+ * [TapSenseNavHost].
+ */
 object TapSenseDestinations {
     const val SPLASH = "splash"
     const val ONBOARDING = "onboarding"
@@ -13,7 +16,6 @@ object TapSenseDestinations {
     const val TAP_TEST = "tap_test"
     const val TROUBLESHOOT = "troubleshoot"
     const val EDUCATION = "education"
-    const val PRIVACY = "privacy"
 
     /** Routes that show the persistent bottom navigation bar. */
     val BOTTOM_BAR_ROUTES = setOf(HOME, MY_PHONE, SETTINGS)
