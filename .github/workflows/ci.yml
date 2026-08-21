@@ -27,7 +27,7 @@ jobs:
           java-version: '17'
 
       - name: Set up Gradle
-        uses: gradle/actions/setup-gradle@v4
+        uses: gradle/actions/setup-gradle@v6
 
       - name: Compile
         run: ./gradlew compileDebugKotlin compileReleaseKotlin
@@ -66,7 +66,7 @@ jobs:
           java-version: '17'
 
       - name: Set up Gradle
-        uses: gradle/actions/setup-gradle@v4
+        uses: gradle/actions/setup-gradle@v6
 
       - name: Publish to local Maven repo (verification only)
         # Overrides GROUP for this dry run only, so a CI run never writes into the real
