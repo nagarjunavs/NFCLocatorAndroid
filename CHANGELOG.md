@@ -1,12 +1,15 @@
 # Changelog
 
 All notable changes to `nfc-locator-core` are documented here. Format loosely follows
-[Keep a Changelog](https://keepachangelog.com/en/1.1.0/); this project has not yet made a
-versioned release, so semantic-versioning guarantees begin at `0.1.0`.
+[Keep a Changelog](https://keepachangelog.com/en/1.1.0/); semantic-versioning guarantees begin
+with the `0.1.0` release.
 
 ## [Unreleased]
 
+## [0.1.0] - 2026-08-21
+
 ### Added
+
 - Initial resolver chain: Android 14+ OS-reported antenna data, remote catalog, bundled seed
   catalog, and a form-factor heuristic fallback.
 - Compose UI components (`AntennaSilhouette`, `GuidedSweepAnimation`, `ConfidenceBadge`,
@@ -40,11 +43,12 @@ versioned release, so semantic-versioning guarantees begin at `0.1.0`.
   camera module) versus the S23 generation already in the catalog.
 
 ### Fixed
+
 - Sample app: settings (`isOnboardingCompleted`, the manual phone override) now persist in
   `Context.noBackupFilesDir` instead of the default backed-up `filesDir`. Android's Auto Backup
   was silently restoring a completed-onboarding flag on reinstall, making onboarding
   unreachable even after a genuine uninstall - the previous fix (excluding the DataStore path in
-  `data_extraction_rules.xml`/`backup_rules.xml`) stopped *new* backups from including it but
+  `data_extraction_rules.xml`/`backup_rules.xml`) stopped _new_ backups from including it but
   couldn't invalidate an already-existing stale one; moving the file itself is unconditional and
   immune to backup timing.
 - `CatalogCache` (`nfc-locator-core`) was a public domain interface with zero consumers outside
@@ -57,4 +61,5 @@ versioned release, so semantic-versioning guarantees begin at `0.1.0`.
   the app's pre-TapSense-rebrand name and had zero references anywhere, and one in `:app`
   (`tap_test_view_tips`) left over from an earlier Tap Test screen iteration.
 
-[Unreleased]: https://github.com/nagarjunavs/NFCLocatorAndroid/commits/main
+[Unreleased]: https://github.com/nagarjunavs/NFCLocatorAndroid/compare/v0.1.0...main
+[0.1.0]: https://github.com/nagarjunavs/NFCLocatorAndroid/releases/tag/v0.1.0

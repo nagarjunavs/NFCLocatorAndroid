@@ -50,15 +50,13 @@ package's KDoc for API-level detail.
 
 ## Installation
 
-> **Not yet published.** This library hasn't been pushed to Maven Central yet — see
-> [`RELEASING.md`](RELEASING.md) for the publish checklist. The coordinates below are the real
-> group/artifact ID; only `<version>` is a placeholder until the first tagged release.
+The library is published to Maven Central as version `0.1.0`.
 
 **Kotlin DSL** (`build.gradle.kts`):
 
 ```kotlin
 dependencies {
-    implementation("io.github.nagarjunavs:nfc-locator-core:<version>")
+    implementation("io.github.nagarjunavs:nfc-locator-core:0.1.0")
 }
 ```
 
@@ -66,7 +64,7 @@ dependencies {
 
 ```groovy
 dependencies {
-    implementation 'io.github.nagarjunavs:nfc-locator-core:<version>'
+    implementation 'io.github.nagarjunavs:nfc-locator-core:0.1.0'
 }
 ```
 
