@@ -43,6 +43,16 @@ jobs:
           SIGNING_PASSWORD: ${{ secrets.SIGNING_PASSWORD }}
         run: ./gradlew :nfc-locator-core:publishReleasePublicationToCentralPortalStagingRepository
 
+      - name: Transfer staging repository to Central Portal
+        env:
+          MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
+          MAVEN_CENTRAL_PASSWORD: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
+        run: |
+          token=$(printf '%s:%s' "$MAVEN_CENTRAL_USERNAME" "$MAVEN_CENTRAL_PASSWORD" | base64 -w 0)
+          curl --fail-with-body --silent --show-error --request POST \
+            --header "Authorization: Bearer $token" \
+            "https://ossrh-staging-api.central.sonatype.com/manual/upload/defaultRepository/io.github.nagarjunavs?publishing_type=user_managed"
+
       - name: Next step
         run: |
-          echo "Staged. Go to https://central.sonatype.com/publishing/deployments to review and publish the deployment."
+          echo "Transferred to Central Portal. Go to https://central.sonatype.com/publishing/deployments to review and publish the deployment."

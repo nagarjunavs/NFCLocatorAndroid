@@ -62,12 +62,21 @@ export SIGNING_KEY_IN_MEMORY="$(cat /path/to/private-key.asc)"
 export SIGNING_PASSWORD=...
 
 ./gradlew :nfc-locator-core:publishReleasePublicationToCentralPortalStagingRepository
+
+# Transfer the OSSRH-compatible staging repository into the Central Portal.
+token=$(printf '%s:%s' "$MAVEN_CENTRAL_USERNAME" "$MAVEN_CENTRAL_PASSWORD" | base64 | tr -d '\n')
+curl --fail-with-body --silent --show-error --request POST \
+   --header "Authorization: Bearer $token" \
+   "https://ossrh-staging-api.central.sonatype.com/manual/upload/defaultRepository/io.github.nagarjunavs?publishing_type=user_managed"
 ```
 
-This uploads a signed, staged deployment to Central's OSSRH-compatible staging endpoint. Finish
-the release from the [Central Portal deployments UI](https://central.sonatype.com/publishing/deployments):
-review the staged contents, then **Publish** (or **Drop** to discard and retry). Once published,
-propagation to `search.maven.org` and mirrors can take up to a few hours.
+This uploads signed artifacts to Central's OSSRH-compatible staging repository. For the built-in
+Gradle `maven-publish` path, the repository must then be transferred to the Central Publisher
+Portal before it appears in the deployments UI. The GitHub Actions workflow performs this transfer
+with Central's `manual/upload/defaultRepository/<namespace>` endpoint. Finish the release from the
+[Central Portal deployments UI](https://central.sonatype.com/publishing/deployments): review the
+staged contents, then **Publish** (or **Drop** to discard and retry). Once published, propagation
+to `search.maven.org` and mirrors can take up to a few hours.
 
 ## Snapshot vs. release safeguard
 
