@@ -6,6 +6,15 @@ with the `0.1.0` release.
 
 ## [Unreleased]
 
+### Changed
+
+- Sample app (`:app`) and `nfc-locator-core`: `compileSdk`/`targetSdk` bumped from 35 to 36
+  (Android 16), keeping `minSdk 26` unchanged. Required to keep publishing updates on Google
+  Play, which enforces a rolling "target API level within 1 year of the latest Android release"
+  policy (hard cutoff August 31, 2026 for this cycle). Verified: full build/test/lint pass,
+  `assembleRelease`/`bundleRelease`/`publishToMavenLocal` all succeed unchanged, and an on-device
+  install/onboarding/catalog-preview smoke test showed no behavioral or layout regressions.
+
 ## [0.1.0] - 2026-08-21
 
 ### Added

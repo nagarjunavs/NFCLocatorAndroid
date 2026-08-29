@@ -21,13 +21,13 @@ val hasReleaseSigningConfig = !releaseKeystorePath.isNullOrBlank() &&
 
 android {
     namespace = "com.tapsense.app"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.tapsense.app"
         minSdk = 26
-        targetSdk = 35
-        versionCode = 1
+        targetSdk = 36
+        versionCode = 2
         versionName = "1.0.0"
 
         testInstrumentationRunner = "com.tapsense.app.HiltTestRunner"

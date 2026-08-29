@@ -13,6 +13,11 @@ claim; anything not yet decided is marked **TODO (owner)**.
       requires a strictly increasing `versionCode`.
 - [x] Release build type: `isMinifyEnabled = true`, `isShrinkResources = true`, R8 verified
       locally (`./gradlew :app:assembleRelease` and `:app:bundleRelease` both succeed).
+- [x] `targetSdk 36` (Android 16) — meets Play's rolling "target API level within 1 year of the
+      latest Android release" requirement (`compileSdk` bumped alongside it; `minSdk` unchanged
+      at 26). Re-check this annually: Play enforces a new deadline each year as the next Android
+      version ships, most recently a hard cutoff of August 31, 2026 for updates to remain
+      publishable.
 - [x] Release signing reads from environment variables only (`RELEASE_KEYSTORE_PATH`,
       `RELEASE_KEYSTORE_PASSWORD`, `RELEASE_KEY_ALIAS`, `RELEASE_KEY_PASSWORD`) — no keystore is
       committed to this repo. **TODO (owner)**: generate an upload keystore
