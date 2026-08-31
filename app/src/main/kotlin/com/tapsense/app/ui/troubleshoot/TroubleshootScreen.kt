@@ -1,5 +1,6 @@
 package com.tapsense.app.ui.troubleshoot
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -8,9 +9,15 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Close
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -37,42 +44,62 @@ fun TroubleshootRoute(
     onViewTapZone: () -> Unit,
     onChoosePhone: () -> Unit,
     onLearnMore: () -> Unit,
+    onClose: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     var selected by remember { mutableStateOf<TroubleshootIssue?>(null) }
 
-    Column(modifier = modifier.fillMaxSize().safeDrawingPadding().padding(horizontal = 24.dp)) {
-        Text(
-            text = stringResource(R.string.troubleshoot_title),
-            style = MaterialTheme.typography.headlineSmall,
-            modifier = Modifier.padding(top = 12.dp),
-        )
-        Text(
-            text = stringResource(R.string.troubleshoot_subtitle),
-            style = MaterialTheme.typography.bodySmall,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-            modifier = Modifier.padding(top = 4.dp, bottom = 12.dp),
-        )
-
-        LazyColumn(
-            contentPadding = PaddingValues(vertical = 4.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp),
-        ) {
-            items(TroubleshootIssue.entries) { issue ->
-                IssueRow(issue = issue, selected = issue == selected, onClick = { selected = issue })
+    Column(modifier = modifier.fillMaxSize().safeDrawingPadding()) {
+        Row(modifier = Modifier.fillMaxWidth().padding(top = 8.dp, end = 16.dp), horizontalArrangement = Arrangement.End) {
+            val closeDescription = stringResource(R.string.troubleshoot_close_content_description)
+            IconButton(
+                onClick = onClose,
+                modifier = Modifier
+                    .size(32.dp)
+                    .background(MaterialTheme.colorScheme.surfaceVariant, CircleShape),
+            ) {
+                Icon(
+                    imageVector = Icons.Filled.Close,
+                    contentDescription = closeDescription,
+                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.size(16.dp),
+                )
             }
         }
 
-        selected?.let { issue ->
-            TroubleshootActions(
-                issue = issue,
-                isNfcSupported = isNfcSupported,
-                onOpenNfcSettings = onOpenNfcSettings,
-                onRunTapTest = onRunTapTest,
-                onViewTapZone = onViewTapZone,
-                onChoosePhone = onChoosePhone,
-                onLearnMore = onLearnMore,
+        Column(modifier = Modifier.fillMaxSize().padding(horizontal = 24.dp)) {
+            Text(
+                text = stringResource(R.string.troubleshoot_title),
+                style = MaterialTheme.typography.headlineSmall,
+                modifier = Modifier.padding(top = 12.dp),
             )
+            Text(
+                text = stringResource(R.string.troubleshoot_subtitle),
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.padding(top = 4.dp, bottom = 12.dp),
+            )
+
+            LazyColumn(
+                contentPadding = PaddingValues(vertical = 4.dp),
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+            ) {
+                items(TroubleshootIssue.entries) { issue ->
+                    IssueRow(issue = issue, selected = issue == selected, onClick = { selected = issue })
+                }
+            }
+
+            selected?.let { issue ->
+                TroubleshootActions(
+                    issue = issue,
+                    isNfcSupported = isNfcSupported,
+                    onOpenNfcSettings = onOpenNfcSettings,
+                    onRunTapTest = onRunTapTest,
+                    onViewTapZone = onViewTapZone,
+                    onChoosePhone = onChoosePhone,
+                    onLearnMore = onLearnMore,
+                )
+            }
         }
     }
 }

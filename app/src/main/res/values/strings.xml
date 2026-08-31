@@ -29,6 +29,7 @@
     <string name="phone_selection_empty">No phones match \"%1$s\".</string>
     <string name="phone_selection_use_my_phone">Use my phone automatically</string>
     <string name="phone_selection_loading">Loading catalog…</string>
+    <string name="phone_selection_close_content_description">Close phone selection</string>
 
     <!-- Phone confirmed -->
     <string name="phone_confirmed_title">You\'re set</string>
@@ -97,6 +98,7 @@
     <string name="tap_test_tap_again">Tap again</string>
     <string name="tap_test_try_again">Try again</string>
     <string name="tap_test_open_settings">Open NFC settings</string>
+    <string name="tap_test_close_content_description">Close tap test</string>
 
     <!-- Troubleshoot -->
     <string name="troubleshoot_title">Tap not working?</string>
@@ -113,9 +115,11 @@
     <string name="troubleshoot_action_choose_phone">Choose my phone</string>
     <string name="troubleshoot_action_learn_more">Learn NFC basics</string>
     <string name="troubleshoot_selected_prefix">Selected:</string>
+    <string name="troubleshoot_close_content_description">Close troubleshooting</string>
 
     <!-- Education -->
     <string name="education_title">NFC basics</string>
+    <string name="education_close_content_description">Close NFC basics</string>
     <string name="education_what_is_nfc_title">What is NFC?</string>
     <string name="education_what_is_nfc_body">NFC works only at very close range — a few centimeters. Placing your phone\'s tap area directly against the device and holding it still gives the most reliable read.</string>
     <string name="education_faq_antenna_location">Where is the antenna on my phone?</string>

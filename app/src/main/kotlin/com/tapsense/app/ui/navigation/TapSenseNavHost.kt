@@ -135,6 +135,7 @@ fun TapSenseNavHost(
                             }
                         },
                         onUseMyPhone = { navController.popBackStack() },
+                        onClose = { navController.popBackStack() },
                 )
             }
             composable(TapSenseDestinations.PHONE_CONFIRMED) {
@@ -178,9 +179,12 @@ fun TapSenseNavHost(
                             navController.navigate(TapSenseDestinations.PHONE_SELECTION)
                         },
                         onLearnMore = { navController.navigate(TapSenseDestinations.EDUCATION) },
+                        onClose = { navController.popBackStack() },
                 )
             }
-            composable(TapSenseDestinations.EDUCATION) { EducationRoute() }
+            composable(TapSenseDestinations.EDUCATION) {
+                EducationRoute(onClose = { navController.popBackStack() })
+            }
         }
     }
 }

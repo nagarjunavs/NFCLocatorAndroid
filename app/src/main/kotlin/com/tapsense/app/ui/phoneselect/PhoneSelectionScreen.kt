@@ -1,5 +1,6 @@
 package com.tapsense.app.ui.phoneselect
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -9,13 +10,17 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
@@ -41,6 +46,7 @@ import com.tapsense.app.util.friendlyModelName
 fun PhoneSelectionRoute(
     onPhoneSelected: () -> Unit,
     onUseMyPhone: () -> Unit,
+    onClose: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: PhoneSelectionViewModel = hiltViewModel(),
 ) {
@@ -51,6 +57,7 @@ fun PhoneSelectionRoute(
         onOsFilterChange = viewModel::onOsFilterChange,
         onPhoneClick = { profile -> viewModel.selectPhone(profile, onPhoneSelected) },
         onUseMyPhone = { viewModel.useMyPhoneAutomatically(onUseMyPhone) },
+        onClose = onClose,
         modifier = modifier,
     )
 }
@@ -62,9 +69,27 @@ private fun PhoneSelectionScreen(
     onOsFilterChange: (PhoneOsFilter) -> Unit,
     onPhoneClick: (DeviceAntennaProfile) -> Unit,
     onUseMyPhone: () -> Unit,
+    onClose: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(modifier = modifier.fillMaxSize().safeDrawingPadding()) {
+        Row(modifier = Modifier.fillMaxWidth().padding(top = 8.dp, end = 16.dp), horizontalArrangement = Arrangement.End) {
+            val closeDescription = stringResource(R.string.phone_selection_close_content_description)
+            IconButton(
+                onClick = onClose,
+                modifier = Modifier
+                    .size(32.dp)
+                    .background(MaterialTheme.colorScheme.surfaceVariant, CircleShape),
+            ) {
+                Icon(
+                    imageVector = Icons.Filled.Close,
+                    contentDescription = closeDescription,
+                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.size(16.dp),
+                )
+            }
+        }
+
         Text(
             text = stringResource(R.string.phone_selection_title),
             style = MaterialTheme.typography.headlineSmall,

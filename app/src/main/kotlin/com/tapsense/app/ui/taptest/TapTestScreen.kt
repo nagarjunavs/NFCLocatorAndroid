@@ -1,6 +1,7 @@
 package com.tapsense.app.ui.taptest
 
 import android.app.Activity
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -15,11 +16,13 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CheckCircle
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Surface
@@ -111,70 +114,89 @@ private fun TapTestScreen(
     onOpenNfcSettings: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    Column(modifier = modifier.fillMaxSize().safeDrawingPadding().padding(horizontal = 24.dp)) {
-        Text(
-            text = stringResource(R.string.tap_test_title),
-            style = MaterialTheme.typography.headlineSmall,
-            modifier = Modifier.padding(top = 12.dp, bottom = 8.dp),
-        )
-
-        Column(
-            modifier = Modifier.weight(1f).fillMaxWidth(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center,
-        ) {
-            when (uiState) {
-                TapTestUiState.Ready, TapTestUiState.Detecting -> DetectingContent(antennaState, reduceMotion)
-                TapTestUiState.Detected -> DetectedContent()
-                TapTestUiState.TimedOut -> TimedOutContent()
-                TapTestUiState.NfcOff -> NfcOffContent()
-                TapTestUiState.NfcUnsupported -> NfcUnsupportedContent()
+    Column(modifier = modifier.fillMaxSize().safeDrawingPadding()) {
+        Row(modifier = Modifier.fillMaxWidth().padding(top = 8.dp, end = 16.dp), horizontalArrangement = Arrangement.End) {
+            val closeDescription = stringResource(R.string.tap_test_close_content_description)
+            IconButton(
+                onClick = onCancel,
+                modifier = Modifier
+                    .size(32.dp)
+                    .background(MaterialTheme.colorScheme.surfaceVariant, CircleShape),
+            ) {
+                Icon(
+                    imageVector = Icons.Filled.Close,
+                    contentDescription = closeDescription,
+                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.size(16.dp),
+                )
             }
         }
 
-        Column(modifier = Modifier.padding(bottom = 24.dp)) {
-            when (uiState) {
-                TapTestUiState.Ready, TapTestUiState.Detecting -> {
-                    OutlinedButton(
-                        onClick = onCancel,
-                        colors = ButtonDefaults.tapSenseOutlined(),
-                        border = tapSenseOutlinedBorder(),
-                        modifier = Modifier.fillMaxWidth(),
-                    ) {
-                        Text(stringResource(R.string.tap_test_cancel))
-                    }
+        Column(modifier = Modifier.fillMaxSize().padding(horizontal = 24.dp)) {
+            Text(
+                text = stringResource(R.string.tap_test_title),
+                style = MaterialTheme.typography.headlineSmall,
+                modifier = Modifier.padding(top = 4.dp, bottom = 8.dp),
+            )
+
+            Column(
+                modifier = Modifier.weight(1f).fillMaxWidth(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center,
+            ) {
+                when (uiState) {
+                    TapTestUiState.Ready, TapTestUiState.Detecting -> DetectingContent(antennaState, reduceMotion)
+                    TapTestUiState.Detected -> DetectedContent()
+                    TapTestUiState.TimedOut -> TimedOutContent()
+                    TapTestUiState.NfcOff -> NfcOffContent()
+                    TapTestUiState.NfcUnsupported -> NfcUnsupportedContent()
                 }
-                TapTestUiState.Detected -> {
-                    Row(horizontalArrangement = Arrangement.spacedBy(10.dp), modifier = Modifier.fillMaxWidth()) {
-                        OutlinedButton(onClick = onRetry, modifier = Modifier.weight(1f)) {
-                            Text(stringResource(R.string.tap_test_tap_again))
-                        }
-                        Button(onClick = onCancel, colors = ButtonDefaults.tapSenseFilled(), modifier = Modifier.weight(1f)) {
+            }
+
+            Column(modifier = Modifier.padding(bottom = 24.dp)) {
+                when (uiState) {
+                    TapTestUiState.Ready, TapTestUiState.Detecting -> {
+                        OutlinedButton(
+                            onClick = onCancel,
+                            colors = ButtonDefaults.tapSenseOutlined(),
+                            border = tapSenseOutlinedBorder(),
+                            modifier = Modifier.fillMaxWidth(),
+                        ) {
                             Text(stringResource(R.string.tap_test_cancel))
                         }
                     }
-                }
-                TapTestUiState.TimedOut -> {
-                    Button(onClick = onRetry, colors = ButtonDefaults.tapSenseFilled(), modifier = Modifier.fillMaxWidth()) {
-                        Text(stringResource(R.string.tap_test_try_again))
+                    TapTestUiState.Detected -> {
+                        Row(horizontalArrangement = Arrangement.spacedBy(10.dp), modifier = Modifier.fillMaxWidth()) {
+                            OutlinedButton(onClick = onRetry, modifier = Modifier.weight(1f)) {
+                                Text(stringResource(R.string.tap_test_tap_again))
+                            }
+                            Button(onClick = onCancel, colors = ButtonDefaults.tapSenseFilled(), modifier = Modifier.weight(1f)) {
+                                Text(stringResource(R.string.tap_test_cancel))
+                            }
+                        }
                     }
-                }
-                TapTestUiState.NfcOff -> {
-                    Button(onClick = onOpenNfcSettings, colors = ButtonDefaults.tapSenseFilled(), modifier = Modifier.fillMaxWidth()) {
-                        Text(stringResource(R.string.tap_test_open_settings))
+                    TapTestUiState.TimedOut -> {
+                        Button(onClick = onRetry, colors = ButtonDefaults.tapSenseFilled(), modifier = Modifier.fillMaxWidth()) {
+                            Text(stringResource(R.string.tap_test_try_again))
+                        }
                     }
-                    OutlinedButton(onClick = onRetryFromNfcOff, modifier = Modifier.fillMaxWidth().padding(top = 8.dp)) {
-                        Text(stringResource(R.string.tap_test_try_again))
+                    TapTestUiState.NfcOff -> {
+                        Button(onClick = onOpenNfcSettings, colors = ButtonDefaults.tapSenseFilled(), modifier = Modifier.fillMaxWidth()) {
+                            Text(stringResource(R.string.tap_test_open_settings))
+                        }
+                        OutlinedButton(onClick = onRetryFromNfcOff, modifier = Modifier.fillMaxWidth().padding(top = 8.dp)) {
+                            Text(stringResource(R.string.tap_test_try_again))
+                        }
                     }
-                }
-                TapTestUiState.NfcUnsupported -> {
-                    OutlinedButton(
-                        onClick = onCancel,
-                        colors = ButtonDefaults.tapSenseOutlined(),
-                        border = tapSenseOutlinedBorder(),
-                        modifier = Modifier.fillMaxWidth(),
-                    ) {
-                        Text(stringResource(R.string.tap_test_cancel))
+                    TapTestUiState.NfcUnsupported -> {
+                        OutlinedButton(
+                            onClick = onCancel,
+                            colors = ButtonDefaults.tapSenseOutlined(),
+                            border = tapSenseOutlinedBorder(),
+                            modifier = Modifier.fillMaxWidth(),
+                        ) {
+                            Text(stringResource(R.string.tap_test_cancel))
+                        }
                     }
                 }
             }
