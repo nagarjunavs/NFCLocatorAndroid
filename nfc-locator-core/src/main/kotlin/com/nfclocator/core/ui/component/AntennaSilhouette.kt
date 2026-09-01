@@ -20,7 +20,11 @@ import androidx.compose.ui.graphics.PathEffect
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.drawscope.translate
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
+import com.nfclocator.core.R
 import com.nfclocator.core.domain.model.DeviceAntennaProfile
 import com.nfclocator.core.domain.model.NormalizedRect
 
@@ -66,6 +70,14 @@ import com.nfclocator.core.domain.model.NormalizedRect
  * silhouette - opt-in so only callers illustrating a device's *back* panel (e.g. My Phone's Back
  * tab) enable it, leaving every other host visually unchanged.
  *
+ * When [isConfident] is true, this composable announces itself to screen readers as
+ * [com.nfclocator.core.R.string.nfc_locator_marker_content_description] - the one state this
+ * must never render silently, since it's the app's best-case, most common result. When
+ * [isConfident] is false, no description is applied here: every low-confidence caller already
+ * layers this shape inside [GuidedSweepAnimation], which supplies its own, more accurate
+ * "guided sweep" description for that combined visual - self-describing here too would double
+ * up TalkBack's announcement for that case rather than fix anything.
+ *
  * [silhouetteBorderColor], when supplied, outlines the silhouette with a 1dp stroke - opt-in
  * since a flat fill with no outline is still the right look for some hosts (e.g. Tap Test's
  * "detected" success state uses a plain icon, not this component at all); most callers pass one
@@ -106,7 +118,14 @@ fun AntennaSilhouette(
         animatedRipple
     }
 
-    Canvas(modifier = modifier.fillMaxSize()) {
+    val silhouetteModifier = if (isConfident) {
+        val markerDescription = stringResource(R.string.nfc_locator_marker_content_description)
+        modifier.fillMaxSize().semantics { contentDescription = markerDescription }
+    } else {
+        modifier.fillMaxSize()
+    }
+
+    Canvas(modifier = silhouetteModifier) {
         val contentSize = fitWithinBounds(size, aspectRatioOverride ?: shape.aspectRatio)
         val offsetX = (size.width - contentSize.width) / 2f
         val offsetY = (size.height - contentSize.height) / 2f

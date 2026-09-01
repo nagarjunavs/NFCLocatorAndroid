@@ -9,8 +9,16 @@ claim; anything not yet decided is marked **TODO (owner)**.
 
 - [x] Unique, stable `applicationId`: `com.tapsense.app` (debug builds get a `.debug` suffix, so
       debug and release can be installed side-by-side).
-- [x] `versionCode`/`versionName` present (`1` / `1.0.0`) — bump both for every release; Play
-      requires a strictly increasing `versionCode`.
+- [x] `versionCode`/`versionName` present (currently `3` / `"1.0.0"` — check `app/build.gradle.kts`
+      for the live values, since this line goes stale the moment either is bumped and isn't
+      re-verified automatically). Convention for this repo: `versionCode` is a plain incrementing
+      integer bumped for *every* build uploaded to any Play track (closed testing included) —
+      Play requires strict monotonic increase across all tracks, so testing and production share
+      one counter. `versionName` stays a stable `MAJOR.MINOR.PATCH` and is only bumped for a
+      user-visible release milestone, not for every closed-testing build; several closed-testing
+      `versionCode`s can and normally do share one `versionName` while iterating toward it. When
+      triaging a tester's bug report, ask for the Play Store "app version" they see in Settings
+      (which shows `versionName (versionCode)`) so it maps unambiguously back to a commit.
 - [x] Release build type: `isMinifyEnabled = true`, `isShrinkResources = true`, R8 verified
       locally (`./gradlew :app:assembleRelease` and `:app:bundleRelease` both succeed).
 - [x] `targetSdk 36` (Android 16) — meets Play's rolling "target API level within 1 year of the
@@ -71,8 +79,16 @@ claim; anything not yet decided is marked **TODO (owner)**.
 ## Accessibility & UX basics
 
 - [x] Content descriptions present on every icon-only interactive element (bottom nav items,
-      Tap Guide's close button, marker/sweep components — verified via `contentDescription`
-      usage across `ui/component` and `ui/navigation`).
+      every screen's close button, marker/sweep components — verified via `contentDescription`
+      usage across `ui/component` and `ui/navigation`; the confident-match marker
+      (`AntennaSilhouette`) now self-describes too, matching `GuidedSweepAnimation`'s existing
+      behavior).
+- [x] Every close (`X`) button's actual touch target is ≥48dp, per Android's minimum — the
+      visible 32dp circle is unchanged, but it now sits inside `IconButton`'s own default-sized
+      tappable area instead of the button itself being shrunk to 32dp.
+- [ ] **TODO (owner)**: this app is portrait-locked with no large-screen-adaptive layout (see
+      `DECISIONS.md`'s "Tablets" section) — exclude tablets from your closed-testing device pool,
+      or explicitly accept the stretched-phone-layout limitation if you include them.
 - [x] `reducedMotion` respected end-to-end (Settings → `AppShellViewModel` → every marker/ripple
       component) for users who've enabled a reduce-motion preference.
 - [x] Light/dark theme fully implemented (`TapSenseTheme`, `AppearanceMode.SYSTEM/LIGHT/DARK`),
@@ -116,15 +132,11 @@ Still needed, **all TODO (owner)** — none of these are fabricated here:
 - [ ] **TODO (owner)**: use a staged rollout percentage (e.g. 10% → 50% → 100%) for the first
       Production release rather than 100% immediately.
 
-## Release notes template
+## Release notes
 
-```
-TapSense 1.0.0
-- Find your phone's exact NFC antenna location, auto-detected on-device.
-- Confidence-rated guidance (Exact / Approximate / Estimated) so you always know how sure we are.
-- A guided tap test confirms your tap zone works with a real reader or tag.
-- Works fully offline.
-```
+Per-build "What's new" text (what to paste into Play Console for each track/version) lives in
+[`RELEASE_NOTES.md`](RELEASE_NOTES.md), not here — that file is kept current per build; this
+checklist isn't.
 
 ## Final human action summary
 

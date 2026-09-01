@@ -2,11 +2,13 @@ package com.tapsense.app.ui.phoneselect
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.nfclocator.core.domain.logging.NfcLocatorLogger
 import com.nfclocator.core.domain.model.DeviceAntennaProfile
 import com.tapsense.app.data.catalog.PhoneCatalogRepository
 import com.tapsense.app.data.settings.TapSenseSettingsRepository
 import com.tapsense.app.util.friendlyDeviceName
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -14,10 +16,13 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+private const val TAG = "PhoneSelectionViewModel"
+
 @HiltViewModel
 class PhoneSelectionViewModel @Inject constructor(
     private val catalogRepository: PhoneCatalogRepository,
     private val settingsRepository: TapSenseSettingsRepository,
+    private val logger: NfcLocatorLogger,
 ) : ViewModel() {
 
     private var allProfiles: List<DeviceAntennaProfile> = emptyList()
@@ -27,7 +32,16 @@ class PhoneSelectionViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            allProfiles = catalogRepository.listAll()
+            try {
+                allProfiles = catalogRepository.listAll()
+            } catch (e: CancellationException) {
+                throw e
+            } catch (e: Exception) {
+                // Catalog load failed entirely (e.g. a corrupted bundled asset) - degrade to an
+                // empty catalog, which the screen already renders as its existing "no phones
+                // match" empty state, instead of crashing or hanging in the loading spinner.
+                logger.e(TAG, "Failed to load phone catalog", e)
+            }
             _uiState.update {
                 it.copy(isLoading = false, results = filteredProfiles(it.query, it.osFilter))
             }

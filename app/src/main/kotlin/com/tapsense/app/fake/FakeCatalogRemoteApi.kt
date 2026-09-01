@@ -13,6 +13,16 @@ private const val DEMO_CATALOG_VERSION = 2
  * (including [com.nfclocator.core.data.remote.RemoteCatalogSource]) without needing a server.
  * A real host app would implement [CatalogRemoteApi] against its existing networking stack
  * instead of this class.
+ *
+ * This is bound as the *production* [CatalogRemoteApi] for the TapSense sample app (see
+ * [com.tapsense.app.di.HostBindingsModule]) - deliberately, so the app remains a runnable,
+ * self-contained demo with zero external dependencies. The practical effect: TapSense's device
+ * catalog is currently frozen to whatever ships in the bundled seed catalog
+ * (`nfc_locator/seed_catalog.json`, 43 entries) plus this class's 3 hardcoded demo entries -
+ * there is no live catalog growth over time. If TapSense is published as a real product (rather
+ * than kept as a library sample/demo), replacing this binding with a real backend integration is
+ * a product decision to make explicitly before launch, not something to infer from this file
+ * alone; see the CHANGELOG's "Known limitations" entry.
  */
 class FakeCatalogRemoteApi @Inject constructor() : CatalogRemoteApi {
 

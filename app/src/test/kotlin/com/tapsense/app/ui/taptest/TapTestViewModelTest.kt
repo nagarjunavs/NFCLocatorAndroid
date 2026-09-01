@@ -9,6 +9,7 @@ import com.nfclocator.core.domain.model.DeviceIdentitySignals
 import com.nfclocator.core.domain.model.FoldState
 import com.nfclocator.core.domain.model.FormFactor
 import com.nfclocator.core.domain.model.NormalizedRect
+import com.nfclocator.core.domain.logging.NfcLocatorLogger
 import com.nfclocator.core.domain.model.ScreenSizeClass
 import com.nfclocator.core.domain.usecase.ResolveAntennaLocationUseCase
 import com.tapsense.app.data.nfc.NfcStateObserver
@@ -59,6 +60,7 @@ class TapTestViewModelTest {
     )
     private val activeDeviceSignalsProvider = mockk<ActiveDeviceSignalsProvider>()
     private val resolveAntennaLocationUseCase = mockk<ResolveAntennaLocationUseCase>()
+    private val logger = mockk<NfcLocatorLogger>(relaxed = true)
 
     @Before
     fun setUp() {
@@ -80,6 +82,7 @@ class TapTestViewModelTest {
             settingsRepository,
             resolveAntennaLocationUseCase,
             activeDeviceSignalsProvider,
+            logger,
             timeoutMillis,
         )
     }

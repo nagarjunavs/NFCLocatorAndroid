@@ -187,6 +187,14 @@ See [`app/store-listing/`](app/store-listing) for its (stub) Play Store listing 
 policy, and [`docs/play-store/CHECKLIST.md`](docs/play-store/CHECKLIST.md) for the full Play
 Console submission checklist.
 
+**Known scope boundary**: the sample app's `CatalogRemoteApi` binding
+([`FakeCatalogRemoteApi`](app/src/main/kotlin/com/tapsense/app/fake/FakeCatalogRemoteApi.kt)) is
+an in-memory demo stand-in, not a real network call - so TapSense's device catalog is currently
+frozen to what's bundled at build time (the seed catalog plus 3 demo entries), with no live
+catalog growth. This is fine for demonstrating the library's resolver chain, but if TapSense
+itself ships as a real product, wiring a real backend here is a deliberate decision to make
+before launch, not something the code does for you.
+
 ## Building & testing locally
 
 ```bash

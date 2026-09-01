@@ -75,18 +75,20 @@ private fun PhoneSelectionScreen(
     Column(modifier = modifier.fillMaxSize().safeDrawingPadding()) {
         Row(modifier = Modifier.fillMaxWidth().padding(top = 8.dp, end = 16.dp), horizontalArrangement = Arrangement.End) {
             val closeDescription = stringResource(R.string.phone_selection_close_content_description)
-            IconButton(
-                onClick = onClose,
-                modifier = Modifier
-                    .size(32.dp)
-                    .background(MaterialTheme.colorScheme.surfaceVariant, CircleShape),
-            ) {
-                Icon(
-                    imageVector = Icons.Filled.Close,
-                    contentDescription = closeDescription,
-                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
-                    modifier = Modifier.size(16.dp),
-                )
+            IconButton(onClick = onClose) {
+                Box(
+                    modifier = Modifier
+                        .size(32.dp)
+                        .background(MaterialTheme.colorScheme.surfaceVariant, CircleShape),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    Icon(
+                        imageVector = Icons.Filled.Close,
+                        contentDescription = closeDescription,
+                        tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                        modifier = Modifier.size(16.dp),
+                    )
+                }
             }
         }
 

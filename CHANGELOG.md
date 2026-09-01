@@ -15,6 +15,46 @@ with the `0.1.0` release.
   `assembleRelease`/`bundleRelease`/`publishToMavenLocal` all succeed unchanged, and an on-device
   install/onboarding/catalog-preview smoke test showed no behavioral or layout regressions.
 
+### Fixed
+
+- `nfc-locator-core`: `AntennaSilhouette` now self-applies a screen-reader description whenever
+  it renders a confident (non-stale) marker - previously the app's *most common* result state
+  (`HomeScreen`/`MyPhoneScreen`/`TapGuideScreen`'s solid marker, via `AntennaMarker`) was
+  completely silent to TalkBack, while the lower-confidence sweep-guidance states already had
+  one via `GuidedSweepAnimation`. Scoped to `isConfident == true` specifically so it doesn't
+  double up with `GuidedSweepAnimation`'s own description on the states that already had one;
+  `AntennaLocatorScreen`'s now-redundant external semantics wrapping was removed to match.
+- Sample app: `HomeViewModel`, `MyPhoneViewModel`, `TapGuideViewModel`, `TapTestViewModel`,
+  `OnboardingViewModel`, `PhoneConfirmedViewModel`, and `PhoneSelectionViewModel` no longer crash
+  outright if antenna resolution (or, for `PhoneSelectionViewModel`, the catalog load) throws.
+  Each now catches the failure, logs it via `NfcLocatorLogger`, and degrades to a visible
+  `AntennaLocatorUiState.Error` (or, where no such state exists, simply stays in its existing
+  loading/empty representation) instead of taking the app down. `ResolveAntennaLocationUseCase`
+  itself already catches per-source failures and always falls through to a heuristic result, so
+  this is a defensive last resort for edge cases (a signals-provider exception, a corrupted
+  bundled catalog asset, etc.), not evidence the resolver chain was actually failing.
+- Sample app: five screens' top-right close (`X`) button (`PhoneSelectionScreen`,
+  `TroubleshootScreen`, `TapTestScreen`, `EducationScreen`, `TapGuideScreen`) had their actual
+  touch target explicitly shrunk to 32dp, below Android's 48dp minimum interactive size. The
+  visible circle is unchanged; the tappable area is now `IconButton`'s own default (≥48dp) again.
+
+### Added
+
+- Sample app: unit test coverage added for `HomeViewModel`, `MyPhoneViewModel`,
+  `TapGuideViewModel`, `OnboardingViewModel`, `PhoneConfirmedViewModel`, `SettingsViewModel`,
+  `SplashViewModel`, and `AppShellViewModel` - previously only `PhoneSelectionViewModel` and
+  `TapTestViewModel` had any.
+
+### Known limitations (documented, not fixed)
+
+- The sample app's `CatalogRemoteApi` binding (`FakeCatalogRemoteApi`) is an in-memory demo
+  stand-in, not a real network call - see its KDoc and `README.md`'s "Sample app" section. The
+  device catalog is currently frozen to what's bundled at build time; there is no live catalog
+  growth. Deliberately left as-is rather than papered over, since the correct fix is a real
+  backend integration decision, not a code change to make unilaterally.
+- The sample app is portrait-locked with no large-screen-adaptive layout, even though
+  `FormFactor.TABLET` is actively detected - see `DECISIONS.md`'s "Tablets" section.
+
 ## [0.1.0] - 2026-08-21
 
 ### Added

@@ -16,6 +16,10 @@ import dagger.hilt.components.SingletonComponent
  * `NfcLocatorBindsModule` in the library): networking, analytics, and logging. A real host
  * app would point these `@Binds` at its existing Retrofit/Ktor service, analytics SDK, and
  * logging framework instead of these demo stand-ins.
+ *
+ * [bindCatalogRemoteApi] in particular is not just a wiring convenience - it's the reason the
+ * catalog can never grow beyond what's bundled at build time (see [FakeCatalogRemoteApi]'s own
+ * KDoc). Keep this in mind before treating the app as production-ready as-is.
  */
 @Module
 @InstallIn(SingletonComponent::class)

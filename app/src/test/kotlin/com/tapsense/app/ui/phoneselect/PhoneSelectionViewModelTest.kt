@@ -1,6 +1,7 @@
 package com.tapsense.app.ui.phoneselect
 
 import com.google.common.truth.Truth.assertThat
+import com.nfclocator.core.domain.logging.NfcLocatorLogger
 import com.nfclocator.core.domain.model.Confidence
 import com.nfclocator.core.domain.model.DataSource
 import com.nfclocator.core.domain.model.DeviceAntennaProfile
@@ -27,6 +28,7 @@ class PhoneSelectionViewModelTest {
     private val dispatcher = StandardTestDispatcher()
     private val catalogRepository = mockk<PhoneCatalogRepository>()
     private val settingsRepository = mockk<TapSenseSettingsRepository>(relaxUnitFun = true)
+    private val logger = mockk<NfcLocatorLogger>(relaxed = true)
 
     private fun profile(manufacturer: String, model: String) = DeviceAntennaProfile(
         manufacturer = manufacturer,
@@ -59,7 +61,7 @@ class PhoneSelectionViewModelTest {
     }
 
     private fun viewModel(): PhoneSelectionViewModel {
-        val vm = PhoneSelectionViewModel(catalogRepository, settingsRepository)
+        val vm = PhoneSelectionViewModel(catalogRepository, settingsRepository, logger)
         dispatcher.scheduler.advanceUntilIdle() // let init's listAll() coroutine complete before assertions.
         return vm
     }
@@ -101,6 +103,16 @@ class PhoneSelectionViewModelTest {
         vm.onQueryChange("galaxy")
 
         assertThat(vm.uiState.value.results.map { it.model }).containsExactly("sm-s921b")
+    }
+
+    @Test
+    fun `a catalog load failure degrades to an empty list instead of crashing`() = runTest(dispatcher) {
+        coEvery { catalogRepository.listAll() } throws IllegalStateException("corrupted asset")
+
+        val vm = viewModel()
+
+        assertThat(vm.uiState.value.isLoading).isFalse()
+        assertThat(vm.uiState.value.results).isEmpty()
     }
 
     @Test

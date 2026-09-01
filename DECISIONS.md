@@ -58,6 +58,22 @@ confidence states end to end - including a foldable's *closed* zone - against re
 entries, without needing actual foldable hardware or a live Android 14 antenna reading (which
 is OEM-implemented and won't fire on a stock emulator).
 
+## Tablets: `FormFactor.TABLET` is detected but the sample app's UI never adapts to it
+`DeviceIdentitySignalsProvider`'s `smallestScreenWidthDp` heuristic (see above) does actively
+report `FormFactor.TABLET`/`ScreenSizeClass.EXPANDED` on a large-screen device, and the library
+itself renders a correctly-proportioned tablet silhouette for that form factor (`SilhouetteShape.Tablet`).
+What doesn't exist is any large-screen-aware *layout* in the TapSense sample app: `MainActivity`
+is portrait-locked (`AndroidManifest.xml`, a deliberate choice - see its own inline comment), and
+no screen changes its column widths, spacing, or navigation chrome for a wider window. A tablet
+user gets a correctly-detected, correctly-illustrated device silhouette inside a plain stretched
+phone-shaped layout, not a broken or crashing one - this is a real, currently-accepted product
+scope limitation, not a bug, and it's called out here rather than left implicit so it isn't
+mistaken for an oversight during a closed-testing pass. If TapSense is meant to look polished on
+tablets/Chrome OS/DeX, that's a real design/layout project (adaptive layouts per
+`WindowSizeClass`), not a one-line fix - track it separately rather than attempting it as part of
+an unrelated change. In the meantime, exclude tablets from a closed-testing device pool unless
+you're specifically testing this known limitation.
+
 ## Silhouettes are drawn, not imported art
 Per spec §5 (no photographic renders), silhouettes are Compose `Canvas` outlines
 (`AntennaSilhouette`) parameterized by `NormalizedRect`, not bundled vector XML per device.

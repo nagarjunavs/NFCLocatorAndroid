@@ -89,7 +89,9 @@ private fun ErrorContent(onRetry: () -> Unit) {
 private fun ResolvedMarkerContent(state: AntennaLocatorUiState.ResolvedMarker, reducedMotion: Boolean) {
     ConfidenceBadge(state.confidence)
 
-    val markerDescription = stringResource(R.string.nfc_locator_marker_content_description)
+    // AntennaSilhouette self-applies nfc_locator_marker_content_description whenever
+    // isConfident is true, so no semantics wrapping is needed at this call site (and adding
+    // one here would double-announce the same description to TalkBack).
     AntennaSilhouette(
         templateId = state.silhouetteTemplateId,
         zone = state.antennaZone,
@@ -99,8 +101,7 @@ private fun ResolvedMarkerContent(state: AntennaLocatorUiState.ResolvedMarker, r
         isConfident = !state.isStale,
         modifier = Modifier
             .fillMaxWidth()
-            .height(MAX_SILHOUETTE_HEIGHT)
-            .semantics { contentDescription = markerDescription },
+            .height(MAX_SILHOUETTE_HEIGHT),
         reducedMotion = reducedMotion,
         aspectRatioOverride = state.aspectRatio,
     )

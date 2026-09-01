@@ -3,6 +3,7 @@ package com.tapsense.app.ui.taptest
 import android.app.Activity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.nfclocator.core.domain.logging.NfcLocatorLogger
 import com.nfclocator.core.domain.usecase.ResolveAntennaLocationUseCase
 import com.nfclocator.core.ui.state.AntennaLocatorUiState
 import com.nfclocator.core.ui.state.toUiState
@@ -11,6 +12,7 @@ import com.tapsense.app.data.nfc.TapReaderModeController
 import com.tapsense.app.data.settings.TapSenseSettingsRepository
 import com.tapsense.app.device.ActiveDeviceSignalsProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -24,6 +26,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 private const val DEFAULT_TIMEOUT_MILLIS = 25_000L
+private const val TAG = "TapTestViewModel"
 
 /**
  * Drives the Tap Test screen's state machine. [startListening]/[stopListening] are the only
@@ -39,6 +42,7 @@ class TapTestViewModel @Inject constructor(
     private val settingsRepository: TapSenseSettingsRepository,
     private val resolveAntennaLocationUseCase: ResolveAntennaLocationUseCase,
     private val activeDeviceSignalsProvider: ActiveDeviceSignalsProvider,
+    private val logger: NfcLocatorLogger,
 ) : ViewModel() {
 
     constructor(
@@ -47,8 +51,9 @@ class TapTestViewModel @Inject constructor(
         settingsRepository: TapSenseSettingsRepository,
         resolveAntennaLocationUseCase: ResolveAntennaLocationUseCase,
         activeDeviceSignalsProvider: ActiveDeviceSignalsProvider,
+        logger: NfcLocatorLogger,
         timeoutMillis: Long,
-    ) : this(nfcStateObserver, readerModeController, settingsRepository, resolveAntennaLocationUseCase, activeDeviceSignalsProvider) {
+    ) : this(nfcStateObserver, readerModeController, settingsRepository, resolveAntennaLocationUseCase, activeDeviceSignalsProvider, logger) {
         this.timeoutMillis = timeoutMillis
     }
 
@@ -74,9 +79,18 @@ class TapTestViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            val settings = settingsRepository.settings.first()
-            val signals = activeDeviceSignalsProvider.signalsFor(settings)
-            _antennaState.value = resolveAntennaLocationUseCase(signals).toUiState()
+            try {
+                val settings = settingsRepository.settings.first()
+                val signals = activeDeviceSignalsProvider.signalsFor(settings)
+                _antennaState.value = resolveAntennaLocationUseCase(signals).toUiState()
+            } catch (e: CancellationException) {
+                throw e
+            } catch (e: Exception) {
+                // See HomeViewModel.resolveCurrent - defensive last resort so a resolver edge
+                // case degrades to a visible error state instead of crashing the app outright.
+                logger.e(TAG, "Failed to resolve antenna location", e)
+                _antennaState.value = AntennaLocatorUiState.Error
+            }
         }
     }
 
