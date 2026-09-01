@@ -27,7 +27,7 @@ android {
         applicationId = "com.tapsense.app"
         minSdk = 26
         targetSdk = 36
-        versionCode = 3
+        versionCode = 4
         versionName = "1.0.0"
 
         testInstrumentationRunner = "com.tapsense.app.HiltTestRunner"
@@ -54,6 +54,14 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
             if (hasReleaseSigningConfig) {
                 signingConfig = signingConfigs.getByName("release")
+            }
+            // We ship no NDK code of our own - the .so files in the release bundle are all
+            // transitive (androidx.graphics.path, DataStore's shared counter). This embeds their
+            // symbol tables into the App Bundle itself so Play Console auto-deobfuscates native
+            // crashes/ANRs on upload, silencing the "no debug symbols" warning with no manual
+            // symbol-file upload step.
+            ndk {
+                debugSymbolLevel = "SYMBOL_TABLE"
             }
         }
         debug {

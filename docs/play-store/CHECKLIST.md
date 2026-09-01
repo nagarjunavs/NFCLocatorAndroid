@@ -9,7 +9,7 @@ claim; anything not yet decided is marked **TODO (owner)**.
 
 - [x] Unique, stable `applicationId`: `com.tapsense.app` (debug builds get a `.debug` suffix, so
       debug and release can be installed side-by-side).
-- [x] `versionCode`/`versionName` present (currently `3` / `"1.0.0"` — check `app/build.gradle.kts`
+- [x] `versionCode`/`versionName` present (currently `4` / `"1.0.0"` — check `app/build.gradle.kts`
       for the live values, since this line goes stale the moment either is bumped and isn't
       re-verified automatically). Convention for this repo: `versionCode` is a plain incrementing
       integer bumped for *every* build uploaded to any Play track (closed testing included) —
@@ -21,6 +21,15 @@ claim; anything not yet decided is marked **TODO (owner)**.
       (which shows `versionName (versionCode)`) so it maps unambiguously back to a commit.
 - [x] Release build type: `isMinifyEnabled = true`, `isShrinkResources = true`, R8 verified
       locally (`./gradlew :app:assembleRelease` and `:app:bundleRelease` both succeed).
+- [x] Native debug symbols: `release { ndk { debugSymbolLevel = "SYMBOL_TABLE" } }` embeds symbol
+      tables for any `.so` in the bundle into `BUNDLE-METADATA/`, so Play auto-deobfuscates native
+      crashes on upload with no manual symbol-file step. The two `.so` files actually in this
+      bundle today (`libandroidx.graphics.path.so`, `libdatastore_shared_counter.so`) are
+      transitive from AndroidX, not our code, and Google ships them fully stripped (verified with
+      `file`/`readelf`: no `.symtab` section) — there is no symbol table to extract for those two,
+      so Play Console's "no debug symbols" warning will likely persist for them specifically and
+      is not actionable from this repo. Any future dependency or our own NDK code that ships
+      unstripped will be picked up automatically by this same setting.
 - [x] `targetSdk 36` (Android 16) — meets Play's rolling "target API level within 1 year of the
       latest Android release" requirement (`compileSdk` bumped alongside it; `minSdk` unchanged
       at 26). Re-check this annually: Play enforces a new deadline each year as the next Android
@@ -64,6 +73,14 @@ claim; anything not yet decided is marked **TODO (owner)**.
 - [x] Settings → Privacy & data opens the hosted privacy policy
       (`https://nagarjunavs.github.io/tapsense/android/privacy/`) in the browser via
       `openUrlSafely` (`UrlLauncher.kt`) — no in-app privacy screen or `WebView`.
+- [x] Settings → Contact support opens a pre-addressed draft (`nagarjunavs.dev@gmail.com`, subject
+      pre-filled with the app version) in the user's own mail app via `ACTION_SENDTO`
+      (`sendFeedbackEmailSafely`, `UrlLauncher.kt`) — this is the app's only feedback channel
+      (previously there was none at all; Help center only linked to the in-app Troubleshoot
+      self-help screen). Doesn't require a privacy policy update: the app collects and transmits
+      nothing itself, it only hands an editable draft to the OS mail client, same class of action
+      as opening the privacy policy link above — nothing is sent unless and until the user
+      chooses to hit send in their own mail app.
 - [x] `app/store-listing/PRIVACY_POLICY.md`'s content is hosted at a real, stable URL
       (`https://nagarjunavs.github.io/tapsense/android/privacy/`) — Play Console requires a live
       privacy policy URL even for an app that collects nothing.

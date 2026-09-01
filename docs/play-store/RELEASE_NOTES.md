@@ -12,6 +12,39 @@ heading:
 See [`CHECKLIST.md`](CHECKLIST.md) for the rest of the submission checklist and the
 versionCode/versionName convention this file follows.
 
+## versionCode 4 — versionName 1.0.0 — Closed testing (2026-09-02)
+
+### What's new (paste into Play Console)
+
+```
+Got feedback? Settings now has a Contact support option that opens a pre-filled email straight to us - the easiest way to report a bug or share what you think.
+
+No other visible changes in this build.
+```
+
+(200 characters.)
+
+### What actually changed (internal)
+
+- **Settings → Contact support.** New row between Help center and Privacy & data that opens a
+  draft addressed to `nagarjunavs.dev@gmail.com` (subject pre-filled with the app version) via
+  `ACTION_SENDTO` with `Intent.EXTRA_EMAIL`/`EXTRA_SUBJECT` (`sendFeedbackEmailSafely`,
+  `UrlLauncher.kt`). Previously the app had zero feedback channels — Help center only pointed at
+  the in-app Troubleshoot self-help screen, and Privacy just opened the hosted policy page — so a
+  tester who hit a bug had no way to tell us. Collects/transmits nothing itself; only hands an
+  editable draft to the user's own mail app, so no privacy policy change was required. Caught and
+  fixed pre-release: the first implementation encoded the address into the `mailto:` URI itself
+  (`Uri.parse("mailto:$email").buildUpon().appendQueryParameter("subject", ...)`), which silently
+  dropped the recipient - `appendQueryParameter` on an opaque `mailto:` URI's `Uri.Builder`
+  replaces the scheme-specific part rather than appending to it, producing `mailto:?subject=...`
+  with no address. Confirmed via a logcat probe on the built intent before and after the fix.
+- Not tester-visible, but shipped in this build: `release { ndk { debugSymbolLevel =
+"SYMBOL_TABLE" } }` added so AGP embeds native symbol tables into the App Bundle automatically
+  (silences Play Console's "no debug symbols" warning for any future native dependency that
+  actually ships symbols; the two `.so` files currently in the bundle are Google's own
+  AndroidX binaries, shipped pre-stripped with no symbol table to extract, so the warning may
+  still show for those two specifically — not actionable from this repo).
+
 ## versionCode 3 — versionName 1.0.0 — Closed testing (2026-09-01)
 
 First closed-testing build.

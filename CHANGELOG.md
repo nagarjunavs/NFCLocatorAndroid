@@ -44,6 +44,11 @@ with the `0.1.0` release.
   `TapGuideViewModel`, `OnboardingViewModel`, `PhoneConfirmedViewModel`, `SettingsViewModel`,
   `SplashViewModel`, and `AppShellViewModel` - previously only `PhoneSelectionViewModel` and
   `TapTestViewModel` had any.
+- Sample app: Settings gained a "Contact support" row that opens a pre-addressed draft in the
+  user's mail app (`sendFeedbackEmailSafely`, `UrlLauncher.kt`) - previously there was no feedback
+  channel at all (Help center only linked to the in-app Troubleshoot self-help screen), so a
+  tester who hit a bug had no way to report it. Collects/transmits nothing itself; only hands an
+  editable draft to the OS mail client, so no privacy policy change was needed.
 
 ### Known limitations (documented, not fixed)
 

@@ -37,6 +37,7 @@ fun SettingsRoute(
     onPhoneModelClick: () -> Unit,
     onOpenNfcSettings: () -> Unit,
     onHelpCenterClick: () -> Unit,
+    onContactSupportClick: () -> Unit,
     onPrivacyClick: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: SettingsViewModel = hiltViewModel(),
@@ -51,6 +52,7 @@ fun SettingsRoute(
         onPhoneModelClick = onPhoneModelClick,
         onOpenNfcSettings = onOpenNfcSettings,
         onHelpCenterClick = onHelpCenterClick,
+        onContactSupportClick = onContactSupportClick,
         onPrivacyClick = onPrivacyClick,
         onHapticsChange = viewModel::setHapticsEnabled,
         onReduceMotionChange = viewModel::setReduceMotion,
@@ -67,6 +69,7 @@ private fun SettingsScreen(
     onPhoneModelClick: () -> Unit,
     onOpenNfcSettings: () -> Unit,
     onHelpCenterClick: () -> Unit,
+    onContactSupportClick: () -> Unit,
     onPrivacyClick: () -> Unit,
     onHapticsChange: (Boolean) -> Unit,
     onReduceMotionChange: (Boolean) -> Unit,
@@ -138,6 +141,10 @@ private fun SettingsScreen(
         HorizontalDivider()
 
         SettingsRow(label = stringResource(R.string.settings_help_center), onClick = onHelpCenterClick) {
+            Text("›", style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+        }
+        HorizontalDivider()
+        SettingsRow(label = stringResource(R.string.settings_contact_support), onClick = onContactSupportClick) {
             Text("›", style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
         }
         HorizontalDivider()
