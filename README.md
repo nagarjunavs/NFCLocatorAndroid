@@ -50,13 +50,13 @@ package's KDoc for API-level detail.
 
 ## Installation
 
-The library is published to Maven Central as version `0.1.0`.
+The library is published to Maven Central as version `0.2.0`.
 
 **Kotlin DSL** (`build.gradle.kts`):
 
 ```kotlin
 dependencies {
-    implementation("io.github.nagarjunavs:nfc-locator-core:0.1.0")
+    implementation("io.github.nagarjunavs:nfc-locator-core:0.2.0")
 }
 ```
 
@@ -64,7 +64,7 @@ dependencies {
 
 ```groovy
 dependencies {
-    implementation 'io.github.nagarjunavs:nfc-locator-core:0.1.0'
+    implementation 'io.github.nagarjunavs:nfc-locator-core:0.2.0'
 }
 ```
 
