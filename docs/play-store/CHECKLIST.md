@@ -9,7 +9,15 @@ claim; anything not yet decided is marked **TODO (owner)**.
 
 - [x] Unique, stable `applicationId`: `com.tapsense.app` (debug builds get a `.debug` suffix, so
       debug and release can be installed side-by-side).
-- [x] `versionCode`/`versionName` present (currently `4` / `"1.0.0"` — check `app/build.gradle.kts`
+- [x] Debug builds are visually distinguishable from the closed-testing/production release, not
+      just by package name: the `debug` build type overrides `app_name` to "TapSense Debug" (via
+      `app/src/debug/res/values/strings.xml` — Gradle's standard source-set precedence, never
+      merged into release) and adds `versionNameSuffix = "-debug"`. Shows up on the launcher icon
+      label, the in-app splash screen (both read the same `R.string.app_name`), and in
+      `BuildConfig.VERSION_NAME`/Settings → About (`"1.0.0-debug"` vs. release's plain `"1.0.0"`)
+      — so a tester's screenshot or a local dev's screen share is unambiguous about which build
+      they're looking at.
+- [x] `versionCode`/`versionName` present (currently `5` / `"1.0.0"` — check `app/build.gradle.kts`
       for the live values, since this line goes stale the moment either is bumped and isn't
       re-verified automatically). Convention for this repo: `versionCode` is a plain incrementing
       integer bumped for *every* build uploaded to any Play track (closed testing included) —
@@ -23,13 +31,23 @@ claim; anything not yet decided is marked **TODO (owner)**.
       locally (`./gradlew :app:assembleRelease` and `:app:bundleRelease` both succeed).
 - [x] Native debug symbols: `release { ndk { debugSymbolLevel = "SYMBOL_TABLE" } }` embeds symbol
       tables for any `.so` in the bundle into `BUNDLE-METADATA/`, so Play auto-deobfuscates native
-      crashes on upload with no manual symbol-file step. The two `.so` files actually in this
-      bundle today (`libandroidx.graphics.path.so`, `libdatastore_shared_counter.so`) are
-      transitive from AndroidX, not our code, and Google ships them fully stripped (verified with
-      `file`/`readelf`: no `.symtab` section) — there is no symbol table to extract for those two,
-      so Play Console's "no debug symbols" warning will likely persist for them specifically and
-      is not actionable from this repo. Any future dependency or our own NDK code that ships
-      unstripped will be picked up automatically by this same setting.
+      crashes on upload with no manual symbol-file step. **Confirmed unfixable for the two `.so`
+      files actually in this bundle** (`libandroidx.graphics.path.so`, transitive from
+      `androidx.compose.ui`; `libdatastore_shared_counter.so`, transitive from
+      `androidx.datastore:datastore-preferences:1.1.1`'s multi-process file-locking) — re-verified
+      end to end on a fresh `bundleRelease`: `readelf -S` on both shows no `.symtab`/`.debug_*`/
+      `.strtab` section at all (Google ships them fully stripped at the source), AGP's own
+      `extractReleaseNativeSymbolTables` task correspondingly produces zero output files, and the
+      final `.aab` has no symbol data anywhere in `BUNDLE-METADATA/`. There is nothing to embed
+      because the source binaries contain nothing to extract — this is not a Gradle
+      misconfiguration and there is no dependency-version bump that changes it (checked). Play
+      Console's "no debug symbols" warning is advisory ("*We recommend...*"), not a submission
+      blocker on any track, and is effectively unavoidable for any Compose + DataStore app today.
+      Do not attempt to exclude these `.so` files via `packaging{}` to silence the warning —
+      `graphics-path` underlies Compose's own Path/Canvas rendering (used directly by
+      `AntennaSilhouette`/`GuidedSweepAnimation`) and excluding it risks breaking rendering for a
+      cosmetic, non-blocking warning. Any future dependency or our own NDK code that ships
+      unstripped will still be picked up automatically by this same setting.
 - [x] `targetSdk 36` (Android 16) — meets Play's rolling "target API level within 1 year of the
       latest Android release" requirement (`compileSdk` bumped alongside it; `minSdk` unchanged
       at 26). Re-check this annually: Play enforces a new deadline each year as the next Android
@@ -117,6 +135,29 @@ claim; anything not yet decided is marked **TODO (owner)**.
 - [ ] **TODO (owner)**: run TalkBack over the full flow once before submission — content
       descriptions being present is necessary but not sufficient; verify reading order and
       focus behavior manually.
+
+## Localization
+
+- [x] `:app` and `nfc-locator-core` translated into Spanish, Brazilian Portuguese, French,
+      German, Hindi, Japanese, Korean, and Simplified Chinese (`values-es`/`-pt-rBR`/`-fr`/`-de`/
+      `-hi`/`-ja`/`-ko`/`-zh-rCN` in both modules) — the largest non-English Android/Play markets.
+      See `DECISIONS.md`'s "Localization" section for the full rationale, including why
+      Arabic/Hebrew (RTL) is deliberately deferred rather than shipped untested.
+- [x] Locale selection is automatic: Android resolves `values-<lang>/` from the device locale on
+      every API level, no code required. `android:localeConfig` additionally wires the Android
+      13+ per-app language picker and Play's per-locale APK splits (`res/xml/locales_config.xml`).
+- [x] `./gradlew lint` reports zero `MissingTranslation`/`ExtraTranslation`/`StringFormatMatches`/
+      `StringFormatCount` findings across all 8 locales in both modules — every translation key
+      and format-argument count matches the English source exactly.
+- [x] German (longest words in this set) and Japanese (CJK rendering) spot-checked live on an
+      emulator across Settings, Home/preview, and the Tap Guide→Tap Test flow — no truncation,
+      overflow, or tofu glyphs.
+- [ ] **TODO (owner)**: once real testers are on non-English devices, do a full manual pass
+      across all 8 languages and every screen (this update only spot-checked the two highest-risk
+      locales) — pay particular attention to the confidence badge chips and bottom nav labels,
+      which have the least horizontal room.
+- [ ] **TODO (owner)**: if/when Arabic or Hebrew is added, budget a dedicated RTL layout pass
+      (start/end vs. left/right padding, icon direction) before shipping it — see `DECISIONS.md`.
 
 ## Store listing assets
 

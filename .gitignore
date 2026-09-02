@@ -33,4 +33,9 @@ gradle.properties.local
 # Local Gradle build tuning some IDEs write per-machine.
 .gradle/config.properties
 
+# Personal publish-automation tooling, not library source - see RELEASING.md for the actual
+# documented process this wraps. Contains no secrets itself (reads them from the environment),
+# but a maintainer's local shortcut doesn't belong in a public library's history either way.
+/scripts/publish-to-maven-central.sh
+
 .github/

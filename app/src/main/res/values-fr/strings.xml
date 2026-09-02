@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_tagline">Sachez exactement où toucher</string>
+
+    <string name="confidence_chip_exact">EXACT</string>
+    <string name="confidence_chip_approximate">APPROXIMATIF</string>
+    <string name="confidence_chip_estimated">ESTIMÉ</string>
+    <string name="confidence_chip_unknown">INCONNU</string>
+
+    <string name="onboarding_skip">Ignorer</string>
+    <string name="onboarding_continue">Continuer</string>
+    <string name="onboarding_get_started">Commencer</string>
+    <string name="onboarding_page1_title">Trouvez le point de contact de votre téléphone</string>
+    <string name="onboarding_page1_body">Découvrez exactement où placer votre téléphone pour une lecture NFC fiable — sans tâtonner.</string>
+    <string name="onboarding_page2_title">Touchez en toute confiance</string>
+    <string name="onboarding_page2_body">Guide visuel simple pour les tags, serrures connectées, lecteurs et terminaux de paiement.</string>
+    <string name="onboarding_page3_title">Un guide adapté à votre téléphone</string>
+    <string name="onboarding_page3_body">TapSense a déjà reconnu cet appareil. Continuez pour voir sa zone de contact, ou choisissez un autre téléphone à prévisualiser.</string>
+
+    <string name="phone_selection_title">Quel téléphone voulez-vous prévisualiser ?</string>
+    <string name="phone_selection_filter_android">Android</string>
+    <string name="phone_selection_filter_apple">Apple</string>
+    <string name="phone_selection_search_placeholder">Rechercher une marque ou un modèle</string>
+    <string name="phone_selection_section_header">Téléphones connus</string>
+    <string name="phone_selection_empty">Aucun téléphone ne correspond à \"%1$s\".</string>
+    <string name="phone_selection_use_my_phone">Utiliser mon téléphone automatiquement</string>
+    <string name="phone_selection_loading">Chargement du catalogue…</string>
+    <string name="phone_selection_close_content_description">Fermer la sélection du téléphone</string>
+
+    <string name="phone_confirmed_title">C\'est prêt</string>
+    <string name="phone_confirmed_go_home">Aller à l\'accueil</string>
+    <string name="phone_confirmed_choose_different">Choisir un autre téléphone</string>
+
+    <string name="home_greeting_morning">Bonjour</string>
+    <string name="home_greeting_afternoon">Bon après-midi</string>
+    <string name="home_greeting_evening">Bonsoir</string>
+    <string name="home_previewing_label">Aperçu de la zone de contact pour</string>
+    <string name="home_start_tap_guide">Démarrer le guide de contact</string>
+    <string name="home_change_phone">Changer</string>
+    <string name="home_tip_case">Maintenez la zone surlignée contre le lecteur pendant 1 à 2 secondes. Les coques épaisses peuvent affaiblir le signal.</string>
+    <string name="home_nfc_status_on">Le NFC est activé</string>
+    <string name="home_nfc_status_off">Le NFC est désactivé</string>
+    <string name="home_nfc_unsupported">Cet appareil n\'a pas de puce NFC</string>
+    <string name="home_nfc_unsupported_body">Cet appareil n\'a pas de puce NFC, il n\'y a donc pas de zone de contact à afficher.</string>
+    <string name="home_tap_not_working">Le contact ne fonctionne pas ?</string>
+    <string name="home_tap_area_recommended">Zone de contact recommandée affichée ci-dessus</string>
+    <string name="home_tap_area_estimated">Zone de contact estimée affichée ci-dessus</string>
+
+    <string name="my_phone_tab_back">Dos</string>
+    <string name="my_phone_tab_front">Face</string>
+    <string name="my_phone_not_applicable">NON APPLICABLE</string>
+    <string name="my_phone_front_body">L\'antenne NFC n\'est pas à l\'avant de ce téléphone. Passez à Dos pour voir la zone de contact recommandée.</string>
+    <string name="my_phone_front_banner">La plupart des téléphones placent leur antenne NFC sur le panneau arrière, près du haut ou de l\'appareil photo.</string>
+    <string name="my_phone_view_back_placement">Voir l\'emplacement au dos</string>
+    <string name="my_phone_nfc_unsupported_body">Cet appareil n\'a pas de puce NFC, il n\'y a donc pas de zone de contact à afficher.</string>
+    <string name="my_phone_zone_description">Antenne NFC / zone de contact recommandée. Touchez cette zone directement contre le lecteur ou le tag.</string>
+    <string name="my_phone_case_warning">Les coques épaisses, portefeuilles magnétiques et plaques métalliques peuvent réduire les performances NFC.</string>
+    <string name="my_phone_orientation_header">Orientation</string>
+    <string name="my_phone_orientation_back_contact">Contact du dos avec le lecteur</string>
+    <string name="my_phone_test_location">Tester cet emplacement</string>
+
+    <string name="tap_guide_step_of">Étape %1$d sur %2$d</string>
+    <string name="tap_guide_next">Suivant</string>
+    <string name="tap_guide_close_content_description">Fermer le guide de contact</string>
+    <string name="tap_guide_step1_title">Repérez votre zone de contact</string>
+    <string name="tap_guide_step1_body">C\'est la zone surlignée sur vos écrans Accueil et Mon téléphone.</string>
+    <string name="tap_guide_step2_title">Réveillez le lecteur</string>
+    <string name="tap_guide_step2_body">Approchez votre téléphone à quelques centimètres — la plupart des lecteurs se réveillent automatiquement.</string>
+    <string name="tap_guide_step3_title">Maintenez la zone surlignée contre le lecteur</string>
+    <string name="tap_guide_step3_body">Gardez un contact stable pendant 1 à 2 secondes. Attendez une vibration ou un son pour confirmer le contact.</string>
+    <string name="tap_guide_step4_title">Attendez la confirmation</string>
+    <string name="tap_guide_step4_body">La plupart des lecteurs émettent un bip, un flash ou font vibrer votre téléphone lorsque le contact réussit.</string>
+    <string name="tap_guide_step5_title">Essayez pour de vrai</string>
+    <string name="tap_guide_step5_body">Lancez un test de contact maintenant pour confirmer que votre zone de contact fonctionne avec un vrai tag ou lecteur NFC.</string>
+    <string name="tap_guide_step5_action">Lancer un test de contact</string>
+
+    <string name="tap_test_title">Test de contact</string>
+    <string name="tap_test_state_detecting">Détection…</string>
+    <string name="tap_test_state_detected">NFC détecté avec succès</string>
+    <string name="tap_test_state_timed_out">Aucun signal NFC détecté pour l\'instant</string>
+    <string name="tap_test_state_nfc_off">Le NFC est désactivé</string>
+    <string name="tap_test_state_nfc_unsupported">Cet appareil n\'a pas de puce NFC</string>
+    <string name="tap_test_hint_detecting">Maintenez la zone surlignée contre un tag ou lecteur NFC</string>
+    <string name="tap_test_hint_detected">Votre zone de contact recommandée fonctionne.</string>
+    <string name="tap_test_hint_timed_out">• Déplacez-vous lentement sur le lecteur\n• Essayez le haut ou l\'arrière du téléphone\n• Retirez les coques épaisses ou aimants\n• Vérifiez que le NFC est activé</string>
+    <string name="tap_test_hint_nfc_off">Activez le NFC dans les paramètres système, puis réessayez.</string>
+    <string name="tap_test_hint_nfc_unsupported">Cet appareil n\'a pas de puce NFC, un test de contact en direct n\'est donc pas possible ici.</string>
+    <string name="tap_test_cancel">Annuler</string>
+    <string name="tap_test_tap_again">Toucher à nouveau</string>
+    <string name="tap_test_try_again">Réessayer</string>
+    <string name="tap_test_open_settings">Ouvrir les paramètres NFC</string>
+    <string name="tap_test_close_content_description">Fermer le test de contact</string>
+
+    <string name="troubleshoot_title">Le contact ne fonctionne pas ?</string>
+    <string name="troubleshoot_subtitle">Que se passe-t-il ?</string>
+    <string name="troubleshoot_issue_no_reaction">Mon téléphone ne réagit pas</string>
+    <string name="troubleshoot_issue_reader_silent">Le lecteur ne répond pas</string>
+    <string name="troubleshoot_issue_pay_failing">Le paiement sans contact ne fonctionne pas</string>
+    <string name="troubleshoot_issue_cannot_scan">Je n\'arrive pas à scanner un tag</string>
+    <string name="troubleshoot_issue_dont_know_where">Je ne sais pas où toucher</string>
+    <string name="troubleshoot_issue_model_missing">Mon modèle de téléphone n\'est pas répertorié</string>
+    <string name="troubleshoot_action_open_nfc_settings">Ouvrir les paramètres NFC</string>
+    <string name="troubleshoot_action_run_tap_test">Lancer un test de contact</string>
+    <string name="troubleshoot_action_view_tap_zone">Voir ma zone de contact</string>
+    <string name="troubleshoot_action_choose_phone">Choisir mon téléphone</string>
+    <string name="troubleshoot_action_learn_more">Apprendre les bases du NFC</string>
+    <string name="troubleshoot_selected_prefix">Sélectionné :</string>
+    <string name="troubleshoot_close_content_description">Fermer le dépannage</string>
+
+    <string name="education_title">Les bases du NFC</string>
+    <string name="education_close_content_description">Fermer les bases du NFC</string>
+    <string name="education_what_is_nfc_title">Qu\'est-ce que le NFC ?</string>
+    <string name="education_what_is_nfc_body">Le NFC ne fonctionne qu\'à très courte portée — quelques centimètres. Placer la zone de contact de votre téléphone directement contre l\'appareil et la maintenir immobile garantit la lecture la plus fiable.</string>
+    <string name="education_faq_antenna_location">Où se trouve l\'antenne sur mon téléphone ?</string>
+    <string name="education_faq_antenna_location_answer">Généralement près du haut de l\'arrière, à côté de l\'appareil photo principal — TapSense indique l\'emplacement exact pour votre modèle sur l\'écran Mon téléphone.</string>
+    <string name="education_faq_tap_tag">Comment toucher un tag NFC ?</string>
+    <string name="education_faq_tap_tag_answer">Placez la zone de contact de votre téléphone directement contre le tag et maintenez-la immobile pendant une ou deux secondes.</string>
+    <string name="education_faq_pay_vs_scan">Paiement sans contact vs lecture de tag</string>
+    <string name="education_faq_pay_vs_scan_answer">Le paiement sans contact communique avec un terminal de paiement sécurisé ; la lecture de tag lit une petite puce passive. Les deux utilisent la même antenne et zone de contact.</string>
+    <string name="education_faq_why_fail">Pourquoi un contact peut échouer</string>
+    <string name="education_faq_why_fail_answer">Les coques épaisses, accessoires magnétiques, la batterie faible, ou simplement rater la zone de contact sont les causes les plus courantes.</string>
+
+    <string name="settings_title">Paramètres</string>
+    <string name="settings_phone_model">Modèle de téléphone</string>
+    <string name="settings_phone_auto">Détecté automatiquement</string>
+    <string name="settings_nfc_status">État du NFC</string>
+    <string name="settings_nfc_on">Activé</string>
+    <string name="settings_nfc_off">Désactivé</string>
+    <string name="settings_nfc_not_supported">Non pris en charge</string>
+    <string name="settings_haptics">Retour haptique</string>
+    <string name="settings_reduce_motion">Réduire les animations</string>
+    <string name="settings_appearance">Apparence</string>
+    <string name="settings_appearance_system">Système</string>
+    <string name="settings_appearance_light">Clair</string>
+    <string name="settings_appearance_dark">Sombre</string>
+    <string name="settings_help_center">Centre d\'aide</string>
+    <string name="settings_contact_support">Contacter le support</string>
+    <string name="settings_privacy">Confidentialité et données</string>
+    <string name="settings_version">Version %1$s</string>
+
+    <string name="nav_home">Accueil</string>
+    <string name="nav_my_phone">Mon téléphone</string>
+    <string name="nav_tap_guide">Guide</string>
+    <string name="nav_settings">Réglages</string>
+</resources>

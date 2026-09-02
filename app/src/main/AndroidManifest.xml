@@ -12,9 +12,11 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:localeConfig="@xml/locales_config"
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
-        android:theme="@style/Theme.TapSense">
+        android:theme="@style/Theme.TapSense"
+        tools:targetApi="33">
 
         <!--
           Portrait-only is deliberate: the antenna-marker illustrations are hand-tuned against a

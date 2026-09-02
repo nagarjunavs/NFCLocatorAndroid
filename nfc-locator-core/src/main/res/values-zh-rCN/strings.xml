@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="nfc_locator_screen_title">查找您的NFC天线</string>
+
+    <string name="nfc_locator_confidence_exact">精确位置</string>
+    <string name="nfc_locator_confidence_approximate">大致位置</string>
+    <string name="nfc_locator_confidence_generic">预估区域</string>
+    <string name="nfc_locator_confidence_unknown">未知设备</string>
+
+    <string name="nfc_locator_marker_content_description">NFC天线位置标记</string>
+    <string name="nfc_locator_marker_exact_hint">将此处贴近读卡器。</string>
+    <string name="nfc_locator_marker_verified_hint">此型号的已验证感应区域。将此处贴近读卡器。</string>
+    <string name="nfc_locator_marker_approximate_hint">大致将此处贴近读卡器。如果无法识别，请稍微移动一下。</string>
+    <string name="nfc_locator_marker_stale_hint">该位置最近未经过验证。如果无效，请尝试下方的扫描引导。</string>
+
+    <string name="nfc_locator_sweep_content_description">引导式扫描动画，显示应将手机移动到哪里</string>
+    <string name="nfc_locator_sweep_generic_tip">没有与您手机完全匹配的数据。请将手机上标记的区域在读卡器上缓慢移动。</string>
+    <string name="nfc_locator_sweep_unknown_tip">大多数安卓手机的NFC天线位于后背上部、摄像头附近。请先尝试该位置，然后将手机背面在读卡器上缓慢扫过。</string>
+    <string name="nfc_locator_sweep_bar_tip">请尝试手机背面上部、摄像头附近的位置。</string>
+    <string name="nfc_locator_sweep_fold_book_tip">请尝试手机背面：折叠时大致居中，展开时尝试内侧的其中一半。</string>
+    <string name="nfc_locator_sweep_fold_flip_tip">请尝试手机背面中央、铰链附近的位置。</string>
+    <string name="nfc_locator_sweep_tablet_tip">请尝试平板电脑背面中央的位置。</string>
+
+    <string name="nfc_locator_error_title">无法确定天线位置</string>
+    <string name="nfc_locator_error_body">查找您的设备时出现问题。您仍可以尝试下方的通用指南。</string>
+    <string name="nfc_locator_retry_button">重试</string>
+    <string name="nfc_locator_retry_guidance_title">调整位置后重试</string>
+    <string name="nfc_locator_retry_guidance_body">读卡器未检测到您的手机。请尝试稍微移动，或按照下方的扫描引导操作。</string>
+
+    <string name="nfc_locator_loading_content_description">正在查找您设备的NFC天线位置</string>
+</resources>

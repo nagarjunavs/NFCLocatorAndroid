@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Declares every locale this app actually ships translations for (Android 13+ uses this to power
+  the system-level per-app language picker in Settings > Apps > TapSense > Language, and Play
+  Console uses it to offer per-locale APK splits). Purely a declaration - it doesn't change
+  default behavior: on every API level, the OS already auto-selects the closest matching
+  values-<lang>/ resources from the device's locale with zero code required. "en" first as the
+  default/fallback (values/strings.xml with no qualifier).
+
+  IMPORTANT: android:name here takes a BCP-47 tag (e.g. "pt-BR", "zh-CN") - NOT the "-r"-prefixed
+  resource-qualifier folder syntax ("pt-rBR", "zh-rCN") used for values-<lang>-r<REGION>/ folder
+  names. The two look similar but are different formats for different files; mixing them up here
+  silently breaks the per-app language list without affecting resource-based auto-detection
+  (which uses the folder names, not this file) - easy to miss since both "look right".
+-->
+<locale-config xmlns:android="http://schemas.android.com/apk/res/android">
+    <locale android:name="en" />
+    <locale android:name="es" />
+    <locale android:name="pt-BR" />
+    <locale android:name="fr" />
+    <locale android:name="de" />
+    <locale android:name="hi" />
+    <locale android:name="ja" />
+    <locale android:name="ko" />
+    <locale android:name="zh-CN" />
+</locale-config>

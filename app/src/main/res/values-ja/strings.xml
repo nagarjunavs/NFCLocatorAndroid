@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_tagline">タップする場所がすぐわかる</string>
+
+    <string name="confidence_chip_exact">正確</string>
+    <string name="confidence_chip_approximate">おおよそ</string>
+    <string name="confidence_chip_estimated">推定</string>
+    <string name="confidence_chip_unknown">不明</string>
+
+    <string name="onboarding_skip">スキップ</string>
+    <string name="onboarding_continue">続ける</string>
+    <string name="onboarding_get_started">はじめる</string>
+    <string name="onboarding_page1_title">スマホのタップポイントを見つけよう</string>
+    <string name="onboarding_page1_body">確実にNFCを読み取るために、スマホをどこに置けばよいか一目でわかります。もう迷いません。</string>
+    <string name="onboarding_page2_title">自信を持ってタップ</string>
+    <string name="onboarding_page2_body">タグ、スマートロック、リーダー、決済端末に対応したシンプルなビジュアルガイド。</string>
+    <string name="onboarding_page3_title">あなたのスマホに合わせたガイド</string>
+    <string name="onboarding_page3_body">TapSenseはこの端末をすでに認識しています。続けてタップゾーンを確認するか、プレビュー用に別の端末を選べます。</string>
+
+    <string name="phone_selection_title">どの端末をプレビューしますか？</string>
+    <string name="phone_selection_filter_android">Android</string>
+    <string name="phone_selection_filter_apple">Apple</string>
+    <string name="phone_selection_search_placeholder">ブランドまたは機種名で検索</string>
+    <string name="phone_selection_section_header">対応端末</string>
+    <string name="phone_selection_empty">「%1$s」に一致する端末はありません。</string>
+    <string name="phone_selection_use_my_phone">自分の端末を自動で使う</string>
+    <string name="phone_selection_loading">カタログを読み込み中…</string>
+    <string name="phone_selection_close_content_description">端末選択を閉じる</string>
+
+    <string name="phone_confirmed_title">準備完了</string>
+    <string name="phone_confirmed_go_home">ホームへ</string>
+    <string name="phone_confirmed_choose_different">別の端末を選ぶ</string>
+
+    <string name="home_greeting_morning">おはようございます</string>
+    <string name="home_greeting_afternoon">こんにちは</string>
+    <string name="home_greeting_evening">こんばんは</string>
+    <string name="home_previewing_label">タップゾーンをプレビュー中：</string>
+    <string name="home_start_tap_guide">タップガイドを開始</string>
+    <string name="home_change_phone">変更</string>
+    <string name="home_tip_case">ハイライトされた部分をリーダーに1〜2秒当ててください。ケースが厚いと信号が弱まることがあります。</string>
+    <string name="home_nfc_status_on">NFCはオンです</string>
+    <string name="home_nfc_status_off">NFCはオフです</string>
+    <string name="home_nfc_unsupported">この端末にはNFCが搭載されていません</string>
+    <string name="home_nfc_unsupported_body">この端末にはNFCが搭載されていないため、表示できるタップゾーンがありません。</string>
+    <string name="home_tap_not_working">タップがうまくいかない場合</string>
+    <string name="home_tap_area_recommended">上に推奨タップエリアを表示しています</string>
+    <string name="home_tap_area_estimated">上に推定タップエリアを表示しています</string>
+
+    <string name="my_phone_tab_back">背面</string>
+    <string name="my_phone_tab_front">前面</string>
+    <string name="my_phone_not_applicable">対象外</string>
+    <string name="my_phone_front_body">この端末のNFCアンテナは前面にはありません。背面に切り替えて推奨タップゾーンを確認してください。</string>
+    <string name="my_phone_front_banner">多くの端末は、背面の上部やカメラ付近にNFCアンテナがあります。</string>
+    <string name="my_phone_view_back_placement">背面の位置を見る</string>
+    <string name="my_phone_nfc_unsupported_body">この端末にはNFCが搭載されていないため、表示できるタップゾーンがありません。</string>
+    <string name="my_phone_zone_description">NFCアンテナ / 推奨接触エリア。この部分をリーダーやタグに直接当ててください。</string>
+    <string name="my_phone_case_warning">厚いケース、マグネット式の財布、金属プレートはNFCの性能を下げることがあります。</string>
+    <string name="my_phone_orientation_header">向き</string>
+    <string name="my_phone_orientation_back_contact">背面をリーダーに当てる</string>
+    <string name="my_phone_test_location">この位置をテストする</string>
+
+    <string name="tap_guide_step_of">ステップ %1$d / %2$d</string>
+    <string name="tap_guide_next">次へ</string>
+    <string name="tap_guide_close_content_description">タップガイドを閉じる</string>
+    <string name="tap_guide_step1_title">タップゾーンを確認しよう</string>
+    <string name="tap_guide_step1_body">これはホーム画面とマイ端末画面でハイライトされているエリアです。</string>
+    <string name="tap_guide_step2_title">リーダーを起動する</string>
+    <string name="tap_guide_step2_body">スマホを数センチまで近づけてください。多くのリーダーは自動的に起動します。</string>
+    <string name="tap_guide_step3_title">ハイライトされた部分をリーダーに当てる</string>
+    <string name="tap_guide_step3_body">1〜2秒間、しっかり接触させたままにしてください。振動または音で成功を確認できます。</string>
+    <string name="tap_guide_step4_title">確認を待つ</string>
+    <string name="tap_guide_step4_body">タップが成功すると、多くのリーダーはビープ音や点滅、スマホの振動でお知らせします。</string>
+    <string name="tap_guide_step5_title">実際に試してみよう</string>
+    <string name="tap_guide_step5_body">タップテストを実行して、実際のNFCタグやリーダーでタップゾーンが機能することを確認しましょう。</string>
+    <string name="tap_guide_step5_action">タップテストを実行</string>
+
+    <string name="tap_test_title">タップテスト</string>
+    <string name="tap_test_state_detecting">検出中…</string>
+    <string name="tap_test_state_detected">NFCの検出に成功しました</string>
+    <string name="tap_test_state_timed_out">まだNFC信号を検出していません</string>
+    <string name="tap_test_state_nfc_off">NFCはオフです</string>
+    <string name="tap_test_state_nfc_unsupported">この端末にはNFCが搭載されていません</string>
+    <string name="tap_test_hint_detecting">ハイライトされた部分をNFCタグまたはリーダーに当ててください</string>
+    <string name="tap_test_hint_detected">推奨タップエリアは正常に機能しています。</string>
+    <string name="tap_test_hint_timed_out">• リーダー上でゆっくり動かしてみてください\n• 端末の上部や背面を試してください\n• 厚いケースや磁石を外してください\n• NFCがオンになっているか確認してください</string>
+    <string name="tap_test_hint_nfc_off">システム設定でNFCをオンにしてから、もう一度お試しください。</string>
+    <string name="tap_test_hint_nfc_unsupported">この端末にはNFCが搭載されていないため、ここでのライブタップテストはできません。</string>
+    <string name="tap_test_cancel">キャンセル</string>
+    <string name="tap_test_tap_again">もう一度タップ</string>
+    <string name="tap_test_try_again">もう一度試す</string>
+    <string name="tap_test_open_settings">NFC設定を開く</string>
+    <string name="tap_test_close_content_description">タップテストを閉じる</string>
+
+    <string name="troubleshoot_title">タップがうまくいかない場合</string>
+    <string name="troubleshoot_subtitle">どんな状況ですか？</string>
+    <string name="troubleshoot_issue_no_reaction">スマホが反応しない</string>
+    <string name="troubleshoot_issue_reader_silent">リーダーが反応しない</string>
+    <string name="troubleshoot_issue_pay_failing">タップ決済ができない</string>
+    <string name="troubleshoot_issue_cannot_scan">タグをスキャンできない</string>
+    <string name="troubleshoot_issue_dont_know_where">どこをタップすればいいかわからない</string>
+    <string name="troubleshoot_issue_model_missing">自分の機種が一覧にない</string>
+    <string name="troubleshoot_action_open_nfc_settings">NFC設定を開く</string>
+    <string name="troubleshoot_action_run_tap_test">タップテストを実行</string>
+    <string name="troubleshoot_action_view_tap_zone">タップゾーンを見る</string>
+    <string name="troubleshoot_action_choose_phone">自分の端末を選ぶ</string>
+    <string name="troubleshoot_action_learn_more">NFCの基本を学ぶ</string>
+    <string name="troubleshoot_selected_prefix">選択中：</string>
+    <string name="troubleshoot_close_content_description">トラブルシューティングを閉じる</string>
+
+    <string name="education_title">NFCの基本</string>
+    <string name="education_close_content_description">NFCの基本を閉じる</string>
+    <string name="education_what_is_nfc_title">NFCとは？</string>
+    <string name="education_what_is_nfc_body">NFCはごく近距離（数センチ）でのみ通信します。スマホのタップゾーンを端末に直接当てて静止させると、最も確実に読み取れます。</string>
+    <string name="education_faq_antenna_location">スマホのアンテナはどこにありますか？</string>
+    <string name="education_faq_antenna_location_answer">通常は背面上部、メインカメラ付近にあります。TapSenseはマイ端末画面で、あなたの機種の正確な位置を表示します。</string>
+    <string name="education_faq_tap_tag">NFCタグはどうやってタップしますか？</string>
+    <string name="education_faq_tap_tag_answer">スマホのタップゾーンをタグに直接当てて、1〜2秒静止させてください。</string>
+    <string name="education_faq_pay_vs_scan">タップ決済とタグスキャンの違い</string>
+    <string name="education_faq_pay_vs_scan_answer">タップ決済は安全な決済端末と通信し、タグスキャンは小さなパッシブチップを読み取ります。どちらも同じアンテナとタップゾーンを使用します。</string>
+    <string name="education_faq_why_fail">タップが失敗する理由</string>
+    <string name="education_faq_why_fail_answer">厚いケース、磁石付きアクセサリー、バッテリー残量の低下、またはタップゾーンを外してしまうことが主な原因です。</string>
+
+    <string name="settings_title">設定</string>
+    <string name="settings_phone_model">端末モデル</string>
+    <string name="settings_phone_auto">自動検出</string>
+    <string name="settings_nfc_status">NFCの状態</string>
+    <string name="settings_nfc_on">オン</string>
+    <string name="settings_nfc_off">オフ</string>
+    <string name="settings_nfc_not_supported">非対応</string>
+    <string name="settings_haptics">触覚フィードバック</string>
+    <string name="settings_reduce_motion">モーションを減らす</string>
+    <string name="settings_appearance">外観</string>
+    <string name="settings_appearance_system">システム</string>
+    <string name="settings_appearance_light">ライト</string>
+    <string name="settings_appearance_dark">ダーク</string>
+    <string name="settings_help_center">ヘルプセンター</string>
+    <string name="settings_contact_support">サポートに問い合わせる</string>
+    <string name="settings_privacy">プライバシーとデータ</string>
+    <string name="settings_version">バージョン %1$s</string>
+
+    <string name="nav_home">ホーム</string>
+    <string name="nav_my_phone">マイ端末</string>
+    <string name="nav_tap_guide">ガイド</string>
+    <string name="nav_settings">設定</string>
+</resources>

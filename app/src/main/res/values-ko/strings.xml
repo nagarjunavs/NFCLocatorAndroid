@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_tagline">어디를 태그해야 하는지 정확히 알려드려요</string>
+
+    <string name="confidence_chip_exact">정확함</string>
+    <string name="confidence_chip_approximate">대략적</string>
+    <string name="confidence_chip_estimated">추정치</string>
+    <string name="confidence_chip_unknown">알 수 없음</string>
+
+    <string name="onboarding_skip">건너뛰기</string>
+    <string name="onboarding_continue">계속</string>
+    <string name="onboarding_get_started">시작하기</string>
+    <string name="onboarding_page1_title">휴대폰의 태그 지점을 찾아보세요</string>
+    <string name="onboarding_page1_body">안정적인 NFC 인식을 위해 휴대폰을 어디에 놓아야 하는지 정확히 확인하세요 — 더 이상 추측할 필요 없어요.</string>
+    <string name="onboarding_page2_title">자신 있게 태그하세요</string>
+    <string name="onboarding_page2_body">태그, 스마트 도어락, 리더기, 결제 단말기를 위한 간단한 시각적 안내.</string>
+    <string name="onboarding_page3_title">내 휴대폰에 맞춘 안내</string>
+    <string name="onboarding_page3_body">TapSense가 이미 이 기기를 인식했습니다. 계속해서 태그 위치를 확인하거나, 미리 볼 다른 휴대폰을 선택할 수 있어요.</string>
+
+    <string name="phone_selection_title">어떤 휴대폰을 미리 보시겠어요?</string>
+    <string name="phone_selection_filter_android">Android</string>
+    <string name="phone_selection_filter_apple">Apple</string>
+    <string name="phone_selection_search_placeholder">브랜드 또는 모델 검색</string>
+    <string name="phone_selection_section_header">지원 휴대폰</string>
+    <string name="phone_selection_empty">\"%1$s\"와(과) 일치하는 휴대폰이 없습니다.</string>
+    <string name="phone_selection_use_my_phone">내 휴대폰 자동으로 사용</string>
+    <string name="phone_selection_loading">카탈로그 불러오는 중…</string>
+    <string name="phone_selection_close_content_description">휴대폰 선택 닫기</string>
+
+    <string name="phone_confirmed_title">준비 완료</string>
+    <string name="phone_confirmed_go_home">홈으로 가기</string>
+    <string name="phone_confirmed_choose_different">다른 휴대폰 선택</string>
+
+    <string name="home_greeting_morning">좋은 아침이에요</string>
+    <string name="home_greeting_afternoon">안녕하세요</string>
+    <string name="home_greeting_evening">좋은 저녁이에요</string>
+    <string name="home_previewing_label">다음 기기의 태그 위치 미리 보기</string>
+    <string name="home_start_tap_guide">태그 가이드 시작</string>
+    <string name="home_change_phone">변경</string>
+    <string name="home_tip_case">강조 표시된 부분을 리더기에 1~2초간 대세요. 두꺼운 케이스는 신호를 약하게 할 수 있어요.</string>
+    <string name="home_nfc_status_on">NFC가 켜져 있어요</string>
+    <string name="home_nfc_status_off">NFC가 꺼져 있어요</string>
+    <string name="home_nfc_unsupported">이 기기에는 NFC 하드웨어가 없어요</string>
+    <string name="home_nfc_unsupported_body">이 기기에는 NFC 하드웨어가 없어서 표시할 태그 위치가 없습니다.</string>
+    <string name="home_tap_not_working">태그가 작동하지 않나요?</string>
+    <string name="home_tap_area_recommended">위에 표시된 권장 태그 영역</string>
+    <string name="home_tap_area_estimated">위에 표시된 추정 태그 영역</string>
+
+    <string name="my_phone_tab_back">뒷면</string>
+    <string name="my_phone_tab_front">앞면</string>
+    <string name="my_phone_not_applicable">해당 없음</string>
+    <string name="my_phone_front_body">이 휴대폰의 NFC 안테나는 앞면에 없습니다. 권장 태그 위치를 보려면 뒷면으로 전환하세요.</string>
+    <string name="my_phone_front_banner">대부분의 휴대폰은 NFC 안테나가 후면 상단 또는 카메라 근처에 있습니다.</string>
+    <string name="my_phone_view_back_placement">뒷면 위치 보기</string>
+    <string name="my_phone_nfc_unsupported_body">이 기기에는 NFC 하드웨어가 없어서 표시할 태그 위치가 없습니다.</string>
+    <string name="my_phone_zone_description">NFC 안테나 / 권장 접촉 영역. 이 영역을 리더기나 태그에 직접 대세요.</string>
+    <string name="my_phone_case_warning">두꺼운 케이스, 자석 지갑, 금속판은 NFC 성능을 떨어뜨릴 수 있습니다.</string>
+    <string name="my_phone_orientation_header">방향</string>
+    <string name="my_phone_orientation_back_contact">뒷면을 리더기에 접촉</string>
+    <string name="my_phone_test_location">이 위치 테스트하기</string>
+
+    <string name="tap_guide_step_of">%2$d단계 중 %1$d단계</string>
+    <string name="tap_guide_next">다음</string>
+    <string name="tap_guide_close_content_description">태그 가이드 닫기</string>
+    <string name="tap_guide_step1_title">태그 위치를 확인하세요</string>
+    <string name="tap_guide_step1_body">홈 화면과 내 휴대폰 화면에서 강조 표시된 영역입니다.</string>
+    <string name="tap_guide_step2_title">리더기 깨우기</string>
+    <string name="tap_guide_step2_body">휴대폰을 몇 센티미터 이내로 가까이 대세요 — 대부분의 리더기는 자동으로 깨어납니다.</string>
+    <string name="tap_guide_step3_title">강조 표시된 부분을 리더기에 대세요</string>
+    <string name="tap_guide_step3_body">1~2초간 접촉을 유지하세요. 진동이나 소리로 태그가 확인됩니다.</string>
+    <string name="tap_guide_step4_title">확인을 기다리세요</string>
+    <string name="tap_guide_step4_body">태그가 성공하면 대부분의 리더기가 삐 소리를 내거나 깜빡이거나 휴대폰을 진동시킵니다.</string>
+    <string name="tap_guide_step5_title">실제로 시도해 보세요</string>
+    <string name="tap_guide_step5_body">지금 태그 테스트를 실행해서 실제 NFC 태그나 리더기에서 태그 위치가 제대로 작동하는지 확인하세요.</string>
+    <string name="tap_guide_step5_action">태그 테스트 실행</string>
+
+    <string name="tap_test_title">태그 테스트</string>
+    <string name="tap_test_state_detecting">감지 중…</string>
+    <string name="tap_test_state_detected">NFC가 성공적으로 감지되었습니다</string>
+    <string name="tap_test_state_timed_out">아직 NFC 신호가 감지되지 않았습니다</string>
+    <string name="tap_test_state_nfc_off">NFC가 꺼져 있어요</string>
+    <string name="tap_test_state_nfc_unsupported">이 기기에는 NFC 하드웨어가 없어요</string>
+    <string name="tap_test_hint_detecting">강조 표시된 부분을 NFC 태그나 리더기에 대세요</string>
+    <string name="tap_test_hint_detected">권장 태그 영역이 정상적으로 작동하고 있어요.</string>
+    <string name="tap_test_hint_timed_out">• 리더기 위에서 천천히 움직여 보세요\n• 휴대폰의 상단이나 뒷면을 시도해 보세요\n• 두꺼운 케이스나 자석을 제거하세요\n• NFC가 켜져 있는지 확인하세요</string>
+    <string name="tap_test_hint_nfc_off">시스템 설정에서 NFC를 켠 다음 다시 시도하세요.</string>
+    <string name="tap_test_hint_nfc_unsupported">이 기기에는 NFC 하드웨어가 없어서 실시간 태그 테스트를 할 수 없습니다.</string>
+    <string name="tap_test_cancel">취소</string>
+    <string name="tap_test_tap_again">다시 태그하기</string>
+    <string name="tap_test_try_again">다시 시도</string>
+    <string name="tap_test_open_settings">NFC 설정 열기</string>
+    <string name="tap_test_close_content_description">태그 테스트 닫기</string>
+
+    <string name="troubleshoot_title">태그가 작동하지 않나요?</string>
+    <string name="troubleshoot_subtitle">어떤 문제인가요?</string>
+    <string name="troubleshoot_issue_no_reaction">휴대폰이 반응하지 않아요</string>
+    <string name="troubleshoot_issue_reader_silent">리더기가 반응하지 않아요</string>
+    <string name="troubleshoot_issue_pay_failing">탭 결제가 안 돼요</string>
+    <string name="troubleshoot_issue_cannot_scan">태그를 스캔할 수 없어요</string>
+    <string name="troubleshoot_issue_dont_know_where">어디를 태그해야 할지 모르겠어요</string>
+    <string name="troubleshoot_issue_model_missing">내 휴대폰 모델이 목록에 없어요</string>
+    <string name="troubleshoot_action_open_nfc_settings">NFC 설정 열기</string>
+    <string name="troubleshoot_action_run_tap_test">태그 테스트 실행</string>
+    <string name="troubleshoot_action_view_tap_zone">내 태그 위치 보기</string>
+    <string name="troubleshoot_action_choose_phone">내 휴대폰 선택</string>
+    <string name="troubleshoot_action_learn_more">NFC 기본 정보 알아보기</string>
+    <string name="troubleshoot_selected_prefix">선택됨:</string>
+    <string name="troubleshoot_close_content_description">문제 해결 닫기</string>
+
+    <string name="education_title">NFC 기본 정보</string>
+    <string name="education_close_content_description">NFC 기본 정보 닫기</string>
+    <string name="education_what_is_nfc_title">NFC란 무엇인가요?</string>
+    <string name="education_what_is_nfc_body">NFC는 아주 가까운 거리(몇 센티미터)에서만 작동합니다. 휴대폰의 태그 부분을 기기에 직접 대고 가만히 유지하면 가장 안정적으로 인식됩니다.</string>
+    <string name="education_faq_antenna_location">내 휴대폰의 안테나는 어디에 있나요?</string>
+    <string name="education_faq_antenna_location_answer">보통 후면 상단, 메인 카메라 근처에 있습니다 — TapSense가 내 휴대폰 화면에서 내 기종의 정확한 위치를 보여줍니다.</string>
+    <string name="education_faq_tap_tag">NFC 태그는 어떻게 태그하나요?</string>
+    <string name="education_faq_tap_tag_answer">휴대폰의 태그 위치를 태그에 직접 대고 1~2초간 가만히 유지하세요.</string>
+    <string name="education_faq_pay_vs_scan">탭 결제와 태그 스캔의 차이</string>
+    <string name="education_faq_pay_vs_scan_answer">탭 결제는 보안 결제 단말기와 통신하고, 태그 스캔은 작은 수동형 칩을 읽습니다. 둘 다 동일한 안테나와 태그 위치를 사용합니다.</string>
+    <string name="education_faq_why_fail">태그가 실패하는 이유</string>
+    <string name="education_faq_why_fail_answer">두꺼운 케이스, 자석 액세서리, 배터리 부족, 또는 태그 위치를 놓치는 것이 가장 흔한 원인입니다.</string>
+
+    <string name="settings_title">설정</string>
+    <string name="settings_phone_model">휴대폰 모델</string>
+    <string name="settings_phone_auto">자동 감지됨</string>
+    <string name="settings_nfc_status">NFC 상태</string>
+    <string name="settings_nfc_on">켜짐</string>
+    <string name="settings_nfc_off">꺼짐</string>
+    <string name="settings_nfc_not_supported">지원 안 됨</string>
+    <string name="settings_haptics">햅틱 피드백</string>
+    <string name="settings_reduce_motion">동작 줄이기</string>
+    <string name="settings_appearance">화면 테마</string>
+    <string name="settings_appearance_system">시스템</string>
+    <string name="settings_appearance_light">라이트</string>
+    <string name="settings_appearance_dark">다크</string>
+    <string name="settings_help_center">고객센터</string>
+    <string name="settings_contact_support">지원팀 문의</string>
+    <string name="settings_privacy">개인정보 및 데이터</string>
+    <string name="settings_version">버전 %1$s</string>
+
+    <string name="nav_home">홈</string>
+    <string name="nav_my_phone">내 휴대폰</string>
+    <string name="nav_tap_guide">가이드</string>
+    <string name="nav_settings">설정</string>
+</resources>

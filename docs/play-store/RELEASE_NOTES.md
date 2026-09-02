@@ -12,6 +12,38 @@ heading:
 See [`CHECKLIST.md`](CHECKLIST.md) for the rest of the submission checklist and the
 versionCode/versionName convention this file follows.
 
+## versionCode 5 — versionName 1.0.0 — Closed testing (2026-09-03)
+
+### What's new (paste into Play Console)
+
+```
+TapSense now speaks your language! Added Spanish, Portuguese (Brazil), French, German, Hindi, Japanese, Korean, and Chinese - the app now follows your phone's language automatically, or pick one yourself in system Settings > Apps > TapSense > Language.
+
+No other changes in this build.
+```
+
+(285 characters.)
+
+### What actually changed (internal)
+
+- **Localization.** `:app` and `nfc-locator-core` translated into Spanish, Brazilian Portuguese,
+  French, German, Hindi, Japanese, Korean, and Simplified Chinese (`values-es`/`-pt-rBR`/`-fr`/
+  `-de`/`-hi`/`-ja`/`-ko`/`-zh-rCN` in both modules) — chosen as the largest non-English Android/
+  Play markets. Locale selection is Android's normal automatic resource resolution from the
+  device locale (no code required on any API level); `android:localeConfig`
+  (`res/xml/locales_config.xml`) additionally wires the Android 13+ per-app language picker
+  (Settings → Apps → TapSense → Language) and lets Play generate per-locale APK splits.
+  `app_name` stays untranslated (`translatable="false"`) as a brand name. Verified:
+  `./gradlew lint` reports zero `MissingTranslation`/`ExtraTranslation`/`StringFormatMatches`/
+  `StringFormatCount` findings across all 8 locales in both modules (every translation key and
+  format-argument count matches the English source); German (longest words in this set) and
+  Japanese (CJK rendering) spot-checked live on an emulator across Settings, Home/preview, and
+  the Tap Guide→Tap Test flow — no truncation, overflow, or rendering issues.
+- **Deliberately not included:** Arabic/Hebrew (RTL). Translating strings is mechanically
+  verified by lint, but RTL also needs a real layout-mirroring pass (start/end vs. left/right
+  padding, icon direction) that a translation-only change can't safely claim to have covered —
+  see `DECISIONS.md`'s "Localization" section. Not tester-visible in this build either way.
+
 ## versionCode 4 — versionName 1.0.0 — Closed testing (2026-09-02)
 
 ### What's new (paste into Play Console)

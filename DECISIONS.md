@@ -74,6 +74,36 @@ tablets/Chrome OS/DeX, that's a real design/layout project (adaptive layouts per
 an unrelated change. In the meantime, exclude tablets from a closed-testing device pool unless
 you're specifically testing this known limitation.
 
+## Localization: eight languages shipped, RTL deliberately deferred
+TapSense (`:app`) and `nfc-locator-core`'s user-facing strings are translated into Spanish,
+Brazilian Portuguese, French, German, Hindi, Japanese, Korean, and Simplified Chinese
+(`values-es`, `values-pt-rBR`, `values-fr`, `values-de`, `values-hi`, `values-ja`, `values-ko`,
+`values-zh-rCN` in both modules) - chosen as the largest non-English Android/Play markets, the
+same set most apps cover in a first localization pass. Locale selection is Android's normal
+resource resolution: `values-<lang>/strings.xml` is picked automatically from the device's
+locale on every API level, no code required. `android:localeConfig` (`AndroidManifest.xml` +
+`res/xml/locales_config.xml`) additionally declares these locales for the Android 13+ per-app
+language picker and Play's per-locale APK splits - purely additive, ignored on minSdk 26 through
+32 (`tools:targetApi="33"` on the attribute documents this instead of suppressing the lint
+warning blindly). `app_name` is `translatable="false"`: a brand name, kept identical everywhere.
+
+Arabic/Hebrew (RTL) is deliberately not included in this pass. Translating strings is safe and
+mechanically verifiable (lint's `MissingTranslation`/`ExtraTranslation`/`StringFormatMatches`
+checks cover it completely - all locales here pass with zero findings), but RTL also demands
+layout mirroring (start/end vs. left/right padding, icon/chevron direction, gesture direction)
+that isn't something a translation pass can verify by itself; `android:supportsRtl="true"` is
+already set, but no screen has actually been audited under a forced-RTL layout. Shipping that
+untested would risk exactly the "don't impact existing functionality" this change was scoped to
+avoid. Add an RTL language once each screen has had a real RTL layout pass, not before.
+
+Manual on-device verification per language wasn't done for all eight (the string-level lint
+checks catch far more than a human skim would, and cover every locale, not a sample of screens).
+German (longest words in this set) and Japanese (CJK glyph rendering) were spot-checked live on
+an emulator across Settings, Home/preview, and the Tap Guide→Tap Test flow specifically because
+they're the highest layout-overflow and font-rendering risk in this set; both rendered cleanly
+with no truncation or tofu glyphs. A full manual pass across all eight languages and every
+screen is still worth doing once real testers are on non-English devices - see `CHECKLIST.md`.
+
 ## Silhouettes are drawn, not imported art
 Per spec §5 (no photographic renders), silhouettes are Compose `Canvas` outlines
 (`AntennaSilhouette`) parameterized by `NormalizedRect`, not bundled vector XML per device.

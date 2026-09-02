@@ -207,12 +207,23 @@ afterEvaluate {
         // exempt (Central's staging repo doesn't require signed snapshots); any real release
         // version does, and `isRequired` makes that failure loud and immediate rather than
         // producing an unsigned artifact Central would silently reject later.
+        //
+        // `sign(...)` is called UNCONDITIONALLY - it's what actually registers the sign task and
+        // wires every publish task to depend on it. Calling it only inside the secrets-present
+        // branch (as this used to do) meant that with the secrets absent, no sign task existed
+        // at all for `isRequired` to apply to, so `publishToMavenLocal`/the real Central publish
+        // task would silently succeed unsigned instead of failing loudly - verified locally: with
+        // no secrets set and a non-SNAPSHOT VERSION_NAME, `publishToMavenLocal` completed with
+        // zero sign tasks in its graph before this fix. `useInMemoryPgpKeys` alone stays
+        // conditional, since calling it with blank values would itself error at configuration
+        // time; with no signatory configured, the now-always-present sign task fails at execution
+        // time instead, before any network upload.
         val signingKey = System.getenv("SIGNING_KEY_IN_MEMORY")
         val signingPassword = System.getenv("SIGNING_PASSWORD")
         isRequired = !libraryVersionName.endsWith("SNAPSHOT")
         if (!signingKey.isNullOrBlank() && !signingPassword.isNullOrBlank()) {
             useInMemoryPgpKeys(signingKey, signingPassword)
-            sign(publishing.publications["release"])
         }
+        sign(publishing.publications["release"])
     }
 }

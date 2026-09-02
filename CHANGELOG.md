@@ -6,6 +6,8 @@ with the `0.1.0` release.
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-09-02
+
 ### Changed
 
 - Sample app (`:app`) and `nfc-locator-core`: `compileSdk`/`targetSdk` bumped from 35 to 36
@@ -17,6 +19,19 @@ with the `0.1.0` release.
 
 ### Fixed
 
+- `nfc-locator-core`'s release-signing safeguard (`build.gradle.kts`'s `signing {}` block) didn't
+  actually do what it claimed. `sign(publishing.publications["release"])` - the call that
+  registers the sign task and wires every publish task to depend on it - was only reached inside
+  the branch that checks `SIGNING_KEY_IN_MEMORY`/`SIGNING_PASSWORD` are set. With those secrets
+  absent, no sign task existed at all, so `isRequired = true` had nothing to attach to:
+  `publishToMavenLocal` (and, verified via `--dry-run`, the real Central Portal publish task)
+  would complete with a completely unsigned artifact instead of failing loudly as documented in
+  `RELEASING.md`. Fixed by calling `sign(...)` unconditionally, keeping only `useInMemoryPgpKeys`
+  gated on the secrets being present. Verified both directions: with secrets absent, the sign task
+  now fails immediately with "no configured signatory" before any network upload; with a
+  (throwaway, disposable, real-passphrase) signing key present, `publishToMavenLocal` succeeds and
+  every published artifact carries a `.asc` signature independently verified valid via
+  `gpg --verify`.
 - `nfc-locator-core`: `AntennaSilhouette` now self-applies a screen-reader description whenever
   it renders a confident (non-stale) marker - previously the app's *most common* result state
   (`HomeScreen`/`MyPhoneScreen`/`TapGuideScreen`'s solid marker, via `AntennaMarker`) was
@@ -49,6 +64,22 @@ with the `0.1.0` release.
   channel at all (Help center only linked to the in-app Troubleshoot self-help screen), so a
   tester who hit a bug had no way to report it. Collects/transmits nothing itself; only hands an
   editable draft to the OS mail client, so no privacy policy change was needed.
+- Localization: `:app` and `nfc-locator-core` translated into Spanish, Brazilian Portuguese,
+  French, German, Hindi, Japanese, Korean, and Simplified Chinese - previously only English
+  existed. Locale selection is Android's normal automatic resource resolution (no code required);
+  `android:localeConfig` additionally wires the Android 13+ per-app language picker and Play's
+  per-locale APK splits. `app_name` stays untranslated (`translatable="false"`) as a brand name.
+  RTL languages (Arabic, Hebrew) are deliberately deferred - see `DECISIONS.md`'s "Localization"
+  section for why. Verified: `./gradlew lint` reports zero `MissingTranslation`/`ExtraTranslation`/
+  `StringFormatMatches`/`StringFormatCount` findings across all 8 locales in both modules; German
+  and Japanese (highest layout/rendering risk in this set) spot-checked live on-device with no
+  truncation or rendering issues.
+- Sample app: debug builds now show "TapSense Debug" (launcher icon and in-app splash screen,
+  via a `debug`-build-type-only `app_name` override) and `"1.0.0-debug"` as the version
+  (`versionNameSuffix`), instead of an identical "TapSense"/`"1.0.0"` to the closed-testing/
+  production release - previously only the invisible-on-launcher `.debug` package suffix told them
+  apart. Release build's resources/version are unaffected (verified via the merged-resource
+  output for both build types).
 
 ### Known limitations (documented, not fixed)
 
@@ -59,6 +90,8 @@ with the `0.1.0` release.
   backend integration decision, not a code change to make unilaterally.
 - The sample app is portrait-locked with no large-screen-adaptive layout, even though
   `FormFactor.TABLET` is actively detected - see `DECISIONS.md`'s "Tablets" section.
+- RTL languages (Arabic, Hebrew) aren't included in this localization pass - see `DECISIONS.md`'s
+  "Localization" section.
 
 ## [0.1.0] - 2026-08-21
 
@@ -115,5 +148,6 @@ with the `0.1.0` release.
   the app's pre-TapSense-rebrand name and had zero references anywhere, and one in `:app`
   (`tap_test_view_tips`) left over from an earlier Tap Test screen iteration.
 
-[Unreleased]: https://github.com/nagarjunavs/NFCLocatorAndroid/compare/v0.1.0...main
+[Unreleased]: https://github.com/nagarjunavs/NFCLocatorAndroid/compare/v0.2.0...main
+[0.2.0]: https://github.com/nagarjunavs/NFCLocatorAndroid/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/nagarjunavs/NFCLocatorAndroid/releases/tag/v0.1.0

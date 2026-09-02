@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="nfc_locator_screen_title">अपना NFC एंटीना ढूंढें</string>
+
+    <string name="nfc_locator_confidence_exact">सटीक स्थान</string>
+    <string name="nfc_locator_confidence_approximate">अनुमानित स्थान</string>
+    <string name="nfc_locator_confidence_generic">अनुमानित क्षेत्र</string>
+    <string name="nfc_locator_confidence_unknown">अज्ञात डिवाइस</string>
+
+    <string name="nfc_locator_marker_content_description">NFC एंटीना स्थान मार्कर</string>
+    <string name="nfc_locator_marker_exact_hint">इस जगह को रीडर पर लगाए रखें.</string>
+    <string name="nfc_locator_marker_verified_hint">इसी मॉडल के लिए सत्यापित टैप ज़ोन. इस जगह को रीडर पर लगाए रखें.</string>
+    <string name="nfc_locator_marker_approximate_hint">लगभग इस जगह को रीडर पर लगाए रखें. अगर काम न करे तो थोड़ा हिलाएं.</string>
+    <string name="nfc_locator_marker_stale_hint">इस स्थान की हाल ही में पुष्टि नहीं हुई है. अगर यह काम न करे, तो नीचे दिया गया स्वीप आज़माएं.</string>
+
+    <string name="nfc_locator_sweep_content_description">गाइडेड स्वीप एनिमेशन जो दिखाता है कि फ़ोन कहाँ ले जाना है</string>
+    <string name="nfc_locator_sweep_generic_tip">आपके फ़ोन के लिए हमारे पास सटीक मिलान नहीं है. फ़ोन के चिह्नित क्षेत्र को धीरे-धीरे रीडर पर घुमाएं.</string>
+    <string name="nfc_locator_sweep_unknown_tip">अधिकतर Android फ़ोन में NFC एंटीना पीछे के ऊपरी हिस्से में, कैमरे के पास होता है. पहले वहाँ आज़माएं, फिर फ़ोन के पिछले हिस्से को धीरे-धीरे रीडर पर घुमाएं.</string>
+    <string name="nfc_locator_sweep_bar_tip">फ़ोन के पीछे के ऊपरी हिस्से को कैमरे के पास आज़माएं.</string>
+    <string name="nfc_locator_sweep_fold_book_tip">फ़ोन का पिछला हिस्सा आज़माएं — मुड़ी हुई स्थिति में लगभग बीच में, या खुली स्थिति में किसी एक भीतरी आधे हिस्से पर.</string>
+    <string name="nfc_locator_sweep_fold_flip_tip">फ़ोन के पिछले हिस्से के बीच में, हिंज के पास आज़माएं.</string>
+    <string name="nfc_locator_sweep_tablet_tip">टैबलेट के पिछले हिस्से के बीच में आज़माएं.</string>
+
+    <string name="nfc_locator_error_title">एंटीना का स्थान तय नहीं किया जा सका</string>
+    <string name="nfc_locator_error_body">आपके डिवाइस को खोजने में कुछ गड़बड़ी हुई. आप नीचे दिए सामान्य मार्गदर्शन को अब भी आज़मा सकते हैं.</string>
+    <string name="nfc_locator_retry_button">फिर से कोशिश करें</string>
+    <string name="nfc_locator_retry_guidance_title">स्थिति बदलें और फिर से कोशिश करें</string>
+    <string name="nfc_locator_retry_guidance_body">रीडर ने आपका फ़ोन नहीं पहचाना. उसे थोड़ा हिलाएं, या नीचे दिए स्वीप मार्गदर्शन का पालन करें.</string>
+
+    <string name="nfc_locator_loading_content_description">आपके डिवाइस के NFC एंटीना का स्थान खोजा जा रहा है</string>
+</resources>

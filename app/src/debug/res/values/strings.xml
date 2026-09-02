@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Debug-buildType-only override of app_name (standard Gradle source-set precedence: src/debug/res
+  wins over src/main/res for :app:assembleDebug/installDebug, and is never merged into release).
+  Distinguishes a local debug install from the closed-testing/production release build on the
+  launcher and the in-app splash screen (SplashScreen.kt reads the same R.string.app_name) - both
+  can be side-by-side installed already (applicationIdSuffix ".debug" below) but previously showed
+  an identical "TapSense" label, making them easy to mix up by sight. Intentionally left
+  untranslated (matches the base string's translatable="false") since this label is for developers
+  running a local build, not end users.
+-->
+<resources>
+    <string name="app_name" translatable="false">TapSense Debug</string>
+</resources>

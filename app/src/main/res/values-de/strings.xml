@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_tagline">Wisse genau, wo du antippen musst</string>
+
+    <string name="confidence_chip_exact">GENAU</string>
+    <string name="confidence_chip_approximate">UNGEFÄHR</string>
+    <string name="confidence_chip_estimated">GESCHÄTZT</string>
+    <string name="confidence_chip_unknown">UNBEKANNT</string>
+
+    <string name="onboarding_skip">Überspringen</string>
+    <string name="onboarding_continue">Weiter</string>
+    <string name="onboarding_get_started">Los geht\'s</string>
+    <string name="onboarding_page1_title">Finde die Tippzone deines Telefons</string>
+    <string name="onboarding_page1_body">Sieh genau, wo du dein Telefon platzieren musst, für zuverlässiges NFC-Scannen — ganz ohne Rätselraten.</string>
+    <string name="onboarding_page2_title">Tippe mit Zuversicht</string>
+    <string name="onboarding_page2_body">Einfache visuelle Anleitung für Tags, smarte Schlösser, Lesegeräte und Bezahlterminals.</string>
+    <string name="onboarding_page3_title">Anleitung passend für dein Telefon</string>
+    <string name="onboarding_page3_body">TapSense hat dieses Gerät bereits erkannt. Fahre fort, um die Tippzone zu sehen, oder wähle ein anderes Telefon zur Vorschau.</string>
+
+    <string name="phone_selection_title">Welches Telefon möchtest du in der Vorschau sehen?</string>
+    <string name="phone_selection_filter_android">Android</string>
+    <string name="phone_selection_filter_apple">Apple</string>
+    <string name="phone_selection_search_placeholder">Marke oder Modell suchen</string>
+    <string name="phone_selection_section_header">Bekannte Telefone</string>
+    <string name="phone_selection_empty">Kein Telefon passt zu \"%1$s\".</string>
+    <string name="phone_selection_use_my_phone">Mein Telefon automatisch verwenden</string>
+    <string name="phone_selection_loading">Katalog wird geladen…</string>
+    <string name="phone_selection_close_content_description">Telefonauswahl schließen</string>
+
+    <string name="phone_confirmed_title">Alles bereit</string>
+    <string name="phone_confirmed_go_home">Zur Startseite</string>
+    <string name="phone_confirmed_choose_different">Anderes Telefon wählen</string>
+
+    <string name="home_greeting_morning">Guten Morgen</string>
+    <string name="home_greeting_afternoon">Guten Tag</string>
+    <string name="home_greeting_evening">Guten Abend</string>
+    <string name="home_previewing_label">Vorschau der Tippzone für</string>
+    <string name="home_start_tap_guide">Tippanleitung starten</string>
+    <string name="home_change_phone">Ändern</string>
+    <string name="home_tip_case">Halte den markierten Bereich 1–2 Sekunden lang an das Lesegerät. Dicke Hüllen können das Signal schwächen.</string>
+    <string name="home_nfc_status_on">NFC ist an</string>
+    <string name="home_nfc_status_off">NFC ist aus</string>
+    <string name="home_nfc_unsupported">Dieses Gerät hat keine NFC-Hardware</string>
+    <string name="home_nfc_unsupported_body">Dieses Gerät hat keine NFC-Hardware, daher gibt es keine Tippzone anzuzeigen.</string>
+    <string name="home_tap_not_working">Tippen funktioniert nicht?</string>
+    <string name="home_tap_area_recommended">Empfohlene Tippzone oben angezeigt</string>
+    <string name="home_tap_area_estimated">Geschätzte Tippzone oben angezeigt</string>
+
+    <string name="my_phone_tab_back">Rückseite</string>
+    <string name="my_phone_tab_front">Vorderseite</string>
+    <string name="my_phone_not_applicable">NICHT ZUTREFFEND</string>
+    <string name="my_phone_front_body">Die NFC-Antenne befindet sich nicht auf der Vorderseite dieses Telefons. Wechsle zu Rückseite, um die empfohlene Tippzone zu sehen.</string>
+    <string name="my_phone_front_banner">Die meisten Telefone platzieren ihre NFC-Antenne auf der Rückseite, nahe der oberen Kante oder der Kamera.</string>
+    <string name="my_phone_view_back_placement">Position auf der Rückseite ansehen</string>
+    <string name="my_phone_nfc_unsupported_body">Dieses Gerät hat keine NFC-Hardware, daher gibt es keine Tippzone anzuzeigen.</string>
+    <string name="my_phone_zone_description">NFC-Antenne / empfohlene Kontaktzone. Halte diesen Bereich direkt an das Lesegerät oder den Tag.</string>
+    <string name="my_phone_case_warning">Dicke Hüllen, magnetische Geldbörsen und Metallplatten können die NFC-Leistung beeinträchtigen.</string>
+    <string name="my_phone_orientation_header">Ausrichtung</string>
+    <string name="my_phone_orientation_back_contact">Kontakt der Rückseite mit dem Lesegerät</string>
+    <string name="my_phone_test_location">Diese Position testen</string>
+
+    <string name="tap_guide_step_of">Schritt %1$d von %2$d</string>
+    <string name="tap_guide_next">Weiter</string>
+    <string name="tap_guide_close_content_description">Tippanleitung schließen</string>
+    <string name="tap_guide_step1_title">Finde deine Tippzone</string>
+    <string name="tap_guide_step1_body">Das ist der markierte Bereich auf deinen Bildschirmen Start und Mein Telefon.</string>
+    <string name="tap_guide_step2_title">Lesegerät aktivieren</string>
+    <string name="tap_guide_step2_body">Bring dein Telefon auf wenige Zentimeter heran — die meisten Lesegeräte aktivieren sich automatisch.</string>
+    <string name="tap_guide_step3_title">Halte den markierten Bereich an das Lesegerät</string>
+    <string name="tap_guide_step3_body">Halte den Kontakt 1–2 Sekunden stabil. Warte auf eine Vibration oder einen Ton zur Bestätigung.</string>
+    <string name="tap_guide_step4_title">Warte auf die Bestätigung</string>
+    <string name="tap_guide_step4_body">Die meisten Lesegeräte piepen, blinken oder lassen dein Telefon vibrieren, wenn der Tipp erfolgreich war.</string>
+    <string name="tap_guide_step5_title">Jetzt live testen</string>
+    <string name="tap_guide_step5_body">Führe jetzt einen Tipptest durch, um zu bestätigen, dass deine Tippzone mit einem echten NFC-Tag oder -Lesegerät funktioniert.</string>
+    <string name="tap_guide_step5_action">Tipptest durchführen</string>
+
+    <string name="tap_test_title">Tipptest</string>
+    <string name="tap_test_state_detecting">Erkennung läuft…</string>
+    <string name="tap_test_state_detected">NFC erfolgreich erkannt</string>
+    <string name="tap_test_state_timed_out">Noch kein NFC-Signal erkannt</string>
+    <string name="tap_test_state_nfc_off">NFC ist aus</string>
+    <string name="tap_test_state_nfc_unsupported">Dieses Gerät hat keine NFC-Hardware</string>
+    <string name="tap_test_hint_detecting">Halte den markierten Bereich an einen NFC-Tag oder ein Lesegerät</string>
+    <string name="tap_test_hint_detected">Deine empfohlene Tippzone funktioniert.</string>
+    <string name="tap_test_hint_timed_out">• Bewege dich langsam über das Lesegerät\n• Probiere die obere oder hintere Seite des Telefons\n• Entferne dicke Hüllen oder Magnete\n• Prüfe, ob NFC eingeschaltet ist</string>
+    <string name="tap_test_hint_nfc_off">Schalte NFC in den Systemeinstellungen ein und versuche es erneut.</string>
+    <string name="tap_test_hint_nfc_unsupported">Dieses Gerät hat keine NFC-Hardware, daher ist hier kein Live-Tipptest möglich.</string>
+    <string name="tap_test_cancel">Abbrechen</string>
+    <string name="tap_test_tap_again">Erneut tippen</string>
+    <string name="tap_test_try_again">Erneut versuchen</string>
+    <string name="tap_test_open_settings">NFC-Einstellungen öffnen</string>
+    <string name="tap_test_close_content_description">Tipptest schließen</string>
+
+    <string name="troubleshoot_title">Tippen funktioniert nicht?</string>
+    <string name="troubleshoot_subtitle">Was ist los?</string>
+    <string name="troubleshoot_issue_no_reaction">Mein Telefon reagiert nicht</string>
+    <string name="troubleshoot_issue_reader_silent">Das Lesegerät reagiert nicht</string>
+    <string name="troubleshoot_issue_pay_failing">Kontaktloses Bezahlen funktioniert nicht</string>
+    <string name="troubleshoot_issue_cannot_scan">Ich kann keinen Tag scannen</string>
+    <string name="troubleshoot_issue_dont_know_where">Ich weiß nicht, wo ich tippen soll</string>
+    <string name="troubleshoot_issue_model_missing">Mein Telefonmodell ist nicht aufgelistet</string>
+    <string name="troubleshoot_action_open_nfc_settings">NFC-Einstellungen öffnen</string>
+    <string name="troubleshoot_action_run_tap_test">Tipptest durchführen</string>
+    <string name="troubleshoot_action_view_tap_zone">Meine Tippzone ansehen</string>
+    <string name="troubleshoot_action_choose_phone">Mein Telefon wählen</string>
+    <string name="troubleshoot_action_learn_more">NFC-Grundlagen lernen</string>
+    <string name="troubleshoot_selected_prefix">Ausgewählt:</string>
+    <string name="troubleshoot_close_content_description">Problembehandlung schließen</string>
+
+    <string name="education_title">NFC-Grundlagen</string>
+    <string name="education_close_content_description">NFC-Grundlagen schließen</string>
+    <string name="education_what_is_nfc_title">Was ist NFC?</string>
+    <string name="education_what_is_nfc_body">NFC funktioniert nur auf sehr kurze Distanz — wenige Zentimeter. Die Tippzone deines Telefons direkt an das Gerät zu halten und ruhig zu halten, ergibt das zuverlässigste Ergebnis.</string>
+    <string name="education_faq_antenna_location">Wo befindet sich die Antenne an meinem Telefon?</string>
+    <string name="education_faq_antenna_location_answer">Meist nahe der oberen Rückseite, in der Nähe der Hauptkamera — TapSense zeigt dir die genaue Stelle für dein Modell auf dem Bildschirm Mein Telefon.</string>
+    <string name="education_faq_tap_tag">Wie tippe ich einen NFC-Tag an?</string>
+    <string name="education_faq_tap_tag_answer">Halte die Tippzone deines Telefons direkt an den Tag und halte sie ein bis zwei Sekunden ruhig.</string>
+    <string name="education_faq_pay_vs_scan">Kontaktloses Bezahlen vs. Tag-Scannen</string>
+    <string name="education_faq_pay_vs_scan_answer">Kontaktloses Bezahlen kommuniziert mit einem sicheren Bezahlterminal; das Tag-Scannen liest einen kleinen passiven Chip. Beides nutzt dieselbe Antenne und Tippzone.</string>
+    <string name="education_faq_why_fail">Warum ein Tipp fehlschlagen kann</string>
+    <string name="education_faq_why_fail_answer">Dicke Hüllen, magnetisches Zubehör, niedriger Akkustand oder einfach die Tippzone zu verfehlen sind die häufigsten Ursachen.</string>
+
+    <string name="settings_title">Einstellungen</string>
+    <string name="settings_phone_model">Telefonmodell</string>
+    <string name="settings_phone_auto">Automatisch erkannt</string>
+    <string name="settings_nfc_status">NFC-Status</string>
+    <string name="settings_nfc_on">An</string>
+    <string name="settings_nfc_off">Aus</string>
+    <string name="settings_nfc_not_supported">Nicht unterstützt</string>
+    <string name="settings_haptics">Haptisches Feedback</string>
+    <string name="settings_reduce_motion">Bewegung reduzieren</string>
+    <string name="settings_appearance">Erscheinungsbild</string>
+    <string name="settings_appearance_system">System</string>
+    <string name="settings_appearance_light">Hell</string>
+    <string name="settings_appearance_dark">Dunkel</string>
+    <string name="settings_help_center">Hilfecenter</string>
+    <string name="settings_contact_support">Support kontaktieren</string>
+    <string name="settings_privacy">Datenschutz</string>
+    <string name="settings_version">Version %1$s</string>
+
+    <string name="nav_home">Start</string>
+    <string name="nav_my_phone">Mein Telefon</string>
+    <string name="nav_tap_guide">Anleitung</string>
+    <string name="nav_settings">Einstellungen</string>
+</resources>

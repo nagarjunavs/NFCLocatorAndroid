@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">TapSense</string>
+    <!-- Brand name - never translated, kept identical across every locale. -->
+    <string name="app_name" translatable="false">TapSense</string>
     <string name="app_tagline">Know exactly where to tap</string>
 
     <!-- Confidence chip labels (terse, TapSense style-guide badge copy) -->

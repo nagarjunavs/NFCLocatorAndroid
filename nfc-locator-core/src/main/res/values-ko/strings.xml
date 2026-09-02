@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="nfc_locator_screen_title">NFC 안테나 위치 찾기</string>
+
+    <string name="nfc_locator_confidence_exact">정확한 위치</string>
+    <string name="nfc_locator_confidence_approximate">대략적인 위치</string>
+    <string name="nfc_locator_confidence_generic">예상 영역</string>
+    <string name="nfc_locator_confidence_unknown">알 수 없는 기기</string>
+
+    <string name="nfc_locator_marker_content_description">NFC 안테나 위치 마커</string>
+    <string name="nfc_locator_marker_exact_hint">이 위치를 리더기에 대세요.</string>
+    <string name="nfc_locator_marker_verified_hint">이 기종에 맞게 확인된 태그 위치입니다. 이 위치를 리더기에 대세요.</string>
+    <string name="nfc_locator_marker_approximate_hint">이 위치를 리더기에 대략 대세요. 인식되지 않으면 조금 움직여 보세요.</string>
+    <string name="nfc_locator_marker_stale_hint">이 위치는 최근에 확인되지 않았습니다. 작동하지 않으면 아래의 스윕 동작을 시도해 보세요.</string>
+
+    <string name="nfc_locator_sweep_content_description">휴대폰을 어디로 움직여야 하는지 보여주는 가이드 스윕 애니메이션</string>
+    <string name="nfc_locator_sweep_generic_tip">휴대폰과 정확히 일치하는 정보가 없습니다. 휴대폰의 표시된 영역을 리더기 위에서 천천히 움직여 보세요.</string>
+    <string name="nfc_locator_sweep_unknown_tip">대부분의 Android 휴대폰은 NFC 안테나가 후면 상단, 카메라 근처에 있습니다. 먼저 그 위치를 시도한 다음, 휴대폰 뒷면을 리더기 위에서 천천히 스윕해 보세요.</string>
+    <string name="nfc_locator_sweep_bar_tip">휴대폰 후면 상단, 카메라 근처를 시도해 보세요.</string>
+    <string name="nfc_locator_sweep_fold_book_tip">휴대폰 뒷면을 시도해 보세요. 접었을 때는 대략 중앙, 펼쳤을 때는 안쪽 절반 중 한 곳을 시도해 보세요.</string>
+    <string name="nfc_locator_sweep_fold_flip_tip">휴대폰 뒷면 중앙, 힌지 근처를 시도해 보세요.</string>
+    <string name="nfc_locator_sweep_tablet_tip">태블릿 뒷면 중앙을 시도해 보세요.</string>
+
+    <string name="nfc_locator_error_title">안테나 위치를 확인할 수 없습니다</string>
+    <string name="nfc_locator_error_body">기기를 조회하는 중 문제가 발생했습니다. 아래의 일반 안내를 시도해 볼 수 있습니다.</string>
+    <string name="nfc_locator_retry_button">다시 시도</string>
+    <string name="nfc_locator_retry_guidance_title">위치를 조정하고 다시 시도</string>
+    <string name="nfc_locator_retry_guidance_body">리더기가 휴대폰을 인식하지 못했습니다. 조금 움직여 보거나 아래의 스윕 안내를 따라 해보세요.</string>
+
+    <string name="nfc_locator_loading_content_description">기기의 NFC 안테나 위치를 확인하는 중입니다</string>
+</resources>

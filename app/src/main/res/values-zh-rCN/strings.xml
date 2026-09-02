@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_tagline">精确知道该碰哪里</string>
+
+    <string name="confidence_chip_exact">精确</string>
+    <string name="confidence_chip_approximate">大致</string>
+    <string name="confidence_chip_estimated">预估</string>
+    <string name="confidence_chip_unknown">未知</string>
+
+    <string name="onboarding_skip">跳过</string>
+    <string name="onboarding_continue">继续</string>
+    <string name="onboarding_get_started">开始使用</string>
+    <string name="onboarding_page1_title">找到手机的感应点</string>
+    <string name="onboarding_page1_body">准确了解手机应放置的位置，实现可靠的NFC扫描——无需猜测。</string>
+    <string name="onboarding_page2_title">自信地感应</string>
+    <string name="onboarding_page2_body">为标签、智能门锁、读卡器和支付终端提供简单直观的操作指引。</string>
+    <string name="onboarding_page3_title">为您的手机量身定制的指引</string>
+    <string name="onboarding_page3_body">TapSense 已识别出此设备。继续查看其感应区域，或选择其他手机进行预览。</string>
+
+    <string name="phone_selection_title">您想预览哪款手机？</string>
+    <string name="phone_selection_filter_android">Android</string>
+    <string name="phone_selection_filter_apple">Apple</string>
+    <string name="phone_selection_search_placeholder">搜索品牌或型号</string>
+    <string name="phone_selection_section_header">已知手机</string>
+    <string name="phone_selection_empty">没有与“%1$s”匹配的手机。</string>
+    <string name="phone_selection_use_my_phone">自动使用我的手机</string>
+    <string name="phone_selection_loading">正在加载目录…</string>
+    <string name="phone_selection_close_content_description">关闭手机选择</string>
+
+    <string name="phone_confirmed_title">设置完成</string>
+    <string name="phone_confirmed_go_home">返回主页</string>
+    <string name="phone_confirmed_choose_different">选择其他手机</string>
+
+    <string name="home_greeting_morning">早上好</string>
+    <string name="home_greeting_afternoon">下午好</string>
+    <string name="home_greeting_evening">晚上好</string>
+    <string name="home_previewing_label">正在预览感应区域，机型：</string>
+    <string name="home_start_tap_guide">开始感应引导</string>
+    <string name="home_change_phone">更改</string>
+    <string name="home_tip_case">将高亮区域贴近读卡器1~2秒。较厚的手机壳可能会削弱信号。</string>
+    <string name="home_nfc_status_on">NFC 已开启</string>
+    <string name="home_nfc_status_off">NFC 已关闭</string>
+    <string name="home_nfc_unsupported">此设备没有NFC硬件</string>
+    <string name="home_nfc_unsupported_body">此设备没有NFC硬件，因此没有可显示的感应区域。</string>
+    <string name="home_tap_not_working">感应无效？</string>
+    <string name="home_tap_area_recommended">上方显示的是推荐感应区域</string>
+    <string name="home_tap_area_estimated">上方显示的是预估感应区域</string>
+
+    <string name="my_phone_tab_back">背面</string>
+    <string name="my_phone_tab_front">正面</string>
+    <string name="my_phone_not_applicable">不适用</string>
+    <string name="my_phone_front_body">此手机的NFC天线不在正面。请切换到背面查看推荐感应区域。</string>
+    <string name="my_phone_front_banner">大多数手机的NFC天线位于背面上部或摄像头附近。</string>
+    <string name="my_phone_view_back_placement">查看背面位置</string>
+    <string name="my_phone_nfc_unsupported_body">此设备没有NFC硬件，因此没有可显示的感应区域。</string>
+    <string name="my_phone_zone_description">NFC天线／推荐接触区域。请将此区域直接贴近读卡器或标签。</string>
+    <string name="my_phone_case_warning">较厚的手机壳、磁性钱包和金属板可能会降低NFC性能。</string>
+    <string name="my_phone_orientation_header">方向</string>
+    <string name="my_phone_orientation_back_contact">背面与读卡器接触</string>
+    <string name="my_phone_test_location">测试此位置</string>
+
+    <string name="tap_guide_step_of">第 %1$d 步，共 %2$d 步</string>
+    <string name="tap_guide_next">下一步</string>
+    <string name="tap_guide_close_content_description">关闭感应引导</string>
+    <string name="tap_guide_step1_title">找到您的感应区域</string>
+    <string name="tap_guide_step1_body">这是主页和我的手机屏幕上高亮显示的区域。</string>
+    <string name="tap_guide_step2_title">唤醒读卡器</string>
+    <string name="tap_guide_step2_body">将手机靠近几厘米——大多数读卡器会自动唤醒。</string>
+    <string name="tap_guide_step3_title">将高亮区域贴近读卡器</string>
+    <string name="tap_guide_step3_body">保持接触稳定1~2秒。等待震动或提示音以确认感应成功。</string>
+    <string name="tap_guide_step4_title">等待确认</string>
+    <string name="tap_guide_step4_body">感应成功时，大多数读卡器会发出提示音、闪烁或使手机震动。</string>
+    <string name="tap_guide_step5_title">实际测试一下</string>
+    <string name="tap_guide_step5_body">现在运行感应测试，确认您的感应区域可以在真实的NFC标签或读卡器上正常工作。</string>
+    <string name="tap_guide_step5_action">运行感应测试</string>
+
+    <string name="tap_test_title">感应测试</string>
+    <string name="tap_test_state_detecting">正在检测…</string>
+    <string name="tap_test_state_detected">NFC检测成功</string>
+    <string name="tap_test_state_timed_out">尚未检测到NFC信号</string>
+    <string name="tap_test_state_nfc_off">NFC 已关闭</string>
+    <string name="tap_test_state_nfc_unsupported">此设备没有NFC硬件</string>
+    <string name="tap_test_hint_detecting">将高亮区域贴近NFC标签或读卡器</string>
+    <string name="tap_test_hint_detected">您的推荐感应区域运行正常。</string>
+    <string name="tap_test_hint_timed_out">• 在读卡器上缓慢移动\n• 尝试手机的顶部或背面\n• 取下较厚的手机壳或磁铁\n• 确认NFC已开启</string>
+    <string name="tap_test_hint_nfc_off">请在系统设置中开启NFC，然后重试。</string>
+    <string name="tap_test_hint_nfc_unsupported">此设备没有NFC硬件，因此无法在此进行实时感应测试。</string>
+    <string name="tap_test_cancel">取消</string>
+    <string name="tap_test_tap_again">再次感应</string>
+    <string name="tap_test_try_again">重试</string>
+    <string name="tap_test_open_settings">打开NFC设置</string>
+    <string name="tap_test_close_content_description">关闭感应测试</string>
+
+    <string name="troubleshoot_title">感应无效？</string>
+    <string name="troubleshoot_subtitle">出现了什么问题？</string>
+    <string name="troubleshoot_issue_no_reaction">我的手机没有反应</string>
+    <string name="troubleshoot_issue_reader_silent">读卡器没有反应</string>
+    <string name="troubleshoot_issue_pay_failing">感应支付无法使用</string>
+    <string name="troubleshoot_issue_cannot_scan">无法扫描标签</string>
+    <string name="troubleshoot_issue_dont_know_where">不知道该在哪里感应</string>
+    <string name="troubleshoot_issue_model_missing">列表中没有我的手机型号</string>
+    <string name="troubleshoot_action_open_nfc_settings">打开NFC设置</string>
+    <string name="troubleshoot_action_run_tap_test">运行感应测试</string>
+    <string name="troubleshoot_action_view_tap_zone">查看我的感应区域</string>
+    <string name="troubleshoot_action_choose_phone">选择我的手机</string>
+    <string name="troubleshoot_action_learn_more">了解NFC基础知识</string>
+    <string name="troubleshoot_selected_prefix">已选择：</string>
+    <string name="troubleshoot_close_content_description">关闭故障排除</string>
+
+    <string name="education_title">NFC基础知识</string>
+    <string name="education_close_content_description">关闭NFC基础知识</string>
+    <string name="education_what_is_nfc_title">什么是NFC？</string>
+    <string name="education_what_is_nfc_body">NFC仅在极近距离（几厘米）内工作。将手机的感应区域直接贴近设备并保持静止，可获得最可靠的读取效果。</string>
+    <string name="education_faq_antenna_location">我手机的天线在哪里？</string>
+    <string name="education_faq_antenna_location_answer">通常位于背面上部、主摄像头附近——TapSense会在我的手机屏幕上为您的机型显示确切位置。</string>
+    <string name="education_faq_tap_tag">如何感应NFC标签？</string>
+    <string name="education_faq_tap_tag_answer">将手机的感应区域直接贴近标签，并保持静止一到两秒。</string>
+    <string name="education_faq_pay_vs_scan">感应支付与标签扫描的区别</string>
+    <string name="education_faq_pay_vs_scan_answer">感应支付与安全支付终端通信；标签扫描读取的是一个小型无源芯片。两者使用相同的天线和感应区域。</string>
+    <string name="education_faq_why_fail">感应失败的原因</string>
+    <string name="education_faq_why_fail_answer">较厚的手机壳、磁性配件、电量不足，或只是没对准感应区域，是最常见的原因。</string>
+
+    <string name="settings_title">设置</string>
+    <string name="settings_phone_model">手机型号</string>
+    <string name="settings_phone_auto">自动检测</string>
+    <string name="settings_nfc_status">NFC状态</string>
+    <string name="settings_nfc_on">开启</string>
+    <string name="settings_nfc_off">关闭</string>
+    <string name="settings_nfc_not_supported">不支持</string>
+    <string name="settings_haptics">触觉反馈</string>
+    <string name="settings_reduce_motion">减少动态效果</string>
+    <string name="settings_appearance">外观</string>
+    <string name="settings_appearance_system">跟随系统</string>
+    <string name="settings_appearance_light">浅色</string>
+    <string name="settings_appearance_dark">深色</string>
+    <string name="settings_help_center">帮助中心</string>
+    <string name="settings_contact_support">联系支持团队</string>
+    <string name="settings_privacy">隐私与数据</string>
+    <string name="settings_version">版本 %1$s</string>
+
+    <string name="nav_home">主页</string>
+    <string name="nav_my_phone">我的手机</string>
+    <string name="nav_tap_guide">感应引导</string>
+    <string name="nav_settings">设置</string>
+</resources>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="nfc_locator_screen_title">Trouvez votre antenne NFC</string>
+
+    <string name="nfc_locator_confidence_exact">Emplacement exact</string>
+    <string name="nfc_locator_confidence_approximate">Emplacement approximatif</string>
+    <string name="nfc_locator_confidence_generic">Zone estimée</string>
+    <string name="nfc_locator_confidence_unknown">Appareil inconnu</string>
+
+    <string name="nfc_locator_marker_content_description">Repère de l\'emplacement de l\'antenne NFC</string>
+    <string name="nfc_locator_marker_exact_hint">Maintenez cet endroit contre le lecteur.</string>
+    <string name="nfc_locator_marker_verified_hint">Zone de contact vérifiée pour ce modèle exact. Maintenez cet endroit contre le lecteur.</string>
+    <string name="nfc_locator_marker_approximate_hint">Maintenez à peu près cet endroit contre le lecteur. Bougez légèrement si ça ne fonctionne pas.</string>
+    <string name="nfc_locator_marker_stale_hint">Cet emplacement n\'a pas été vérifié récemment. Si ça ne fonctionne pas, essayez le balayage ci-dessous.</string>
+
+    <string name="nfc_locator_sweep_content_description">Animation de balayage guidé indiquant où déplacer votre téléphone</string>
+    <string name="nfc_locator_sweep_generic_tip">Nous n\'avons pas de correspondance exacte pour votre téléphone. Déplacez lentement la zone marquée de votre téléphone sur le lecteur.</string>
+    <string name="nfc_locator_sweep_unknown_tip">La plupart des téléphones Android ont leur antenne NFC près du haut de la face arrière, à côté de l\'appareil photo. Essayez d\'abord cet endroit, puis balayez lentement l\'arrière du téléphone sur le lecteur.</string>
+    <string name="nfc_locator_sweep_bar_tip">Essayez la zone supérieure arrière de votre téléphone, près de l\'appareil photo.</string>
+    <string name="nfc_locator_sweep_fold_book_tip">Essayez l\'arrière de votre téléphone, à peu près centré une fois plié, ou sur l\'une des moitiés internes une fois déplié.</string>
+    <string name="nfc_locator_sweep_fold_flip_tip">Essayez le centre de l\'arrière de votre téléphone, près de la charnière.</string>
+    <string name="nfc_locator_sweep_tablet_tip">Essayez le centre de l\'arrière de votre tablette.</string>
+
+    <string name="nfc_locator_error_title">Impossible de déterminer l\'emplacement de l\'antenne</string>
+    <string name="nfc_locator_error_body">Une erreur s\'est produite lors de la recherche de votre appareil. Vous pouvez toujours essayer les conseils généraux ci-dessous.</string>
+    <string name="nfc_locator_retry_button">Réessayer</string>
+    <string name="nfc_locator_retry_guidance_title">Repositionnez et réessayez</string>
+    <string name="nfc_locator_retry_guidance_body">Le lecteur n\'a pas détecté votre téléphone. Essayez de le déplacer légèrement, ou suivez le balayage guidé ci-dessous.</string>
+
+    <string name="nfc_locator_loading_content_description">Recherche de l\'emplacement de l\'antenne NFC de votre appareil</string>
+</resources>

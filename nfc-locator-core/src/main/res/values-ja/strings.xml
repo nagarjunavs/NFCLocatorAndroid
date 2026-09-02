@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="nfc_locator_screen_title">NFCアンテナの位置を確認</string>
+
+    <string name="nfc_locator_confidence_exact">正確な位置</string>
+    <string name="nfc_locator_confidence_approximate">おおよその位置</string>
+    <string name="nfc_locator_confidence_generic">推定エリア</string>
+    <string name="nfc_locator_confidence_unknown">不明な端末</string>
+
+    <string name="nfc_locator_marker_content_description">NFCアンテナの位置マーカー</string>
+    <string name="nfc_locator_marker_exact_hint">この場所をリーダーに当ててください。</string>
+    <string name="nfc_locator_marker_verified_hint">この機種向けに確認済みのタップゾーンです。この場所をリーダーに当ててください。</string>
+    <string name="nfc_locator_marker_approximate_hint">だいたいこの場所をリーダーに当ててください。反応しない場合は少し動かしてみてください。</string>
+    <string name="nfc_locator_marker_stale_hint">この位置情報は最近確認されていません。うまくいかない場合は、下のスイープ操作を試してください。</string>
+
+    <string name="nfc_locator_sweep_content_description">スマートフォンを動かす方向を示すガイド付きスイープアニメーション</string>
+    <string name="nfc_locator_sweep_generic_tip">お使いの端末に完全に一致するデータがありません。端末のマーク部分をリーダー上でゆっくり動かしてください。</string>
+    <string name="nfc_locator_sweep_unknown_tip">多くのAndroid端末では、NFCアンテナは背面上部、カメラ付近にあります。まずそこを試し、それから端末の背面をリーダー上でゆっくりスイープしてください。</string>
+    <string name="nfc_locator_sweep_bar_tip">端末背面のカメラ付近、上部を試してください。</string>
+    <string name="nfc_locator_sweep_fold_book_tip">端末の背面を試してください。折りたたみ時はほぼ中央、開いた状態では内側の片方の半分を試してください。</string>
+    <string name="nfc_locator_sweep_fold_flip_tip">端末背面の中央、ヒンジ付近を試してください。</string>
+    <string name="nfc_locator_sweep_tablet_tip">タブレット背面の中央を試してください。</string>
+
+    <string name="nfc_locator_error_title">アンテナの位置を特定できませんでした</string>
+    <string name="nfc_locator_error_body">端末の検索中に問題が発生しました。以下の一般的なガイドをお試しいただけます。</string>
+    <string name="nfc_locator_retry_button">再試行</string>
+    <string name="nfc_locator_retry_guidance_title">位置を調整して再試行</string>
+    <string name="nfc_locator_retry_guidance_body">リーダーが端末を検出できませんでした。少し動かすか、下のスイープガイドに従ってください。</string>
+
+    <string name="nfc_locator_loading_content_description">端末のNFCアンテナの位置を確認しています</string>
+</resources>

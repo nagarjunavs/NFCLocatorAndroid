@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_tagline">Saiba exatamente onde tocar</string>
+
+    <string name="confidence_chip_exact">EXATO</string>
+    <string name="confidence_chip_approximate">APROXIMADO</string>
+    <string name="confidence_chip_estimated">ESTIMADO</string>
+    <string name="confidence_chip_unknown">DESCONHECIDO</string>
+
+    <string name="onboarding_skip">Pular</string>
+    <string name="onboarding_continue">Continuar</string>
+    <string name="onboarding_get_started">Começar</string>
+    <string name="onboarding_page1_title">Encontre o ponto de toque do seu celular</string>
+    <string name="onboarding_page1_body">Veja exatamente onde posicionar seu celular para uma leitura NFC confiável — sem adivinhação.</string>
+    <string name="onboarding_page2_title">Toque com confiança</string>
+    <string name="onboarding_page2_body">Orientação visual simples para tags, fechaduras inteligentes, leitores e terminais de pagamento.</string>
+    <string name="onboarding_page3_title">Orientação feita para o seu celular</string>
+    <string name="onboarding_page3_body">O TapSense já reconheceu este aparelho. Continue para ver sua zona de toque, ou escolha outro celular para pré-visualizar.</string>
+
+    <string name="phone_selection_title">Qual celular você quer pré-visualizar?</string>
+    <string name="phone_selection_filter_android">Android</string>
+    <string name="phone_selection_filter_apple">Apple</string>
+    <string name="phone_selection_search_placeholder">Buscar marca ou modelo</string>
+    <string name="phone_selection_section_header">Celulares conhecidos</string>
+    <string name="phone_selection_empty">Nenhum celular corresponde a \"%1$s\".</string>
+    <string name="phone_selection_use_my_phone">Usar meu celular automaticamente</string>
+    <string name="phone_selection_loading">Carregando catálogo…</string>
+    <string name="phone_selection_close_content_description">Fechar seleção de celular</string>
+
+    <string name="phone_confirmed_title">Tudo pronto</string>
+    <string name="phone_confirmed_go_home">Ir para a Início</string>
+    <string name="phone_confirmed_choose_different">Escolher outro celular</string>
+
+    <string name="home_greeting_morning">Bom dia</string>
+    <string name="home_greeting_afternoon">Boa tarde</string>
+    <string name="home_greeting_evening">Boa noite</string>
+    <string name="home_previewing_label">Pré-visualizando zona de toque para</string>
+    <string name="home_start_tap_guide">Iniciar guia de toque</string>
+    <string name="home_change_phone">Alterar</string>
+    <string name="home_tip_case">Mantenha a área destacada encostada no leitor por 1–2 segundos. Capas grossas podem enfraquecer o sinal.</string>
+    <string name="home_nfc_status_on">O NFC está ativado</string>
+    <string name="home_nfc_status_off">O NFC está desativado</string>
+    <string name="home_nfc_unsupported">Este aparelho não tem hardware NFC</string>
+    <string name="home_nfc_unsupported_body">Este aparelho não tem hardware NFC, então não há zona de toque para mostrar.</string>
+    <string name="home_tap_not_working">O toque não está funcionando?</string>
+    <string name="home_tap_area_recommended">Área de toque recomendada mostrada acima</string>
+    <string name="home_tap_area_estimated">Área de toque estimada mostrada acima</string>
+
+    <string name="my_phone_tab_back">Trás</string>
+    <string name="my_phone_tab_front">Frente</string>
+    <string name="my_phone_not_applicable">NÃO SE APLICA</string>
+    <string name="my_phone_front_body">A antena NFC não fica na frente deste celular. Mude para Trás para ver a zona de toque recomendada.</string>
+    <string name="my_phone_front_banner">A maioria dos celulares tem a antena NFC no painel traseiro, perto da parte de cima ou da câmera.</string>
+    <string name="my_phone_view_back_placement">Ver posição na parte de trás</string>
+    <string name="my_phone_nfc_unsupported_body">Este aparelho não tem hardware NFC, então não há zona de toque para mostrar.</string>
+    <string name="my_phone_zone_description">Antena NFC / zona de contato recomendada. Toque esta área diretamente contra o leitor ou a tag.</string>
+    <string name="my_phone_case_warning">Capas grossas, carteiras magnéticas e placas metálicas podem reduzir o desempenho do NFC.</string>
+    <string name="my_phone_orientation_header">Orientação</string>
+    <string name="my_phone_orientation_back_contact">Contato da parte de trás com o leitor</string>
+    <string name="my_phone_test_location">Testar esta localização</string>
+
+    <string name="tap_guide_step_of">Passo %1$d de %2$d</string>
+    <string name="tap_guide_next">Próximo</string>
+    <string name="tap_guide_close_content_description">Fechar guia de toque</string>
+    <string name="tap_guide_step1_title">Localize sua zona de toque</string>
+    <string name="tap_guide_step1_body">Esta é a área destacada nas telas Início e Meu Celular.</string>
+    <string name="tap_guide_step2_title">Ative o leitor</string>
+    <string name="tap_guide_step2_body">Aproxime seu celular a poucos centímetros — a maioria dos leitores ativa automaticamente.</string>
+    <string name="tap_guide_step3_title">Mantenha a área destacada encostada no leitor</string>
+    <string name="tap_guide_step3_body">Mantenha o contato firme por 1–2 segundos. Aguarde uma vibração ou som para confirmar o toque.</string>
+    <string name="tap_guide_step4_title">Aguarde a confirmação</string>
+    <string name="tap_guide_step4_body">A maioria dos leitores emite um bipe, pisca ou vibra o celular quando o toque é bem-sucedido.</string>
+    <string name="tap_guide_step5_title">Experimente de verdade</string>
+    <string name="tap_guide_step5_body">Execute um teste de toque agora para confirmar que sua zona de toque funciona com uma tag ou leitor NFC real.</string>
+    <string name="tap_guide_step5_action">Executar teste de toque</string>
+
+    <string name="tap_test_title">Teste de toque</string>
+    <string name="tap_test_state_detecting">Detectando…</string>
+    <string name="tap_test_state_detected">NFC detectado com sucesso</string>
+    <string name="tap_test_state_timed_out">Nenhum sinal NFC detectado ainda</string>
+    <string name="tap_test_state_nfc_off">O NFC está desativado</string>
+    <string name="tap_test_state_nfc_unsupported">Este aparelho não tem hardware NFC</string>
+    <string name="tap_test_hint_detecting">Mantenha a área destacada contra uma tag ou leitor NFC</string>
+    <string name="tap_test_hint_detected">Sua área de toque recomendada está funcionando.</string>
+    <string name="tap_test_hint_timed_out">• Mova devagar sobre o leitor\n• Tente a parte de cima ou de trás do celular\n• Remova capas grossas ou ímãs\n• Confirme se o NFC está ativado</string>
+    <string name="tap_test_hint_nfc_off">Ative o NFC nas configurações do sistema e tente novamente.</string>
+    <string name="tap_test_hint_nfc_unsupported">Este aparelho não tem hardware NFC, então não é possível fazer um teste de toque ao vivo aqui.</string>
+    <string name="tap_test_cancel">Cancelar</string>
+    <string name="tap_test_tap_again">Tocar novamente</string>
+    <string name="tap_test_try_again">Tentar novamente</string>
+    <string name="tap_test_open_settings">Abrir configurações de NFC</string>
+    <string name="tap_test_close_content_description">Fechar teste de toque</string>
+
+    <string name="troubleshoot_title">O toque não está funcionando?</string>
+    <string name="troubleshoot_subtitle">O que está acontecendo?</string>
+    <string name="troubleshoot_issue_no_reaction">Meu celular não reage</string>
+    <string name="troubleshoot_issue_reader_silent">O leitor não responde</string>
+    <string name="troubleshoot_issue_pay_failing">O pagamento por aproximação não funciona</string>
+    <string name="troubleshoot_issue_cannot_scan">Não consigo escanear uma tag</string>
+    <string name="troubleshoot_issue_dont_know_where">Não sei onde tocar</string>
+    <string name="troubleshoot_issue_model_missing">Meu modelo de celular não está na lista</string>
+    <string name="troubleshoot_action_open_nfc_settings">Abrir configurações de NFC</string>
+    <string name="troubleshoot_action_run_tap_test">Executar teste de toque</string>
+    <string name="troubleshoot_action_view_tap_zone">Ver minha zona de toque</string>
+    <string name="troubleshoot_action_choose_phone">Escolher meu celular</string>
+    <string name="troubleshoot_action_learn_more">Aprender o básico de NFC</string>
+    <string name="troubleshoot_selected_prefix">Selecionado:</string>
+    <string name="troubleshoot_close_content_description">Fechar solução de problemas</string>
+
+    <string name="education_title">Básico sobre NFC</string>
+    <string name="education_close_content_description">Fechar básico sobre NFC</string>
+    <string name="education_what_is_nfc_title">O que é NFC?</string>
+    <string name="education_what_is_nfc_body">O NFC funciona apenas a uma distância muito curta — poucos centímetros. Encostar a zona de toque do celular diretamente no aparelho e mantê-lo parado garante a leitura mais confiável.</string>
+    <string name="education_faq_antenna_location">Onde fica a antena no meu celular?</string>
+    <string name="education_faq_antenna_location_answer">Geralmente perto da parte superior traseira, próxima à câmera principal — o TapSense mostra o local exato para o seu modelo na tela Meu Celular.</string>
+    <string name="education_faq_tap_tag">Como eu toco uma tag NFC?</string>
+    <string name="education_faq_tap_tag_answer">Encoste a zona de toque do celular diretamente na tag e mantenha-a parada por um ou dois segundos.</string>
+    <string name="education_faq_pay_vs_scan">Pagamento por aproximação vs. leitura de tag</string>
+    <string name="education_faq_pay_vs_scan_answer">O pagamento por aproximação se comunica com um terminal de pagamento seguro; a leitura de tag lê um pequeno chip passivo. Ambos usam a mesma antena e zona de toque.</string>
+    <string name="education_faq_why_fail">Por que um toque pode falhar</string>
+    <string name="education_faq_why_fail_answer">Capas grossas, acessórios magnéticos, bateria fraca ou simplesmente errar a zona de toque são as causas mais comuns.</string>
+
+    <string name="settings_title">Configurações</string>
+    <string name="settings_phone_model">Modelo do celular</string>
+    <string name="settings_phone_auto">Detectado automaticamente</string>
+    <string name="settings_nfc_status">Status do NFC</string>
+    <string name="settings_nfc_on">Ativado</string>
+    <string name="settings_nfc_off">Desativado</string>
+    <string name="settings_nfc_not_supported">Não compatível</string>
+    <string name="settings_haptics">Vibração</string>
+    <string name="settings_reduce_motion">Reduzir movimento</string>
+    <string name="settings_appearance">Aparência</string>
+    <string name="settings_appearance_system">Sistema</string>
+    <string name="settings_appearance_light">Claro</string>
+    <string name="settings_appearance_dark">Escuro</string>
+    <string name="settings_help_center">Central de ajuda</string>
+    <string name="settings_contact_support">Falar com o suporte</string>
+    <string name="settings_privacy">Privacidade e dados</string>
+    <string name="settings_version">Versão %1$s</string>
+
+    <string name="nav_home">Início</string>
+    <string name="nav_my_phone">Meu Celular</string>
+    <string name="nav_tap_guide">Guia</string>
+    <string name="nav_settings">Configurações</string>
+</resources>

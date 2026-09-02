@@ -195,6 +195,11 @@ catalog growth. This is fine for demonstrating the library's resolver chain, but
 itself ships as a real product, wiring a real backend here is a deliberate decision to make
 before launch, not something the code does for you.
 
+**Languages**: English, Spanish, Brazilian Portuguese, French, German, Hindi, Japanese, Korean,
+and Simplified Chinese - selected automatically from the device's system language (or per-app via
+Settings → Apps → TapSense → Language on Android 13+), no in-app language switcher needed. RTL
+languages aren't included yet - see `DECISIONS.md`'s "Localization" section for why.
+
 ## Building & testing locally
 
 ```bash
