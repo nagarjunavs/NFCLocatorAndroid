@@ -183,7 +183,7 @@ Still needed, **all TODO (owner)** — none of these are fabricated here:
 - [ ] Feature graphic: 1024×500 PNG/JPEG.
 - [ ] At least 2 phone screenshots (real device or emulator captures of Home, My Phone, Tap
       Guide, Tap Test — this repo's own screens, not stock photography).
-- [ ] Short description (≤80 chars) and full description (≤4000 chars) — drafted, needs final
+- [x] Short description (≤80 chars) and full description (≤4000 chars) — ASO-optimized, see `app/store-listing/README.md`
       review/approval.
 - [ ] Support email and (optional) website URL.
 - [ ] Content rating questionnaire — expected to land in the lowest tier (no user-generated
