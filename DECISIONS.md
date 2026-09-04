@@ -83,9 +83,28 @@ same set most apps cover in a first localization pass. Locale selection is Andro
 resource resolution: `values-<lang>/strings.xml` is picked automatically from the device's
 locale on every API level, no code required. `android:localeConfig` (`AndroidManifest.xml` +
 `res/xml/locales_config.xml`) additionally declares these locales for the Android 13+ per-app
-language picker and Play's per-locale APK splits - purely additive, ignored on minSdk 26 through
-32 (`tools:targetApi="33"` on the attribute documents this instead of suppressing the lint
-warning blindly). `app_name` is `translatable="false"`: a brand name, kept identical everywhere.
+language picker - purely additive, ignored on minSdk 26 through 32 (`tools:targetApi="33"` on the
+attribute documents this instead of suppressing the lint warning blindly). `app_name` is
+`translatable="false"`: a brand name, kept identical everywhere.
+
+Play's per-locale App Bundle splitting is deliberately **disabled**
+(`bundle { language { enableSplit = false } }`, `app/build.gradle.kts`), not left on its default.
+The per-app language picker above lets a user select a language independent of the device's
+system locale - exactly the case Android's own App Bundle docs flag as needing this setting
+(https://developer.android.com/guide/app-bundle/configure-base): with splitting left on, Play
+installs only the one locale split matching the device's language at install time and is
+supposed to fetch the rest on demand when the in-app language changes, but that on-demand
+delivery proved unreliable in practice - a versionCode 5 closed tester found that switching
+languages via Settings → Apps → TapSense → Language did nothing on the Play-installed release,
+while the identical switch worked immediately on a sideloaded debug build (which, being a single
+monolithic APK, never depended on split delivery). Confirmed via `aapt2 dump` that the
+versionCode 5 release APK's resources, `locales_config.xml`, and every translation were fully
+intact - shrinking/minification was never the cause, only the App Bundle's language-split
+delivery was. Fixed in versionCode 6 by disabling the split, so every install now bundles every
+locale's resources in the base module instead of depending on Play to deliver the rest later.
+The trade-off is a small download-size increase for every install (translated strings only, no
+additional media) - accepted as worth it for reliable in-app language switching; this is a
+supported Gradle configuration choice, not a Play Store policy concern in either direction.
 
 Arabic/Hebrew (RTL) is deliberately not included in this pass. Translating strings is safe and
 mechanically verifiable (lint's `MissingTranslation`/`ExtraTranslation`/`StringFormatMatches`

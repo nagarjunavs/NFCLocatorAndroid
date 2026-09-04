@@ -17,7 +17,7 @@ claim; anything not yet decided is marked **TODO (owner)**.
       `BuildConfig.VERSION_NAME`/Settings → About (`"1.0.0-debug"` vs. release's plain `"1.0.0"`)
       — so a tester's screenshot or a local dev's screen share is unambiguous about which build
       they're looking at.
-- [x] `versionCode`/`versionName` present (currently `5` / `"1.0.0"` — check `app/build.gradle.kts`
+- [x] `versionCode`/`versionName` present (currently `6` / `"1.0.0"` — check `app/build.gradle.kts`
       for the live values, since this line goes stale the moment either is bumped and isn't
       re-verified automatically). Convention for this repo: `versionCode` is a plain incrementing
       integer bumped for *every* build uploaded to any Play track (closed testing included) —
@@ -145,7 +145,20 @@ claim; anything not yet decided is marked **TODO (owner)**.
       Arabic/Hebrew (RTL) is deliberately deferred rather than shipped untested.
 - [x] Locale selection is automatic: Android resolves `values-<lang>/` from the device locale on
       every API level, no code required. `android:localeConfig` additionally wires the Android
-      13+ per-app language picker and Play's per-locale APK splits (`res/xml/locales_config.xml`).
+      13+ per-app language picker (`res/xml/locales_config.xml`).
+- [x] Play's per-locale App Bundle splits are **disabled**
+      (`bundle { language { enableSplit = false } }` in `app/build.gradle.kts`), not left on the
+      default. versionCode 5 shipped with the default (split) behavior, and a closed tester found
+      that switching languages via Settings → Apps → TapSense → Language did nothing on the
+      Play-installed build, because Play only installs the one locale split matching the device's
+      language and its on-demand delivery of the rest proved unreliable — confirmed not a
+      shrinking/minification issue via `aapt2 dump` on the versionCode 5 APK. Fixed in versionCode
+      6 per Android's own documented guidance for apps with independent-of-system-locale language
+      switching (https://developer.android.com/guide/app-bundle/configure-base); every install
+      now bundles all locale resources, trading a small download-size increase for reliable
+      switching. Not a Play policy concern either way — this is a supported Gradle configuration
+      choice. See `CHANGELOG.md`'s `[Unreleased]` entry and `DECISIONS.md`'s "Localization"
+      section.
 - [x] `./gradlew lint` reports zero `MissingTranslation`/`ExtraTranslation`/`StringFormatMatches`/
       `StringFormatCount` findings across all 8 locales in both modules — every translation key
       and format-argument count matches the English source exactly.

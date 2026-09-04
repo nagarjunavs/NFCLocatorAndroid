@@ -6,6 +6,27 @@ with the `0.1.0` release.
 
 ## [Unreleased]
 
+### Fixed
+
+- Sample app: changing the app's language via **Settings → Apps → TapSense → Language** (the
+  Android 13+ per-app language picker, wired by `android:localeConfig`/`locales_config.xml`)
+  had no effect in the Play-installed release build (versionCode 5), while the same switch
+  worked immediately in a sideloaded debug build. Root cause: an Android App Bundle splits
+  resources by language into separate install-time delivery APKs by default, so a device only
+  gets the one locale split matching its language at install time; Play is supposed to fetch the
+  rest on demand when the in-app language is changed, but that on-demand delivery proved
+  unreliable, silently leaving the app on its originally-installed locale. Confirmed via `aapt2
+  dump` that every translated string and the `locales_config.xml` resource itself were fully
+  intact in the release APK/AAB - shrinking/minification was never the cause. Fixed by setting
+  `bundle { language { enableSplit = false } }` in `app/build.gradle.kts`, which is Android's own
+  documented remedy for apps whose language can change independent of the system locale
+  (https://developer.android.com/guide/app-bundle/configure-base): every install now packages
+  all locale resources into the base module instead of relying on Play's on-demand split
+  delivery. Verified by decoding the rebuilt `.aab`'s `BundleConfig.pb`, which now carries
+  `SplitDimension{value: LANGUAGE, negate: true}`. Trade-off accepted: a small increase in
+  download size for every install (translated strings only, no additional media/assets) in
+  exchange for reliable in-app language switching.
+
 ## [0.2.0] - 2026-09-02
 
 ### Changed

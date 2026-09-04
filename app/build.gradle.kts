@@ -27,7 +27,7 @@ android {
         applicationId = "com.tapsense.app"
         minSdk = 26
         targetSdk = 36
-        versionCode = 5
+        versionCode = 6
         versionName = "1.0.0"
 
         testInstrumentationRunner = "com.tapsense.app.HiltTestRunner"
@@ -87,6 +87,21 @@ android {
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
+    }
+
+    // Play's per-language APK-split delivery (the default for an App Bundle) only installs the
+    // locale split matching the device's language at install time, then is supposed to fetch the
+    // rest on demand when the user later changes the per-app language in Settings > Apps >
+    // TapSense > Language. That on-demand fetch is unreliable in practice (confirmed on the
+    // versionCode 5 closed test: switching language did nothing in the Play-installed release,
+    // while a sideloaded debug APK - which always bundles every locale - worked immediately).
+    // Disabling the split ships every locale's resources in the base module on every install, so
+    // the zero-code resource resolution `locales_config.xml` documents always finds the strings
+    // locally instead of depending on Play to deliver them.
+    bundle {
+        language {
+            enableSplit = false
         }
     }
 

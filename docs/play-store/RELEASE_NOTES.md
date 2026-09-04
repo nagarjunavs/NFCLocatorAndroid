@@ -12,6 +12,43 @@ heading:
 See [`CHECKLIST.md`](CHECKLIST.md) for the rest of the submission checklist and the
 versionCode/versionName convention this file follows.
 
+## versionCode 6 — versionName 1.0.0 — Closed testing (2026-09-03)
+
+### What's new (paste into Play Console)
+
+```
+Fixed: changing the app's language in Settings > Apps > TapSense > Language now actually takes effect. Previously it silently did nothing for some testers.
+
+No other changes in this build.
+```
+
+(200 characters.)
+
+### What actually changed (internal)
+
+- **Fixed in-app language switching in the release build.** Reported by a closed tester on
+  versionCode 5: picking a different language in Settings → Apps → TapSense → Language had no
+  effect, even though the identical switch worked fine on a sideloaded debug build. Root cause:
+  an Android App Bundle splits resources by language into separate install-time delivery APKs by
+  default, so a device only receives the single locale split matching its language at install
+  time — Play is supposed to fetch additional splits on demand when the per-app language changes,
+  but that delivery proved unreliable, leaving the app stuck on whichever locale it was originally
+  installed with. Confirmed via `aapt2 dump configurations`/`dump xmltree`/`dump resources` that
+  the versionCode 5 release APK's `resources.arsc`, `locales_config.xml`, and every translated
+  string were fully intact — resource shrinking/minification was never the cause, only the App
+  Bundle's language-split delivery was. Fixed with `bundle { language { enableSplit = false } }`
+  in `app/build.gradle.kts` — Android's own documented fix for apps whose language changes
+  independent of the system locale
+  (https://developer.android.com/guide/app-bundle/configure-base) — so every install now packages
+  every locale's resources into the base module instead of depending on Play to deliver the rest
+  later. Verified by decoding the rebuilt `.aab`'s `BundleConfig.pb`
+  (`SplitDimension{value: LANGUAGE, negate: true}`) and re-confirming `assembleRelease`/
+  `bundleRelease` both still succeed. Not a Play Store policy issue in either direction — disabling
+  the split is a supported, policy-neutral Gradle configuration choice; the only trade-off is a
+  small download-size increase (translated strings only) applied to every install rather than
+  just non-English devices. See `CHANGELOG.md`'s `[Unreleased]` section and
+  `DECISIONS.md`'s "Localization" section for full detail.
+
 ## versionCode 5 — versionName 1.0.0 — Closed testing (2026-09-03)
 
 ### What's new (paste into Play Console)
