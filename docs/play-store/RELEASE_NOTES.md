@@ -12,6 +12,69 @@ heading:
 See [`CHECKLIST.md`](CHECKLIST.md) for the rest of the submission checklist and the
 versionCode/versionName convention this file follows.
 
+## versionCode 8 — versionName 1.0.0 — Closed testing (2026-09-04)
+
+### What's new (paste into Play Console)
+
+```
+Onboarding now shows your phone's real tap zone as you walk through it, with an option to try the full guided walkthrough right away. Fixed: the Troubleshoot/Help screen wasn't scrollable on some devices, hiding options below the fold.
+
+No other changes in this build.
+```
+
+(268 characters.)
+
+### What actually changed (internal)
+
+- **Onboarding now demonstrates the real thing, not a decoration.** All 3 pages of the onboarding
+  pager (`OnboardingScreen.kt`) now render the same real, per-device `AntennaMarker` every other
+  screen (Home/My Phone/Tap Guide) already uses, instead of a decorative `MarkerOverlay` - a fixed,
+  hardcoded-position pulsing dot with zero connection to the actual device. `OnboardingViewModel`
+  now maps its already-resolved `DeviceAntennaProfile` to an `AntennaLocatorUiState` alongside the
+  existing raw-profile card, at no extra resolution cost. The now-fully-unused `MarkerOverlay`
+  composable (and its now-dead imports) was removed from `DeviceIllustrations.kt` - confirmed via
+  `grep` it had no other callers anywhere in the app. The final page's primary button - renamed
+  from "Get started" to "Try the guided walkthrough" (`onboarding_start_walkthrough`, translated
+  into all 8 locales) - now hands off directly into the existing Tap Guide → Tap Test flow (Home is
+  still visited first so Back/Cancel from Tap Guide lands there correctly, it's just not where the
+  user stops) instead of just landing on Home; Skip's behavior is unchanged.
+- **Fixed: Troubleshoot ("Help center" in Settings) couldn't be scrolled**, hiding the contextual
+  actions panel (and, on a small enough screen, the tail of the issue list itself) below the fold
+  with no way to reach it. Root cause: the screen's content `Column` had no scroll modifier at all,
+  and nested a `LazyColumn` (its own independently-scrolling region) with no height constraint, so
+  it silently claimed all remaining vertical space - the actions panel rendered *after* that
+  already-maxed-out region, and since the outer `Column` never scrolled and the `LazyColumn`'s own
+  scrolling only moved its own six list items, nothing could ever bring later content into view.
+  Present since the app's very first commit (`fc1798e`), not something introduced this cycle.
+  Fixed (`TroubleshootScreen.kt`) by making the content `Column` itself scrollable
+  (`.verticalScroll(rememberScrollState())`, matching every other screen in the app) and replacing
+  the `LazyColumn` with a plain `Column` iterating the six static issues directly - a fixed 6-item
+  list never needed `LazyColumn`'s recycling, and it was the thing creating the second, conflicting
+  scroll region in the first place.
+- **Iterated and reverted before shipping, left with zero footprint:** an always-visible "Help
+  Center" card (with "Learn NFC basics" and a "Replay tutorial" action) was tried above the issue
+  list, then a full-screen dimming spotlight/coachmark system (`SpotlightCoachmark.kt`) was tried
+  on Home's "Start tap guide" button - both were explicitly asked to be removed ("doesn't work well
+  with the overall flow" / "not working as expected") and were fully reverted, verified via `grep`
+  to leave no remaining references anywhere in the codebase. "Learn NFC basics" remains reachable
+  exactly as it was in versionCode 7: only under the "I don't know where to tap" issue's action
+  panel. Net tester-facing effect: none - not worth a "what's new" line, but documented here so a
+  future reader isn't confused by no trace of either remaining.
+- Not tester-visible in this build (a Play-installed closed-testing/production build always uses
+  the unchanged release icon), but shipped in the codebase: debug builds now also get a visually
+  distinct **launcher icon** via Gradle's `src/debug/res/` source-set override - bold safety-orange
+  background, the same TapSense ring mark recolored dark for contrast, and a small "flag" badge
+  (also added to the Android 13+ themed-icon/monochrome layer, since that layer discards authored
+  color at runtime and can only be differentiated by shape). The badge sits inside the ~66dp
+  guaranteed adaptive-icon safe zone so it survives every mask shape. Verified byte-level via
+  `aapt2 dump xmltree`/`dump resources` on built debug and release APKs that the release icon's
+  compiled resources are byte-for-byte unchanged (`#ff211f1c` background, `#ff35c6d9` ring stroke,
+  exactly 3 `pathData` entries, no badge) - the debug APK correctly resolves to the new
+  orange/dark/4-path versions.
+- Verified before this build: full test suite (58 tests) green, zero lint findings (including
+  translation parity across all 8 locales), `assembleRelease`/`bundleRelease` both succeed with R8
+  minification/resource-shrinking enabled.
+
 ## versionCode 7 — versionName 1.0.0 — Closed testing (2026-09-04)
 
 ### What's new (paste into Play Console)

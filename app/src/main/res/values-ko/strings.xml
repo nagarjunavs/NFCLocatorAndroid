@@ -9,7 +9,7 @@
 
     <string name="onboarding_skip">건너뛰기</string>
     <string name="onboarding_continue">계속</string>
-    <string name="onboarding_get_started">시작하기</string>
+    <string name="onboarding_start_walkthrough">가이드 투어 체험하기</string>
     <string name="onboarding_page1_title">휴대폰의 태그 지점을 찾아보세요</string>
     <string name="onboarding_page1_body">안정적인 NFC 인식을 위해 휴대폰을 어디에 놓아야 하는지 정확히 확인하세요 — 더 이상 추측할 필요 없어요.</string>
     <string name="onboarding_page2_title">자신 있게 태그하세요</string>

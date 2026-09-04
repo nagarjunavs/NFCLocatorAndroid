@@ -92,6 +92,12 @@ fun TapSenseNavHost(
                                 popUpTo(TapSenseDestinations.ONBOARDING) { inclusive = true }
                             }
                         },
+                        onStartGuidedWalkthrough = {
+                            navController.navigate(TapSenseDestinations.HOME) {
+                                popUpTo(TapSenseDestinations.ONBOARDING) { inclusive = true }
+                            }
+                            navController.navigate(TapSenseDestinations.TAP_GUIDE)
+                        },
                         onChooseDifferentPhone = {
                             navController.navigate(TapSenseDestinations.PHONE_SELECTION)
                         },

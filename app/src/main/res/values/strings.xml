@@ -13,7 +13,7 @@
     <!-- Onboarding -->
     <string name="onboarding_skip">Skip</string>
     <string name="onboarding_continue">Continue</string>
-    <string name="onboarding_get_started">Get started</string>
+    <string name="onboarding_start_walkthrough">Try the guided walkthrough</string>
     <string name="onboarding_page1_title">Find your phone\'s tap point</string>
     <string name="onboarding_page1_body">See exactly where to place your phone for reliable NFC scanning — no guesswork.</string>
     <string name="onboarding_page2_title">Tap with confidence</string>

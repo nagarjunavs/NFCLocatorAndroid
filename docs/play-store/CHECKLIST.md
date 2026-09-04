@@ -17,7 +17,22 @@ claim; anything not yet decided is marked **TODO (owner)**.
       `BuildConfig.VERSION_NAME`/Settings → About (`"1.0.0-debug"` vs. release's plain `"1.0.0"`)
       — so a tester's screenshot or a local dev's screen share is unambiguous about which build
       they're looking at.
-- [x] `versionCode`/`versionName` present (currently `7` / `"1.0.0"` — check `app/build.gradle.kts`
+- [x] Debug builds also get a visually distinct **launcher icon**, not just a different label: the
+      same source-set precedence overrides `ic_launcher_background`/`_foreground`/`_monochrome`
+      (`app/src/debug/res/drawable/`) with a bold safety-orange background (`#FF6D00` vs. release's
+      dark charcoal `#211F1C`) and the same TapSense ring mark recolored dark for contrast, plus a
+      small diamond "flag" badge not present on the release icon - added to the Android 13+
+      themed-icon (monochrome) layer too, since that layer discards all authored color at runtime,
+      so shape is the only thing that can differentiate it there. The badge sits at (74,74),
+      distance ≈28.3dp from the icon's center (54,54) - inside the ~66dp-diameter guaranteed safe
+      zone (33dp radius), so it survives every adaptive-icon mask shape (circle, squircle, rounded
+      square, teardrop) instead of risking inconsistent clipping near the edge. Verified byte-level
+      via `aapt2 dump xmltree`/`dump resources` on both a built debug and release APK: the release
+      APK's compiled background/foreground/monochrome resources are unchanged (`#ff211f1c`
+      background, `#ff35c6d9` ring stroke, exactly 3 `pathData` entries - no badge) since `debug`
+      resources never merge into any other variant; the debug APK correctly resolves to the new
+      orange/dark/4-path versions.
+- [x] `versionCode`/`versionName` present (currently `8` / `"1.0.0"` — check `app/build.gradle.kts`
       for the live values, since this line goes stale the moment either is bumped and isn't
       re-verified automatically). Convention for this repo: `versionCode` is a plain incrementing
       integer bumped for *every* build uploaded to any Play track (closed testing included) —

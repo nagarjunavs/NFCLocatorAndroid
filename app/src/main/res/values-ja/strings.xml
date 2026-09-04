@@ -9,7 +9,7 @@
 
     <string name="onboarding_skip">スキップ</string>
     <string name="onboarding_continue">続ける</string>
-    <string name="onboarding_get_started">はじめる</string>
+    <string name="onboarding_start_walkthrough">ガイド付きツアーを試す</string>
     <string name="onboarding_page1_title">スマホのタップポイントを見つけよう</string>
     <string name="onboarding_page1_body">確実にNFCを読み取るために、スマホをどこに置けばよいか一目でわかります。もう迷いません。</string>
     <string name="onboarding_page2_title">自信を持ってタップ</string>

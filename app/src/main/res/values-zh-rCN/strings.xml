@@ -9,7 +9,7 @@
 
     <string name="onboarding_skip">跳过</string>
     <string name="onboarding_continue">继续</string>
-    <string name="onboarding_get_started">开始使用</string>
+    <string name="onboarding_start_walkthrough">试试引导式演练</string>
     <string name="onboarding_page1_title">找到手机的感应点</string>
     <string name="onboarding_page1_body">准确了解手机应放置的位置，实现可靠的NFC扫描——无需猜测。</string>
     <string name="onboarding_page2_title">自信地感应</string>

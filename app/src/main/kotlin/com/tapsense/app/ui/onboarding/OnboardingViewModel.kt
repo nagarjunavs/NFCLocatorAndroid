@@ -5,6 +5,8 @@ import androidx.lifecycle.viewModelScope
 import com.nfclocator.core.domain.logging.NfcLocatorLogger
 import com.nfclocator.core.domain.model.DeviceAntennaProfile
 import com.nfclocator.core.domain.usecase.ResolveAntennaLocationUseCase
+import com.nfclocator.core.ui.state.AntennaLocatorUiState
+import com.nfclocator.core.ui.state.toUiState
 import com.tapsense.app.data.settings.TapSenseSettingsRepository
 import com.tapsense.app.device.DeviceIdentitySignalsProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -35,11 +37,22 @@ class OnboardingViewModel @Inject constructor(
     private val _autoDetectedProfile = MutableStateFlow<DeviceAntennaProfile?>(null)
     val autoDetectedProfile: StateFlow<DeviceAntennaProfile?> = _autoDetectedProfile.asStateFlow()
 
+    /**
+     * The same [AntennaLocatorUiState] every other screen's real [com.tapsense.app.ui.component.AntennaMarker]
+     * renders - pages 1 and 2 use this so the walkthrough demonstrates the user's actual tap
+     * zone instead of a decorative placeholder. Null while loading; left null (not [AntennaLocatorUiState.Error])
+     * on a resolver failure the same as [_autoDetectedProfile] - see that field's doc for why.
+     */
+    private val _antennaState = MutableStateFlow<AntennaLocatorUiState?>(null)
+    val antennaState: StateFlow<AntennaLocatorUiState?> = _antennaState.asStateFlow()
+
     init {
         viewModelScope.launch {
             try {
                 val signals = deviceIdentitySignalsProvider.current()
-                _autoDetectedProfile.value = resolveAntennaLocationUseCase(signals)
+                val profile = resolveAntennaLocationUseCase(signals)
+                _autoDetectedProfile.value = profile
+                _antennaState.value = profile.toUiState()
             } catch (e: CancellationException) {
                 throw e
             } catch (e: Exception) {

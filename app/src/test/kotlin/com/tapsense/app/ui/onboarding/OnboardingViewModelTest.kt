@@ -12,6 +12,8 @@ import com.nfclocator.core.domain.model.FormFactor
 import com.nfclocator.core.domain.model.NormalizedRect
 import com.nfclocator.core.domain.model.ScreenSizeClass
 import com.nfclocator.core.domain.usecase.ResolveAntennaLocationUseCase
+import com.nfclocator.core.ui.state.AntennaLocatorUiState
+import com.nfclocator.core.ui.state.toUiState
 import com.tapsense.app.data.settings.TapSenseSettingsRepository
 import com.tapsense.app.device.DeviceIdentitySignalsProvider
 import io.mockk.coEvery
@@ -89,6 +91,17 @@ class OnboardingViewModelTest {
         val vm = viewModel()
 
         assertThat(vm.autoDetectedProfile.value).isNull()
+        assertThat(vm.antennaState.value).isNull()
+    }
+
+    @Test
+    fun `exposes the same resolved profile as an AntennaLocatorUiState for the real marker`() = runTest(dispatcher) {
+        coEvery { resolveAntennaLocationUseCase(any()) } returns fakeProfile
+
+        val vm = viewModel()
+
+        assertThat(vm.antennaState.value).isEqualTo(fakeProfile.toUiState())
+        assertThat(vm.antennaState.value).isInstanceOf(AntennaLocatorUiState.ResolvedMarker::class.java)
     }
 
     @Test

@@ -9,7 +9,7 @@
 
     <string name="onboarding_skip">Überspringen</string>
     <string name="onboarding_continue">Weiter</string>
-    <string name="onboarding_get_started">Los geht\'s</string>
+    <string name="onboarding_start_walkthrough">Geführte Tour ausprobieren</string>
     <string name="onboarding_page1_title">Finde die Tippzone deines Telefons</string>
     <string name="onboarding_page1_body">Sieh genau, wo du dein Telefon platzieren musst, für zuverlässiges NFC-Scannen — ganz ohne Rätselraten.</string>
     <string name="onboarding_page2_title">Tippe mit Zuversicht</string>

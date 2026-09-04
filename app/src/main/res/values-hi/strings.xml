@@ -9,7 +9,7 @@
 
     <string name="onboarding_skip">छोड़ें</string>
     <string name="onboarding_continue">जारी रखें</string>
-    <string name="onboarding_get_started">शुरू करें</string>
+    <string name="onboarding_start_walkthrough">गाइडेड वॉकथ्रू आज़माएं</string>
     <string name="onboarding_page1_title">अपने फ़ोन का टैप पॉइंट ढूंढें</string>
     <string name="onboarding_page1_body">देखें कि भरोसेमंद NFC स्कैनिंग के लिए फ़ोन को ठीक कहाँ रखना है — बिना अंदाज़ा लगाए.</string>
     <string name="onboarding_page2_title">भरोसे के साथ टैप करें</string>

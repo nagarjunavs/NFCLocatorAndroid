@@ -19,6 +19,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -34,13 +35,15 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.nfclocator.core.domain.model.DeviceAntennaProfile
+import com.nfclocator.core.ui.state.AntennaLocatorUiState
 import com.tapsense.app.R
+import com.tapsense.app.ui.component.AntennaMarker
 import com.tapsense.app.ui.component.ConfidenceChip
-import com.tapsense.app.ui.component.MarkerOverlay
-import com.tapsense.app.ui.component.PhoneSilhouette
 import com.tapsense.app.ui.component.ReaderDeviceIllustration
 import com.tapsense.app.ui.theme.TapSensePalette
 import com.tapsense.app.ui.theme.cameraBumpAccentColor
+import com.tapsense.app.ui.theme.tapGuideBodyColor
+import com.tapsense.app.ui.theme.tapGuideBorderColor
 import com.tapsense.app.ui.theme.tapSenseFilled
 import com.tapsense.app.util.friendlyModelName
 import kotlinx.coroutines.launch
@@ -48,16 +51,19 @@ import kotlinx.coroutines.launch
 @Composable
 fun OnboardingRoute(
     onDone: () -> Unit,
+    onStartGuidedWalkthrough: () -> Unit,
     onChooseDifferentPhone: () -> Unit,
     reducedMotion: Boolean,
     modifier: Modifier = Modifier,
     viewModel: OnboardingViewModel = hiltViewModel(),
 ) {
     val autoDetectedProfile by viewModel.autoDetectedProfile.collectAsState()
+    val antennaState by viewModel.antennaState.collectAsState()
 
     OnboardingScreen(
         autoDetectedProfile = autoDetectedProfile,
-        onGetStarted = { viewModel.completeOnboarding(onDone) },
+        antennaState = antennaState,
+        onGetStarted = { viewModel.completeOnboarding(onStartGuidedWalkthrough) },
         onSkip = { viewModel.completeOnboarding(onDone) },
         onChooseDifferentPhone = onChooseDifferentPhone,
         reducedMotion = reducedMotion,
@@ -68,6 +74,7 @@ fun OnboardingRoute(
 @Composable
 private fun OnboardingScreen(
     autoDetectedProfile: DeviceAntennaProfile?,
+    antennaState: AntennaLocatorUiState?,
     onGetStarted: () -> Unit,
     onSkip: () -> Unit,
     onChooseDifferentPhone: () -> Unit,
@@ -89,17 +96,20 @@ private fun OnboardingScreen(
                 0 -> OnboardingPage(
                     title = stringResource(R.string.onboarding_page1_title),
                     body = stringResource(R.string.onboarding_page1_body),
+                    antennaState = antennaState,
                     reducedMotion = reducedMotion,
                     showReaderDevice = false,
                 )
                 1 -> OnboardingPage(
                     title = stringResource(R.string.onboarding_page2_title),
                     body = stringResource(R.string.onboarding_page2_body),
+                    antennaState = antennaState,
                     reducedMotion = reducedMotion,
                     showReaderDevice = true,
                 )
                 else -> OnboardingFinalPage(
                     autoDetectedProfile = autoDetectedProfile,
+                    antennaState = antennaState,
                     reducedMotion = reducedMotion,
                 )
             }
@@ -118,7 +128,7 @@ private fun OnboardingScreen(
                 }
             } else {
                 Button(onClick = onGetStarted, colors = ButtonDefaults.tapSenseFilled(), modifier = Modifier.fillMaxWidth()) {
-                    Text(stringResource(R.string.onboarding_get_started))
+                    Text(stringResource(R.string.onboarding_start_walkthrough))
                 }
                 TextButton(onClick = onChooseDifferentPhone, modifier = Modifier.fillMaxWidth()) {
                     Text(stringResource(R.string.phone_confirmed_choose_different))
@@ -131,11 +141,14 @@ private fun OnboardingScreen(
 }
 
 @Composable
-private fun OnboardingPage(title: String, body: String, reducedMotion: Boolean, showReaderDevice: Boolean, modifier: Modifier = Modifier) {
-    val phoneColor = TapSensePalette.PhoneBody
-    val bumpColor = cameraBumpAccentColor()
-    val markerColor = MaterialTheme.colorScheme.primary
-
+private fun OnboardingPage(
+    title: String,
+    body: String,
+    antennaState: AntennaLocatorUiState?,
+    reducedMotion: Boolean,
+    showReaderDevice: Boolean,
+    modifier: Modifier = Modifier,
+) {
     Column(
         modifier = modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 32.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -143,22 +156,11 @@ private fun OnboardingPage(title: String, body: String, reducedMotion: Boolean, 
     ) {
         if (showReaderDevice) {
             Row(horizontalArrangement = Arrangement.spacedBy(12.dp), verticalAlignment = Alignment.CenterVertically) {
-                MarkerOverlay(
-                    markerColor = markerColor,
-                    horizontalBias = 0f,
-                    verticalBias = 0f,
-                    markerSize = 64.dp,
+                OnboardingAntennaVisual(
+                    antennaState = antennaState,
                     reducedMotion = reducedMotion,
                     modifier = Modifier.width(130.dp).height(280.dp),
-                ) {
-                    PhoneSilhouette(
-                        color = phoneColor,
-                        modifier = Modifier.fillMaxSize(),
-                        cameraBump = true,
-                        bumpColor = bumpColor,
-                        borderColor = TapSensePalette.PhoneBodyBorder,
-                    )
-                }
+                )
                 ReaderDeviceIllustration(
                     outerColor = TapSensePalette.ReaderOuter,
                     innerColor = TapSensePalette.ReaderInner,
@@ -166,22 +168,11 @@ private fun OnboardingPage(title: String, body: String, reducedMotion: Boolean, 
                 )
             }
         } else {
-            MarkerOverlay(
-                markerColor = markerColor,
-                horizontalBias = 0f,
-                verticalBias = -0.5f,
-                markerSize = 72.dp,
+            OnboardingAntennaVisual(
+                antennaState = antennaState,
                 reducedMotion = reducedMotion,
                 modifier = Modifier.width(150.dp).height(320.dp),
-            ) {
-                PhoneSilhouette(
-                    color = phoneColor,
-                    modifier = Modifier.fillMaxSize(),
-                    cameraBump = true,
-                    bumpColor = bumpColor,
-                    borderColor = TapSensePalette.PhoneBodyBorder,
-                )
-            }
+            )
         }
         Box(modifier = Modifier.height(32.dp))
         Text(
@@ -202,32 +193,22 @@ private fun OnboardingPage(title: String, body: String, reducedMotion: Boolean, 
 }
 
 @Composable
-private fun OnboardingFinalPage(autoDetectedProfile: DeviceAntennaProfile?, reducedMotion: Boolean, modifier: Modifier = Modifier) {
-    val phoneColor = TapSensePalette.PhoneBody
-    val bumpColor = cameraBumpAccentColor()
-    val markerColor = MaterialTheme.colorScheme.primary
-
+private fun OnboardingFinalPage(
+    autoDetectedProfile: DeviceAntennaProfile?,
+    antennaState: AntennaLocatorUiState?,
+    reducedMotion: Boolean,
+    modifier: Modifier = Modifier,
+) {
     Column(
         modifier = modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 32.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
     ) {
-        MarkerOverlay(
-            markerColor = markerColor,
-            horizontalBias = 0f,
-            verticalBias = -0.5f,
-            markerSize = 72.dp,
+        OnboardingAntennaVisual(
+            antennaState = antennaState,
             reducedMotion = reducedMotion,
             modifier = Modifier.width(140.dp).height(300.dp),
-        ) {
-            PhoneSilhouette(
-                color = phoneColor,
-                modifier = Modifier.fillMaxSize(),
-                cameraBump = true,
-                bumpColor = bumpColor,
-                borderColor = TapSensePalette.PhoneBodyBorder,
-            )
-        }
+        )
         Box(modifier = Modifier.height(24.dp))
         Text(
             text = stringResource(R.string.onboarding_page3_title),
@@ -270,6 +251,32 @@ private fun OnboardingFinalPage(autoDetectedProfile: DeviceAntennaProfile?, redu
                     ConfidenceChip(confidence = autoDetectedProfile.confidence)
                 }
             }
+        }
+    }
+}
+
+/**
+ * The real per-device marker (same [AntennaMarker] every other screen renders), shown once
+ * resolved - a spinner beforehand rather than a decorative placeholder, since a wrong-looking
+ * marker during the very first thing a new user sees would be worse than a brief wait. Shared by
+ * all 3 onboarding pages so the walkthrough demonstrates this device's actual tap zone, not a
+ * generic illustration.
+ */
+@Composable
+private fun OnboardingAntennaVisual(antennaState: AntennaLocatorUiState?, reducedMotion: Boolean, modifier: Modifier = Modifier) {
+    Box(modifier = modifier, contentAlignment = Alignment.Center) {
+        if (antennaState != null) {
+            AntennaMarker(
+                state = antennaState,
+                reducedMotion = reducedMotion,
+                modifier = Modifier.fillMaxSize(),
+                silhouetteColor = tapGuideBodyColor(),
+                silhouetteBorderColor = tapGuideBorderColor(),
+                showCameraBump = true,
+                cameraBumpColor = cameraBumpAccentColor(),
+            )
+        } else {
+            CircularProgressIndicator(color = MaterialTheme.colorScheme.primary, modifier = Modifier.size(48.dp))
         }
     }
 }

@@ -9,7 +9,7 @@
 
     <string name="onboarding_skip">Pular</string>
     <string name="onboarding_continue">Continuar</string>
-    <string name="onboarding_get_started">Começar</string>
+    <string name="onboarding_start_walkthrough">Experimentar o tour guiado</string>
     <string name="onboarding_page1_title">Encontre o ponto de toque do seu celular</string>
     <string name="onboarding_page1_body">Veja exatamente onde posicionar seu celular para uma leitura NFC confiável — sem adivinhação.</string>
     <string name="onboarding_page2_title">Toque com confiança</string>

@@ -9,7 +9,7 @@
 
     <string name="onboarding_skip">Ignorer</string>
     <string name="onboarding_continue">Continuer</string>
-    <string name="onboarding_get_started">Commencer</string>
+    <string name="onboarding_start_walkthrough">Essayer la visite guidée</string>
     <string name="onboarding_page1_title">Trouvez le point de contact de votre téléphone</string>
     <string name="onboarding_page1_body">Découvrez exactement où placer votre téléphone pour une lecture NFC fiable — sans tâtonner.</string>
     <string name="onboarding_page2_title">Touchez en toute confiance</string>

@@ -15,8 +15,35 @@ with the `0.1.0` release.
   without asking on the very first (possibly just curious) success. The request/launch itself is
   fire-and-forget per Google's guidance (the API never reports whether the dialog was shown or
   reviewed), and Google's own quota is still the final word on whether it actually appears.
+- Sample app: the onboarding walkthrough's 3 pages now render the same real, per-device antenna
+  marker every other screen uses (`AntennaMarker`), instead of a decorative fixed-position pulsing
+  dot with no connection to the actual device - the now-unused `MarkerOverlay` composable was
+  removed along with it. The final page's primary button ("Try the guided walkthrough") now hands
+  off directly into the existing Tap Guide → Tap Test flow instead of landing on Home, reusing the
+  already-built guided walkthrough rather than duplicating a second one; Skip is unchanged.
+- Sample app: debug builds now also get a visually distinct **launcher icon** - bold safety-orange
+  background, the same TapSense ring mark recolored dark for contrast, and a small "flag" badge -
+  on top of the existing "TapSense Debug" label/`-debug` version suffix. The badge is included on
+  the Android 13+ themed-icon (monochrome) layer too, since that layer discards all authored color
+  at runtime, so shape is the only thing that can differentiate it there; it's positioned inside
+  the ~66dp guaranteed adaptive-icon safe zone so it survives every mask shape. Verified byte-level
+  via `aapt2 dump xmltree`/`dump resources` on built debug and release APKs that the release icon's
+  compiled background/foreground/monochrome resources are unchanged.
 
 ### Fixed
+
+- Sample app: the Troubleshoot screen ("Help center" in Settings) had no way to scroll. Its
+  content `Column` had no scroll modifier, and nested a `LazyColumn` (its own independently
+  scrolling region) with no height constraint, so the list silently claimed all remaining vertical
+  space; the contextual actions panel that appears below it once an issue is selected was laid out
+  *after* that already-maxed-out region. Since the outer `Column` never scrolled and the
+  `LazyColumn`'s own scrolling only moved its own list items, nothing could bring that panel (or
+  the tail of the issue list itself) into view once combined content exceeded the screen height -
+  present since the app's first commit, on any small enough device or large enough font scale.
+  Fixed by making the whole content `Column` scrollable and replacing the `LazyColumn` with a
+  plain `Column` iterating the six static issues directly - a fixed 6-item list never needed
+  `LazyColumn`'s recycling, and it was the thing creating the second, conflicting scroll region in
+  the first place.
 
 - Sample app: changing the app's language via **Settings → Apps → TapSense → Language** (the
   Android 13+ per-app language picker, wired by `android:localeConfig`/`locales_config.xml`)
