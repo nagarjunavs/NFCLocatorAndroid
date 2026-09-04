@@ -135,6 +135,7 @@
     <string name="settings_appearance_dark">다크</string>
     <string name="settings_help_center">고객센터</string>
     <string name="settings_contact_support">지원팀 문의</string>
+    <string name="settings_rate_app">TapSense 평가하기</string>
     <string name="settings_privacy">개인정보 및 데이터</string>
     <string name="settings_version">버전 %1$s</string>
 

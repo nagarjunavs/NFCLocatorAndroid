@@ -13,6 +13,14 @@ const val PRIVACY_POLICY_URL = "https://nagarjunavs.github.io/tapsense/android/p
 const val SUPPORT_EMAIL = "nagarjunavs.dev@gmail.com"
 
 /**
+ * The published Play Store package id - deliberately not [BuildConfig.APPLICATION_ID]. Debug
+ * builds suffix that with ".debug" (see `applicationIdSuffix` in build.gradle.kts), which has no
+ * Play Store listing at all, so a debug build would otherwise send the "Rate" button to a listing
+ * that doesn't exist.
+ */
+private const val PLAY_STORE_PACKAGE_ID = "com.tapsense.app"
+
+/**
  * Opens [url] in the user's browser, or does nothing if there's no app installed that can handle it
  * (mirrors [openNfcSettingsSafely]'s no-op-on-`ActivityNotFoundException` behavior).
  */
@@ -47,5 +55,20 @@ fun Context.sendFeedbackEmailSafely() {
         startActivity(intent)
     } catch (e: ActivityNotFoundException) {
         // No email app available to handle this - silently no-op rather than crash.
+    }
+}
+
+/**
+ * Opens this app's Play Store listing - used by the Settings screen's "Rate" row, a direct,
+ * always-available path to leave a review (unlike [requestInAppReviewSafely], which Google's own
+ * quota may silently decline to show). Prefers a `market:` URI, which the Play Store app resolves
+ * directly to the review tab without a browser hop; falls back to the web listing via
+ * [openUrlSafely] if the Play Store app isn't installed (e.g. some emulator images).
+ */
+fun Context.openPlayStoreListingSafely() {
+    try {
+        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$PLAY_STORE_PACKAGE_ID")))
+    } catch (e: ActivityNotFoundException) {
+        openUrlSafely("https://play.google.com/store/apps/details?id=$PLAY_STORE_PACKAGE_ID")
     }
 }

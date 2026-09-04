@@ -135,6 +135,7 @@
     <string name="settings_appearance_dark">深色</string>
     <string name="settings_help_center">帮助中心</string>
     <string name="settings_contact_support">联系支持团队</string>
+    <string name="settings_rate_app">评价 TapSense</string>
     <string name="settings_privacy">隐私与数据</string>
     <string name="settings_version">版本 %1$s</string>
 

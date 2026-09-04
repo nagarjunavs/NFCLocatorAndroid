@@ -135,6 +135,7 @@
     <string name="settings_appearance_dark">Dunkel</string>
     <string name="settings_help_center">Hilfecenter</string>
     <string name="settings_contact_support">Support kontaktieren</string>
+    <string name="settings_rate_app">TapSense bewerten</string>
     <string name="settings_privacy">Datenschutz</string>
     <string name="settings_version">Version %1$s</string>
 

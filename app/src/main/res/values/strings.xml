@@ -148,6 +148,7 @@
     <string name="settings_appearance_dark">Dark</string>
     <string name="settings_help_center">Help center</string>
     <string name="settings_contact_support">Contact support</string>
+    <string name="settings_rate_app">Rate TapSense</string>
     <string name="settings_privacy">Privacy &amp; data</string>
     <string name="settings_version">Version %1$s</string>
 

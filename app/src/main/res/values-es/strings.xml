@@ -135,6 +135,7 @@
     <string name="settings_appearance_dark">Oscuro</string>
     <string name="settings_help_center">Centro de ayuda</string>
     <string name="settings_contact_support">Contactar con soporte</string>
+    <string name="settings_rate_app">Calificar TapSense</string>
     <string name="settings_privacy">Privacidad y datos</string>
     <string name="settings_version">Versión %1$s</string>
 

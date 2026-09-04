@@ -135,6 +135,7 @@
     <string name="settings_appearance_dark">Escuro</string>
     <string name="settings_help_center">Central de ajuda</string>
     <string name="settings_contact_support">Falar com o suporte</string>
+    <string name="settings_rate_app">Avaliar o TapSense</string>
     <string name="settings_privacy">Privacidade e dados</string>
     <string name="settings_version">Versão %1$s</string>
 

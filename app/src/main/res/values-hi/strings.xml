@@ -135,6 +135,7 @@
     <string name="settings_appearance_dark">गहरा</string>
     <string name="settings_help_center">सहायता केंद्र</string>
     <string name="settings_contact_support">सहायता से संपर्क करें</string>
+    <string name="settings_rate_app">TapSense को रेट करें</string>
     <string name="settings_privacy">गोपनीयता और डेटा</string>
     <string name="settings_version">वर्शन %1$s</string>
 

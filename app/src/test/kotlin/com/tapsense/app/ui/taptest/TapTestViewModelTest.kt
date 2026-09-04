@@ -39,6 +39,7 @@ class TapTestViewModelTest {
     private val readerModeController = mockk<TapReaderModeController>()
     private val settingsRepository = mockk<TapSenseSettingsRepository> {
         every { settings } returns MutableStateFlow(TapSenseSettings())
+        coEvery { recordTapTestSuccessAndCheckReviewEligibility(any()) } returns false
     }
     private val fakeSignals = DeviceIdentitySignals(
         fingerprint = DeviceFingerprint("google", "google", "pixel", "pixel", "pixel", null),
@@ -153,5 +154,42 @@ class TapTestViewModelTest {
         vm.retry()
 
         assertThat(vm.uiState.value).isEqualTo(TapTestUiState.Detecting)
+    }
+
+    @Test
+    fun `a detected tag that reaches review eligibility sets reviewFlowEligible`() = runTest(dispatcher) {
+        coEvery { settingsRepository.recordTapTestSuccessAndCheckReviewEligibility(any()) } returns true
+        val vm = viewModel()
+        vm.onReaderModeStarted(started = true)
+
+        vm.onTagDetected()
+        dispatcher.scheduler.advanceUntilIdle()
+
+        assertThat(vm.reviewFlowEligible.value).isTrue()
+    }
+
+    @Test
+    fun `a detected tag that is not yet eligible leaves reviewFlowEligible false`() = runTest(dispatcher) {
+        val vm = viewModel()
+        vm.onReaderModeStarted(started = true)
+
+        vm.onTagDetected()
+        dispatcher.scheduler.advanceUntilIdle()
+
+        assertThat(vm.reviewFlowEligible.value).isFalse()
+    }
+
+    @Test
+    fun `onReviewFlowRequested consumes the eligibility signal`() = runTest(dispatcher) {
+        coEvery { settingsRepository.recordTapTestSuccessAndCheckReviewEligibility(any()) } returns true
+        val vm = viewModel()
+        vm.onReaderModeStarted(started = true)
+        vm.onTagDetected()
+        dispatcher.scheduler.advanceUntilIdle()
+        assertThat(vm.reviewFlowEligible.value).isTrue()
+
+        vm.onReviewFlowRequested()
+
+        assertThat(vm.reviewFlowEligible.value).isFalse()
     }
 }

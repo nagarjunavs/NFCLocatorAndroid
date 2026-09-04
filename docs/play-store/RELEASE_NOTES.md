@@ -12,6 +12,60 @@ heading:
 See [`CHECKLIST.md`](CHECKLIST.md) for the rest of the submission checklist and the
 versionCode/versionName convention this file follows.
 
+## versionCode 7 — versionName 1.0.0 — Closed testing (2026-09-04)
+
+### What's new (paste into Play Console)
+
+```
+New: Settings now has a "Rate TapSense" option that opens the Play Store review page directly. After a couple of successful tap tests, you may also see Google's own review prompt - it's optional and only asks once.
+
+No other changes in this build.
+```
+
+(247 characters.)
+
+### What actually changed (internal)
+
+- **Settings → Rate TapSense.** New row between Contact support and Privacy & data
+  (`SettingsScreen.kt`), wired (`TapSenseNavHost.kt`) to `context.openPlayStoreListingSafely()`
+  (`UrlLauncher.kt`): tries a `market://details?id=com.tapsense.app` intent first (resolves
+  directly into the Play Store app's review tab, no browser hop), falling back to the web listing
+  if the Play Store app isn't installed. Deliberately hardcodes the release package id rather than
+  reading `BuildConfig.APPLICATION_ID` — the debug build type appends a `.debug` suffix (see
+  `applicationIdSuffix`), which has no Play Store listing at all, so a naive `BuildConfig` read
+  would have sent debug testers to a listing that doesn't exist.
+- **Automatic Play In-App Review prompt.** Added `com.google.android.play:review:2.0.2` and a new
+  `Activity.requestInAppReviewSafely()` (`InAppReviewLauncher.kt`), triggered from
+  `TapTestScreen.kt`'s existing `LaunchedEffect(uiState)` pattern the moment a tap test succeeds
+  (`TapTestUiState.Detected`). Eligibility is tracked in `TapSenseSettingsRepository` via a new
+  `recordTapTestSuccessAndCheckReviewEligibility()`: two new DataStore keys
+  (`tap_test_success_count`, `review_flow_requested`) persist a lifetime success count and a
+  one-way "already requested" latch, both updated in a single `dataStore.edit` transaction so the
+  count and the latch can never be observed out of sync. The prompt fires after the **second**
+  successful tap test (not the first, which may just be onboarding curiosity) and **at most once
+  per install, ever** — Google's own guidance is not to over-ask, and the API applies its own
+  additional undisclosed quota on top regardless of how the app calls it. The request/launch call
+  itself is fire-and-forget: a failure (including Google's quota silently declining to show
+  anything) never changes the app's own flow, per Google's documented guidance, though it is now
+  logged (`Log.w`/`Log.i`, tag `InAppReview`) purely for local diagnosis - never surfaced to the
+  user.
+- **Fixed pre-release: debug builds now confirm the trigger logic without a Play Store install.**
+  The real `ReviewManager` only ever succeeds for a build installed *through* Google Play (an
+  Internal Testing track or later, with that account as the Play Store's primary account) - a
+  debug build run from Android Studio, or even a sideloaded release APK, fails every single time
+  regardless of how correct the app-side trigger logic is. `requestInAppReviewSafely()` now uses
+  Google's own `FakeReviewManager` (bundled inside the same `review:2.0.2` artifact - confirmed no
+  separate `review-testing` artifact exists for this version via Google's Maven group index) for
+  `BuildConfig.DEBUG` builds: it can't render the real dialog either, but its logged "succeeded,
+  launching review flow" line proves the count/threshold/latch/`Activity`-capture wiring is
+  correct end to end, isolating "nothing visibly shows" during local testing to the Play-install
+  requirement rather than an app bug.
+- Not tester-visible, but shipped in this build: 3 new unit tests for the eligibility repository
+  method, 3 new unit tests for the ViewModel's eligibility signal (`TapTestViewModelTest.kt`,
+  `TapSenseSettingsRepositoryTest.kt`) - full suite (57 tests) green, zero lint findings,
+  `assembleRelease`/`bundleRelease` both verified to still succeed with R8
+  minification/resource-shrinking enabled.
+
 ## versionCode 6 — versionName 1.0.0 — Closed testing (2026-09-03)
 
 ### What's new (paste into Play Console)

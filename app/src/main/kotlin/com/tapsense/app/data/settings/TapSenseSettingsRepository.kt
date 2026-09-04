@@ -4,6 +4,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import com.nfclocator.core.domain.model.FormFactor
 import kotlinx.coroutines.flow.Flow
@@ -33,6 +34,8 @@ class TapSenseSettingsRepository @Inject constructor(
             appearanceMode = prefs[Keys.APPEARANCE_MODE]
                 ?.let { runCatching { AppearanceMode.valueOf(it) }.getOrNull() }
                 ?: AppearanceMode.SYSTEM,
+            tapTestSuccessCount = prefs[Keys.TAP_TEST_SUCCESS_COUNT] ?: 0,
+            reviewFlowRequested = prefs[Keys.REVIEW_FLOW_REQUESTED] ?: false,
         )
     }
 
@@ -69,6 +72,34 @@ class TapSenseSettingsRepository @Inject constructor(
         dataStore.edit { it[Keys.APPEARANCE_MODE] = mode.name }
     }
 
+    /**
+     * Records one more successful tap test and reports whether *this* success is the moment to
+     * request an in-app review: the running count just reached [reviewTriggerCount] for the first
+     * time, and the flow has never been requested before on this install. The count keeps
+     * incrementing past the trigger (so it stays a true lifetime count, not capped at the
+     * threshold), but [Keys.REVIEW_FLOW_REQUESTED] latches to true the moment eligibility is
+     * reported, permanently ruling out every later call - the review flow is only ever requested
+     * once per install, matching Google's own guidance not to over-ask (see
+     * [com.tapsense.app.util.requestInAppReviewSafely]).
+     *
+     * Both the increment and the latch happen inside one [DataStore.edit] transaction so a caller
+     * can't observe a count bump without the accompanying requested-flag update, or vice versa.
+     */
+    suspend fun recordTapTestSuccessAndCheckReviewEligibility(reviewTriggerCount: Int): Boolean {
+        var eligible = false
+        dataStore.edit { prefs ->
+            val updatedCount = (prefs[Keys.TAP_TEST_SUCCESS_COUNT] ?: 0) + 1
+            prefs[Keys.TAP_TEST_SUCCESS_COUNT] = updatedCount
+
+            val alreadyRequested = prefs[Keys.REVIEW_FLOW_REQUESTED] ?: false
+            eligible = !alreadyRequested && updatedCount >= reviewTriggerCount
+            if (eligible) {
+                prefs[Keys.REVIEW_FLOW_REQUESTED] = true
+            }
+        }
+        return eligible
+    }
+
     private object Keys {
         val ONBOARDING_COMPLETED = booleanPreferencesKey("onboarding_completed")
         val PHONE_MANUFACTURER = stringPreferencesKey("selected_phone_manufacturer")
@@ -77,5 +108,7 @@ class TapSenseSettingsRepository @Inject constructor(
         val HAPTICS_ENABLED = booleanPreferencesKey("haptics_enabled")
         val REDUCE_MOTION = booleanPreferencesKey("reduce_motion")
         val APPEARANCE_MODE = stringPreferencesKey("appearance_mode")
+        val TAP_TEST_SUCCESS_COUNT = intPreferencesKey("tap_test_success_count")
+        val REVIEW_FLOW_REQUESTED = booleanPreferencesKey("review_flow_requested")
     }
 }

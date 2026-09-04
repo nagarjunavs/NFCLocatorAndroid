@@ -19,6 +19,8 @@ data class TapSenseSettings(
     val hapticsEnabled: Boolean = true,
     val reduceMotion: Boolean = false,
     val appearanceMode: AppearanceMode = AppearanceMode.SYSTEM,
+    val tapTestSuccessCount: Int = 0,
+    val reviewFlowRequested: Boolean = false,
 ) {
     val hasManualPhoneOverride: Boolean
         get() = selectedPhoneManufacturer != null && selectedPhoneModel != null

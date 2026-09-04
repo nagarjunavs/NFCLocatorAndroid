@@ -17,7 +17,7 @@ claim; anything not yet decided is marked **TODO (owner)**.
       `BuildConfig.VERSION_NAME`/Settings → About (`"1.0.0-debug"` vs. release's plain `"1.0.0"`)
       — so a tester's screenshot or a local dev's screen share is unambiguous about which build
       they're looking at.
-- [x] `versionCode`/`versionName` present (currently `6` / `"1.0.0"` — check `app/build.gradle.kts`
+- [x] `versionCode`/`versionName` present (currently `7` / `"1.0.0"` — check `app/build.gradle.kts`
       for the live values, since this line goes stale the moment either is bumped and isn't
       re-verified automatically). Convention for this repo: `versionCode` is a plain incrementing
       integer bumped for *every* build uploaded to any Play track (closed testing included) —
@@ -102,6 +102,12 @@ claim; anything not yet decided is marked **TODO (owner)**.
 - [x] `app/store-listing/PRIVACY_POLICY.md`'s content is hosted at a real, stable URL
       (`https://nagarjunavs.github.io/tapsense/android/privacy/`) — Play Console requires a live
       privacy policy URL even for an app that collects nothing.
+- [x] Settings → Rate TapSense (`openPlayStoreListingSafely`, `UrlLauncher.kt`) and the automatic
+      Play In-App Review prompt after a successful tap test (`requestInAppReviewSafely`,
+      `InAppReviewLauncher.kt`) don't change any Data Safety answer: both hand off entirely to
+      Google Play (the Play Store app or Play Services' own review sheet) — this app transmits
+      nothing itself beyond the tap-test success count and a "requested" flag already covered by
+      the existing DataStore disclosure above.
 - [ ] **TODO (owner)**: complete the Play Console **Data Safety** form. Based on the above, the
       honest answers are: no data collected or shared off-device; if you later wire a real
       `CatalogRemoteApi` implementation, disclose "App info and performance → Device or other

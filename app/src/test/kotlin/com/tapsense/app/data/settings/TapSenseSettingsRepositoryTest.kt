@@ -37,6 +37,8 @@ class TapSenseSettingsRepositoryTest {
         assertThat(settings.hapticsEnabled).isTrue()
         assertThat(settings.reduceMotion).isFalse()
         assertThat(settings.appearanceMode).isEqualTo(AppearanceMode.SYSTEM)
+        assertThat(settings.tapTestSuccessCount).isEqualTo(0)
+        assertThat(settings.reviewFlowRequested).isFalse()
     }
 
     @Test
@@ -74,5 +76,37 @@ class TapSenseSettingsRepositoryTest {
         assertThat(settings.hapticsEnabled).isFalse()
         assertThat(settings.reduceMotion).isTrue()
         assertThat(settings.appearanceMode).isEqualTo(AppearanceMode.DARK)
+    }
+
+    @Test
+    fun `review eligibility stays false before the trigger count is reached`() = runTest {
+        val firstEligible = repository.recordTapTestSuccessAndCheckReviewEligibility(reviewTriggerCount = 2)
+
+        assertThat(firstEligible).isFalse()
+        assertThat(repository.settings.first().tapTestSuccessCount).isEqualTo(1)
+        assertThat(repository.settings.first().reviewFlowRequested).isFalse()
+    }
+
+    @Test
+    fun `review eligibility turns true exactly once the trigger count is reached`() = runTest {
+        repository.recordTapTestSuccessAndCheckReviewEligibility(reviewTriggerCount = 2)
+
+        val secondEligible = repository.recordTapTestSuccessAndCheckReviewEligibility(reviewTriggerCount = 2)
+
+        assertThat(secondEligible).isTrue()
+        assertThat(repository.settings.first().tapTestSuccessCount).isEqualTo(2)
+        assertThat(repository.settings.first().reviewFlowRequested).isTrue()
+    }
+
+    @Test
+    fun `review is never requested twice, even after further successes`() = runTest {
+        repository.recordTapTestSuccessAndCheckReviewEligibility(reviewTriggerCount = 2)
+        repository.recordTapTestSuccessAndCheckReviewEligibility(reviewTriggerCount = 2)
+
+        val thirdEligible = repository.recordTapTestSuccessAndCheckReviewEligibility(reviewTriggerCount = 2)
+
+        assertThat(thirdEligible).isFalse()
+        assertThat(repository.settings.first().tapTestSuccessCount).isEqualTo(3)
+        assertThat(repository.settings.first().reviewFlowRequested).isTrue()
     }
 }

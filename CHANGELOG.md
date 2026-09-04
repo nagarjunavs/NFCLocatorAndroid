@@ -6,6 +6,16 @@ with the `0.1.0` release.
 
 ## [Unreleased]
 
+### Added
+
+- Sample app: a "Rate TapSense" row in Settings, opening the Play Store listing directly
+  (`market:` URI, falling back to the web listing). Separately, the Play In-App Review API
+  (`com.google.android.play:review:2.0.2`) is now requested at most once per install, after the
+  user's second successful tap test - a real signal they got value from the app's core promise,
+  without asking on the very first (possibly just curious) success. The request/launch itself is
+  fire-and-forget per Google's guidance (the API never reports whether the dialog was shown or
+  reviewed), and Google's own quota is still the final word on whether it actually appears.
+
 ### Fixed
 
 - Sample app: changing the app's language via **Settings → Apps → TapSense → Language** (the

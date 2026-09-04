@@ -27,6 +27,7 @@ import com.tapsense.app.ui.taptest.TapTestRoute
 import com.tapsense.app.ui.troubleshoot.TroubleshootRoute
 import com.tapsense.app.util.PRIVACY_POLICY_URL
 import com.tapsense.app.util.openNfcSettingsSafely
+import com.tapsense.app.util.openPlayStoreListingSafely
 import com.tapsense.app.util.sendFeedbackEmailSafely
 import com.tapsense.app.util.openUrlSafely
 
@@ -126,6 +127,7 @@ fun TapSenseNavHost(
                             navController.navigate(TapSenseDestinations.TROUBLESHOOT)
                         },
                         onContactSupportClick = { context.sendFeedbackEmailSafely() },
+                        onRateAppClick = { context.openPlayStoreListingSafely() },
                         onPrivacyClick = { context.openUrlSafely(PRIVACY_POLICY_URL) },
                 )
             }

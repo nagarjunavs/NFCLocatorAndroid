@@ -50,6 +50,7 @@ import com.tapsense.app.ui.theme.tapSenseFilled
 import com.tapsense.app.ui.theme.tapSenseOutlined
 import com.tapsense.app.ui.theme.tapSenseOutlinedBorder
 import com.tapsense.app.util.openNfcSettingsSafely
+import com.tapsense.app.util.requestInAppReviewSafely
 
 /**
  * The real "does this tap zone actually work" flow: registers as a live NFC reader
@@ -71,6 +72,7 @@ fun TapTestRoute(
     val activity = context as? Activity
     val hapticFeedback = LocalHapticFeedback.current
     val hapticsEnabled by viewModel.hapticsEnabled.collectAsState()
+    val reviewFlowEligible by viewModel.reviewFlowEligible.collectAsState()
 
     DisposableEffect(activity) {
         if (activity != null) {
@@ -86,6 +88,15 @@ fun TapTestRoute(
     LaunchedEffect(uiState) {
         if (uiState is TapTestUiState.Detected && hapticsEnabled) {
             hapticFeedback.performHapticFeedback(HapticFeedbackType.LongPress)
+        }
+    }
+
+    // Fires at most once per install (see TapTestViewModel.onTagDetected) - the dismissible
+    // system review sheet itself, not this screen, is what the user actually sees or ignores.
+    LaunchedEffect(reviewFlowEligible) {
+        if (reviewFlowEligible) {
+            activity?.requestInAppReviewSafely()
+            viewModel.onReviewFlowRequested()
         }
     }
 

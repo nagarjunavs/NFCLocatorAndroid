@@ -29,6 +29,13 @@ private const val DEFAULT_TIMEOUT_MILLIS = 25_000L
 private const val TAG = "TapTestViewModel"
 
 /**
+ * Ask for a review after the *second* successful tap test, not the first - the first success may
+ * just be onboarding curiosity, while a second success is a real signal the user got value from
+ * the app's core promise (a tap zone that actually works).
+ */
+private const val REVIEW_TRIGGER_TAP_TEST_SUCCESS_COUNT = 2
+
+/**
  * Drives the Tap Test screen's state machine. [startListening]/[stopListening] are the only
  * methods that touch the real `NfcAdapter.enableReaderMode` boundary (via
  * [TapReaderModeController], which needs a live `Activity`); everything else is plain state-machine
@@ -66,6 +73,15 @@ class TapTestViewModel @Inject constructor(
     private val _antennaState = MutableStateFlow<AntennaLocatorUiState?>(null)
     /** The resolved device's marker, shown behind the Ready/Detecting content - matches Home/My Phone/Tap Guide. */
     val antennaState: StateFlow<AntennaLocatorUiState?> = _antennaState.asStateFlow()
+
+    private val _reviewFlowEligible = MutableStateFlow(false)
+    /**
+     * One-shot signal that this is the moment to fire the Play In-App Review flow (see
+     * [onTagDetected]). The screen observes this, launches the OS flow with its `Activity`, and
+     * calls [onReviewFlowRequested] to consume it - the boolean going back to `false` is what
+     * stops the same signal from re-firing on the next recomposition (e.g. after a rotation).
+     */
+    val reviewFlowEligible: StateFlow<Boolean> = _reviewFlowEligible.asStateFlow()
 
     val hapticsEnabled: StateFlow<Boolean> = settingsRepository.settings
         .map { it.hapticsEnabled }
@@ -121,6 +137,19 @@ class TapTestViewModel @Inject constructor(
     fun onTagDetected() {
         timeoutJob?.cancel()
         _uiState.value = TapTestUiState.Detected
+        viewModelScope.launch {
+            val eligible = settingsRepository.recordTapTestSuccessAndCheckReviewEligibility(
+                REVIEW_TRIGGER_TAP_TEST_SUCCESS_COUNT,
+            )
+            if (eligible) {
+                _reviewFlowEligible.value = true
+            }
+        }
+    }
+
+    /** Call once the screen has launched (or attempted to launch) the in-app review flow. */
+    fun onReviewFlowRequested() {
+        _reviewFlowEligible.value = false
     }
 
     /**

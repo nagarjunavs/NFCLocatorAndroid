@@ -135,6 +135,7 @@
     <string name="settings_appearance_dark">ダーク</string>
     <string name="settings_help_center">ヘルプセンター</string>
     <string name="settings_contact_support">サポートに問い合わせる</string>
+    <string name="settings_rate_app">TapSenseを評価する</string>
     <string name="settings_privacy">プライバシーとデータ</string>
     <string name="settings_version">バージョン %1$s</string>
 

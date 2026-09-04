@@ -27,7 +27,7 @@ android {
         applicationId = "com.tapsense.app"
         minSdk = 26
         targetSdk = 36
-        versionCode = 6
+        versionCode = 7
         versionName = "1.0.0"
 
         testInstrumentationRunner = "com.tapsense.app.HiltTestRunner"
@@ -145,6 +145,9 @@ dependencies {
 
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.kotlinx.serialization.json)
+    // FakeReviewManager (used for BuildConfig.DEBUG in InAppReviewLauncher.kt) ships inside this
+    // same artifact as of 2.0.x - no separate review-testing artifact exists for this version.
+    implementation(libs.play.review)
 
     testImplementation(libs.junit)
     testImplementation(libs.mockk)
