@@ -13,7 +13,7 @@ Find your phone's exact NFC antenna spot - for tap-to-pay, transit & smart locks
 
 TapSense shows you exactly where your phone's NFC antenna is, so you never fumble again when tapping to pay, unlocking a smart lock, boarding transit, or badging into the office.
 
-Can't find the NFC chip location on your phone? Wondering where the NFC antenna is on your Samsung, Pixel, OnePlus, or Xiaomi device. TapSense finds it for you - no guessing, no digging through support forums.
+Can't find the NFC chip location on your phone? Wondering where the NFC antenna is on your Samsung, Pixel, OnePlus, or Xiaomi device? TapSense finds it for you - no guessing, no digging through support forums.
 
 KEY FEATURES
 
