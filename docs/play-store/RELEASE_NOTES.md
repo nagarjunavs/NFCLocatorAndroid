@@ -12,6 +12,30 @@ heading:
 See [`CHECKLIST.md`](CHECKLIST.md) for the rest of the submission checklist and the
 versionCode/versionName convention this file follows.
 
+## versionCode 8 — versionName 1.0.0 — Production (2026-09-16)
+
+Same build as the versionCode 8 closed-testing entry below - promoted to the **Production** track
+unchanged. Production's "What's new" is public-facing to every new installer, most of whom have
+never seen the app before, so unlike every closed-testing entry above (each written as a diff
+against the previous build for existing testers), this one introduces the app itself rather than
+listing what changed since versionCode 7.
+
+### What's new (paste into Play Console)
+
+```
+TapSense is live! Find exactly where to tap your phone for NFC - payments, transit, smart locks, and tags. Auto-detects your phone and shows your real tap zone with a confidence rating (Exact/Approximate/Estimated), plus a guided walkthrough and a live tap test. Works fully offline. No account, no data collected.
+```
+
+(314 characters.)
+
+### What actually changed (internal)
+
+Nothing code-side - see the versionCode 8 closed-testing entry immediately below for the actual
+diff against versionCode 7 (onboarding real-tap-zone upgrade, Troubleshoot scroll fix, debug-only
+launcher icon). This entry exists only because Production is a separate Play Console track
+submission with its own "What's new" field, dated to when it was promoted rather than when the
+build was first uploaded to Closed testing.
+
 ## versionCode 8 — versionName 1.0.0 — Closed testing (2026-09-04)
 
 ### What's new (paste into Play Console)
